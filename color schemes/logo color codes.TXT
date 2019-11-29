@@ -1,0 +1,6 @@
+blue: #4c96d7
+green: #74d14c
+orange: #f2af58
+red: #ec4c4c
+pink: #d65ab1
+purple: #a55fc1
