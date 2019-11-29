@@ -16669,7 +16669,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 (function ($) {
-  var MENU_WIDTH = 240;
+  //var MENU_WIDTH = 240;			//	Original value
+  var MENU_WIDTH = 134;				//	Custom value
   var SN_BREAKPOINT = 1440;
   var MENU_WIDTH_HALF = 2;
   var MENU_LEFT_MIN_BORDER = 0.3;

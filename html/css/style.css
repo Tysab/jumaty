@@ -2,6 +2,14 @@
     padding-left: 30px !important;
 }
 
-.side-nav {
-    width:150px !important;
+.side-nav.wide {
+    width: 8.5rem;
+}
+
+.side-nav.fixed {
+    transform: translateX(0) !important;
+    -webkit-transform: translateX(0) !important;
+    -moz-transform: translateX(0) !important;
+    -ms-transform: translateX(0) !important;
+    -o-transform: translateX(0) !important;
 }
