@@ -17,3 +17,11 @@
 .hidden {
     display: none !important;
 }
+
+.sn-icon-size{
+    font-size: 1rem !important;
+}
+
+.sn-icon-size-child{
+    font-size: 0.8rem !important;
+}
