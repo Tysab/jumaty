@@ -1,5 +1,5 @@
 .side-nav.wide .collapsible-body a {
-    padding-left: 30px !important;
+    padding-left: 23px !important;
 }
 
 .side-nav.wide {
@@ -12,4 +12,8 @@
     -moz-transform: translateX(0) !important;
     -ms-transform: translateX(0) !important;
     -o-transform: translateX(0) !important;
+}
+
+.hidden {
+    display: none !important;
 }
