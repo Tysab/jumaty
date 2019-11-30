@@ -42,14 +42,17 @@
           </div>    <a href="">
             <div class="mask rgba-white-slight">
           </a>
+          <!-- Deze code <div id="mdb-lightbox-ui"></div> en de <div class="mdb-lightbox"> worden gebruikt om de image te kunnen vergroten op elk scherm..
+               dan vervolgens met data-size="heigthxWidth" kan je aangeven hoe groot de image moet worden-->
            <div id="mdb-lightbox-ui"></div>
-
           <div class="mdb-lightbox">
           <figure class="view view-cascade white overlay mt-2">
             <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" data-size="1600x1067">
             <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" alt="onlick image"
               class="img-fluid">
             </a>
+            <!-- Deze figcaption kan je gebruiken om bepaalde text onder de vergrootte image te krijgen, dit krijg je dus niet te zien als de..
+                 image niet vergroot is-->
             <figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus nobis sit veritatis
               cumque! Placeat voluptate aut pariatur! Nihil molestiae quos explicabo dignissimos quam cupiditate
               sequi corporis eaque corrupti. Vel, est.</figcaption>
@@ -90,6 +93,7 @@
 $(function () {
  $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
 });</script>
+<!-- Deze function hoort bij de lightbox-ui en zorgt ervoor dat het daadwerkenlijk werkt-->
 </body>
 
 </html>
