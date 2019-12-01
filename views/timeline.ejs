@@ -1,11 +1,16 @@
 <!-- Het begin van het project-->
-<div class="container-fluid vh-100 min-w-100">
+<div class="container-fluid h-100 min-w-100">
 
     <div class="row">
+
         <div class="col-md-3 "></div>
 
+        <!-- Lightbox (ingezoomd) van de geklikte foto -->
+        <div id="mdb-lightbox-ui"></div>
+        
         <!--De omheining van de card, het witte veld eromheen: -->
-        <div class="col-md-6 d-flex justify-content-center grey lighten-5 p-5 vh-100 wow fadeInRight animated">
+        <div class="col-md-6 d-flex justify-content-center grey lighten-5 p-5 h-100 wow fadeInRight animated">
+
 
             <div class="card promoting-card m-2">
 
@@ -41,9 +46,21 @@
 
                 <!-- Card image -->
 
-                <div class="view overlay">
-                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg"
-                        alt="Card image cap">
+                <div class="d-flex justify-content-center">
+                    <!-- <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg"
+                        alt="Card image cap"> -->
+
+                    <div class="mdb-lightbox no-margin">
+                        <figure>
+                            <a href="https://i.pinimg.com/originals/bc/c0/86/bcc0860537b4030e6e62fa0a38ef907b.jpg" data-size="1920x1080">
+                                <img class="d-flex timeline-img" src="https://i.pinimg.com/originals/bc/c0/86/bcc0860537b4030e6e62fa0a38ef907b.jpg"
+                                    alt="Card image cap">
+                                    
+                            </a>
+                        </figure>
+                    </div>
+
+                    <!-- Overlay effect -->
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
