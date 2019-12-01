@@ -1,3 +1,10 @@
+body {
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0.5) 0%, rgba(254, 254, 254, 0) 100%), url('../img/bg-repeat.png');
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.5) 0%, rgba(254, 254, 254, 0) 100%), url('../img/bg-repeat.png');
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5) 0%, rgba(254, 254, 254, 0) 100%), url('../img/bg-repeat.png');
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#00fefefe', GradientType=1);
+}
+
 .side-nav.wide .collapsible-body a {
     padding-left: 23px !important;
 }
@@ -32,49 +39,49 @@
     font-weight: 500 !important;
 }
 
-.sidenav-item.sn-dropdown{
+.sidenav-item.sn-dropdown {
     background-color: rgba(51, 51, 53, 0.65) !important;
     color: hsla(0, 0%, 96%, 0.87) !important;
     font-weight: 600 !important;
 }
 
-.sidenav-item.sn-dropdown:hover{
+.sidenav-item.sn-dropdown:hover {
     background-color: rgba(245, 245, 245, 0.87) !important;
     color: #333335 !important;
 }
 
-.sidenav-item.sn-dropdown.active{
+.sidenav-item.sn-dropdown.active {
     background-color: rgba(245, 245, 245, 0.87) !important;
     color: #333335 !important;
     font-weight: 600 !important;
 }
 
-.sidenav-item.sn-dropdown.active:hover{
+.sidenav-item.sn-dropdown.active:hover {
     background-color: rgba(51, 51, 53, 0.65) !important;
     color: hsla(0, 0%, 96%, 0.87) !important;
 }
 
-.sidenav-item.sn-hide-menu{
-    background-color: rgba(0,0,0,.15);
+.sidenav-item.sn-hide-menu {
+    background-color: rgba(0, 0, 0, .15);
     color: hsla(0, 0%, 96%, 0.87) !important;
 }
 
-.sidenav-item.sn-hide-menu:hover{
+.sidenav-item.sn-hide-menu:hover {
     background-color: #f5f5f540 !important;
     color: #333335 !important;
 }
 
-.sidenav-item.sn-collapse{
+.sidenav-item.sn-collapse {
     font-weight: 400 !important;
     color: hsla(0, 0%, 100%, 0.75) !important;
 }
 
-.sidenav-item.sn-collapse:hover{
+.sidenav-item.sn-collapse:hover {
     background-color: #f5f5f540 !important;
     color: #333335 !important;
 }
 
-.sidenav-item.sn-bottom{
+.sidenav-item.sn-bottom {
     font-weight: 400 !important;
     color: hsla(0, 0%, 100%, 0.75) !important;
 }
