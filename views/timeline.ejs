@@ -1,11 +1,13 @@
 <!-- Het begin van het project-->
-<div class="container-fluid h-100 min-w-100">
+<div class="container-fluid vh-100 min-w-100">
+
     <div class="row">
         <div class="col-md-3 "></div>
 
         <!--De omheining van de card, het witte veld eromheen: -->
-        <div class="col-md-6 grey lighten-5 p-5">
-            <div class="card promoting-card m-5">
+        <div class="col-md-6 d-flex justify-content-center grey lighten-5 p-5 vh-100 wow fadeInRight animated">
+
+            <div class="card promoting-card m-2">
 
                 <!-- De bovenkant van de card: (user info) -->
                 <div class="card-body">
@@ -13,46 +15,58 @@
                     <hr class="color black">
 
                     <!-- Avatar -->
-                    <!-- Hier bij de <a href="#"> kan je eventueel een link maken naar het account van de uploader -->
-                    <div>
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(21).jpg" alt=""
-                            class="rounded-circle mr-3" alt="profile-image" height="75px" width="75px">
-                        <strong><a href="#">'name'</a></strong>
+                    <div class="container-fluid p-0">
+
+                        <div class="row">
+
+                            <div class="text-nowrap d-flex justify-content-center">
+
+                                <div class="col-md-3">
+                                    <img src="https://www.pngfind.com/pngs/m/110-1102775_download-empty-profile-hd-png-download.png"
+                                        class="img-fluid rounded-circle">
+                                    </div>
+
+                                <div class="col-md-9 d-flex">
+                                    <span class="my-auto h4 font-weight-bold pt-3">Username</span>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <!-- /card-body -->
                 </div>
 
 
-                <div class="mask rgba-white-slight">
+                <!-- Card image -->
 
-                    <!-- Card image -->
-
-                    <div class="view overlay">
-                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg"
-                            alt="Card image cap">
-                        <a>
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-
-                    <!--/Card image-->
-
-                    <!--Card content-->
-                    <div class="card-body card-body-cascade">
-                        <!--Text content-->
-                        <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                            accusantium
-                            doloremque laudantium, totam rem aperiam. </p>
-                    </div>
-                    <!--/.Text content-->
-
+                <div class="view overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg"
+                        alt="Card image cap">
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
                 </div>
 
-                <div class="col-md-3"></div>
+                <!--/Card image-->
+
+                <!--Card content-->
+                <div class="card-body card-body-cascade">
+                    <!--Text content-->
+                    <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem
+                        accusantium
+                        doloremque laudantium, totam rem aperiam. </p>
+                </div>
+                <!--/.Text content-->
+
 
             </div>
+
         </div>
+
+        <div class="col-md-3"></div>
+
     </div>
 
     <script>
