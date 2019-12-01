@@ -44,53 +44,11 @@
                   background: #1C2331!important;
               }
           }
-
-          #sidebar-wrapper {
-  min-height: 100vh;
-  margin-left: -4rem;
-  margin-right: 2rem;
-  -webkit-transition: margin .25s ease-out;
-  -moz-transition: margin .25s ease-out;
-  -o-transition: margin .25s ease-out;
-  transition: margin .25s ease-out;
-}
-
-#sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
-}
-
-#sidebar-wrapper .list-group {
-  width: 15rem;
-}
-
-#page-content-wrapper {
-  min-width: 100vw;
-}
-
-#wrapper.toggled #sidebar-wrapper {
-  margin-left: 0;
-}
-
-@media (min-width: 768px) {
-  #sidebar-wrapper {
-    margin-left: 0;
-  }
-
-  #page-content-wrapper {
-    min-width: 0;
-    width: 100%;
-  }
-
-  #wrapper.toggled #sidebar-wrapper {
-    margin-left: -15rem;
-  }
-}
   </style>
 </head>
 
 <body>
-    
+
 
   <!-- Full Page Intro -->
   <div class="view full-page-intro" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
@@ -101,78 +59,22 @@
       <!-- Content -->
       <div class="container">
 
-          <div class="d-flex" id="wrapper">
-
-            <!-- Sidebar -->
-            <div class="bg-light border-right" id="sidebar-wrapper">
-                <div class="sidebar-heading">Hey, <br> Gebruikersnaam 
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(21).jpg" alt="" class="rounded-circle mr-3" alt="profile-image"
-                  height="110px" width="110px">
-                </div>
-                <br>
-
-                <div class="list-group list-group-flush">
-                  <a href="#" class="list-group-item list-group-item-action bg-light">Profiel</a>
-                  <a href="#" class="list-group-item list-group-item-action bg-light">Tijdlijn</a>
-                  <a href="#" class="list-group-item list-group-item-action bg-light">Uploaden</a>
-                  <a href="#" class="list-group-item list-group-item-action bg-light">Settings</a>
-                  <a href="#" class="list-group-item list-group-item-action bg-light">Uitloggen</a>
-                </div>
-              </div>
-            
         <!--Grid row-->
-        <div class="row wow">
-          
+        <div class="row wow fadeIn">
+
           <!--Grid column-->
           <div class="col-md-6 mb-4 white-text text-center text-md-left">
-              <hr class="hr-light">
+
+              <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(21).jpg" alt="" class="rounded-circle mr-3" alt="profile-image"
+              height="110px" width="110px">
               <br>
-              <br>
-              <div>
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(21).jpg" alt="" class="rounded-circle mr-3" alt="profile-image"
-                    height="110px" width="110px">
-                    <br>
-                    <h2>Gebruikersnaam</h2>
-                    <br>
-                </div>
+              <p>Gebruikersnaam</p>
 
             <hr class="hr-light">
 
             <p>
-              <strong>Voornaam</strong>
+              <strong>Voornaam + achternaam</strong>
             </p>
-            <p>
-              <strong>Achternaam</strong>
-            </p>
-
-            <!--Card content-->
-            <div class="card-body">
-
-                <!-- Form -->
-                <form name="">
-                  <!-- Heading -->
-                  
-
-                  <div class="md-form">
-                      <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" data-size="1280x720">
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" alt="onlick image"
-                          class="img-fluid">
-                        </a>
-                  </div>
-
-                  <div class="md-form">
-                      <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" data-size="1280x720">
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" alt="onlick image"
-                          class="img-fluid">
-                        </a>
-                  </div>
-                  
-                  
-
-                </form>
-                <!-- Form -->
-
-              </div>
 
           </div>
           <!--Grid column-->
@@ -183,17 +85,55 @@
             <!--Card-->
             <div class="card">
 
-              
+              <!--Card content-->
+              <div class="card-body">
 
+                <!-- Form -->
+                <form name="">
+                  <!-- Heading -->
+                  <h3 class="dark-grey-text text-center">
+                    <strong>Biografie</strong>
+                  </h3>
+                  <hr>
+
+                  <p>Welkom op mijn profiel</p>
+                  <p>Biografie tekst</p>
+                  <p>Nog meer...</p>
+                  <p>Nog meer tekst</p>
+
+                </form>
+                <!-- Form -->
+
+              </div>
+              
             </div>
             <!--/.Card-->
+            
+          </div>
+          <!--Grid column-->
 
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5 mb-4">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" data-size="1280x720">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" alt="onlick image"
+                  class="img-fluid" style="width: 350px; height: 300px;">
+                </a>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5 mb-4">
+              <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" data-size="1280x720">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg" alt="onlick image"
+                  class="img-fluid" style="width: 350px; height: 300px;">
+                </a>
           </div>
           <!--Grid column-->
 
         </div>
         <!--Grid row-->
         
+      </div>
       <!-- Content -->
 
     </div>
