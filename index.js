@@ -6,7 +6,7 @@ const app = express();
 //const { keys } = require('./keys');
 
 // Calling routes
-//const home = require('./routes/home');
+const home = require('./routes/home');
 const login = require('./routes/login');
 const register = require('./routes/register');
 const timeline = require('./routes/timeline');
@@ -23,7 +23,7 @@ app.use(express.urlencoded());
 app.use(express.static('public'));
 
 //  Setting routes
-//app.use('/', home);                       // sets / path to home.js router
+app.use('/', home);                       // sets / path to home.js router
 app.use('/login', login);                   // sets /login path to login.js router
 app.use('/register', register);             // sets /register path to register.js router
 app.use('/timeline', timeline);             // sets /timeline path to timeline.js router
