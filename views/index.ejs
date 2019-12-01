@@ -22,12 +22,14 @@
   <!-- Sidenav -->
   <!-- Sidenav -->
 
-  <%- include("partials/sidenav.ejs") %>
-
-  <!-- /Sidenav -->
-  <!-- /Sidenav -->
-
+  <%- include(navigation) %>
   
+  <!-- /Sidenav -->
+  <!-- /Sidenav -->
+  
+  <%- include(content) %>
+
+
   <!-- Partial content -->
   <!-- Partial content -->
 
@@ -48,13 +50,6 @@
   <script type="text/javascript" src="js/script.js"></script>
 
   <script>
-    
-    // SideNav Button Initialization
-    $(".button-collapse").sideNav();
-    // SideNav Scrollbar Initialization
-    var sideNavScrollbar = document.querySelector('.custom-scrollbar');
-    Ps.initialize(sideNavScrollbar);
-
     new WOW().init();
   </script>
 </body>

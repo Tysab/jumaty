@@ -14,7 +14,6 @@ const timeline = require('./routes/timeline');
 
 const port = process.env.PORT || 3000;
 
-
 // mongoose.connect(keys.mongodb)
 //     .then(() => console.log('Connected to MongoDB...'))
 //     .catch(err => console.error('Could not connect to MongoDB...', err));
