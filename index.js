@@ -10,7 +10,7 @@ const app = express();
 const login = require('./routes/login');
 const register = require('./routes/register');
 const timeline = require('./routes/timeline');
-//const profile = require('./routes/profile');
+const profile = require('./routes/profile');
 
 const port = process.env.PORT || 3000;
 
@@ -27,7 +27,7 @@ app.use(express.static('public'));
 app.use('/login', login);                   // sets /login path to login.js router
 app.use('/register', register);             // sets /register path to register.js router
 app.use('/timeline', timeline);             // sets /timeline path to timeline.js router
-//app.use('/profile', profile);             // sets /profile path to profile.js router
+app.use('/profile', profile);             // sets /profile path to profile.js router
 
 
 //  Error handling for 404 pages
@@ -36,7 +36,7 @@ app.get('*', (res, req, next) => {
 });
 
 app.use((error, req, res, next) => {
-    res.json({ message: error.message });
+    res.send(`${error.message} <button onclick='window.history.back()'>Go Back</button>`);
 });
 
 //  Connects Express to EJS for templating engines

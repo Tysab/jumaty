@@ -3,6 +3,10 @@
         "timeline": {
             "navigation": "partials/sidenav",
             "content": "timeline"
+        },
+        "profile": {
+            "navigation": "partials/sidenav",
+            "content": "profile"
         }
     }
 }
