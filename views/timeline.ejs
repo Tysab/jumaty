@@ -1,69 +1,59 @@
 <!-- Het begin van het project-->
-<div class="container h-100 min-w-100 ">
-    <div class="row mt-4 ">
-        <div class="col-md-3 ">
+<div class="container-fluid h-100 min-w-100">
+    <div class="row">
+        <div class="col-md-3 "></div>
 
-        </div>
         <!--De omheining van de card, het witte veld eromheen: -->
-        <div class="col-md-6 white mt-4 mb-5" style="padding-left: 100px; padding-right: 100px;">
-            <div class="card promoting-card mb-4 mt-4">
+        <div class="col-md-6 grey lighten-5 p-5">
+            <div class="card promoting-card m-5">
 
                 <!-- De bovenkant van de card: (user info) -->
                 <div class="card-body">
+
                     <hr class="color black">
 
                     <!-- Avatar -->
                     <!-- Hier bij de <a href="#"> kan je eventueel een link maken naar het account van de uploader -->
-                    <div a href="#">
+                    <div>
                         <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(21).jpg" alt=""
                             class="rounded-circle mr-3" alt="profile-image" height="75px" width="75px">
                         <strong><a href="#">'name'</a></strong>
                     </div>
 
+                    <!-- /card-body -->
+                </div>
 
-                </div> <a href="">
-                    <div class="mask rgba-white-slight">
-                </a>
-                <!-- Deze code <div id="mdb-lightbox-ui"></div> en de <div class="mdb-lightbox"> worden gebruikt om de image te kunnen vergroten op elk scherm, dan vervolgens met data-size="heigthxWidth" kan je aangeven hoe groot de image moet worden-->
-                <div id="mdb-lightbox-ui"></div>
-                <div class="mdb-lightbox">
-                    <figure class="view view-cascade white overlay mt-2">
-                        <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"
-                            data-size="1600x1067">
-                            <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20%283%29.jpg"
-                                alt="onlick image" class="img-fluid">
+
+                <div class="mask rgba-white-slight">
+
+                    <!-- Card image -->
+
+                    <div class="view overlay">
+                        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg"
+                            alt="Card image cap">
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
                         </a>
-                        <!-- Deze figcaption kan je gebruiken om bepaalde text onder de vergrootte image te krijgen, dit krijg je dus niet te zien als de image niet vergroot is-->
-                        <figcaption>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus nobis sit
-                            veritatis
-                            cumque! Placeat voluptate aut pariatur! Nihil molestiae quos explicabo dignissimos quam
-                            cupiditate
-                            sequi corporis eaque corrupti. Vel, est.<a href="#"><br>
-                                <h2>'name'</h2>
-                            </a></figcaption>
-                        <!-- Hier bij de <a href="#"> kan je eventueel een link maken naar het account van de uploader -->
-                    </figure>
+                    </div>
+
+                    <!--/Card image-->
+
+                    <!--Card content-->
+                    <div class="card-body card-body-cascade">
+                        <!--Text content-->
+                        <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem
+                            accusantium
+                            doloremque laudantium, totam rem aperiam. </p>
+                    </div>
+                    <!--/.Text content-->
 
                 </div>
-                <!--/Card image-->
 
-
-                <!--Card content-->
-                <div class="card-body card-body-cascade text-center">
-                    <!--Text content-->
-                    <p class="card-text text-left">Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                        accusantium
-                        doloremque
-                        laudantium, totam rem aperiam. </p>
-                </div>
-                <!--/.Text content-->
-            </div>
-            <div class="col-md-3">
+                <div class="col-md-3"></div>
 
             </div>
         </div>
     </div>
-
 
     <script>
         // MDB Lightbox Init
