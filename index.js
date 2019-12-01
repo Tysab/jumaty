@@ -29,7 +29,19 @@ app.use('/register', register);             // sets /register path to register.j
 app.use('/timeline', timeline);             // sets /timeline path to timeline.js router
 //app.use('/profile', profile);             // sets /profile path to profile.js router
 
+
+//  Error handling for 404 pages
+app.get('*', (res, req, next) => {
+    throw new Error('page not found');
+});
+
+app.use((error, req, res, next) => {
+    res.json({ message: error.message });
+});
+
+//  Connects Express to EJS for templating engines
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+//  Sets port number for the server
 app.listen(port, () => {console.log(`Listening on port ${port}`)});
