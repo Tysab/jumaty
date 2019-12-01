@@ -5,6 +5,8 @@ body {
     filter: ;
     progid: DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#00fefefe', GradientType=1);
     -webkit-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#00fefefe', GradientType=1);
+
+    overflow-x: hidden !important;
 }
 
 .timeline-img {
