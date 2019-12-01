@@ -23,6 +23,7 @@
     }
 
     @media (max-width: 740px) {
+
       html,
       body,
       header,
@@ -32,6 +33,7 @@
     }
 
     @media (min-width: 800px) and (max-width: 850px) {
+
       html,
       body,
       header,
@@ -39,11 +41,12 @@
         height: 650px;
       }
     }
+
     @media (min-width: 800px) and (max-width: 850px) {
-              .navbar:not(.top-nav-collapse) {
-                  background: #1C2331!important;
-              }
-          }
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2331 !important;
+      }
+    }
   </style>
 </head>
 
@@ -65,21 +68,16 @@
           <!--Grid column-->
           <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
-            <h1 class="display-4 font-weight-bold">Inloggen</h1>
+            <div class="text-nowrap d-flex justify-content-center">
+              <img src="img/logonotext.png" alt="logo" width="100">
+              <span class="display-4 font-weight-bold ml-3 mb-0 pt-3 align-bottom">Jumaty</span>
+            </div>
 
             <hr class="hr-light">
 
-            <p>
-              <strong>Log hier in met uw account</strong>
+            <p class="text-center">
+              <strong>In ullamco esse reprehenderit veniam id nisi et enim amet excepteur aliqua irure. Fugiat qui esse ipsum veniam est. Aute ea do laboris exercitation eu.</strong>
             </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>Heeft u nog geen account? Klik op de knop hieronder</strong>
-            </p>
-
-            <a href="register.html" class="btn btn-indigo btn-lg">Registeren
-            </a>
-            <!-- Ga naar register.html -->
 
           </div>
           <!--Grid column-->
@@ -97,28 +95,34 @@
                 <form name="">
                   <!-- Heading -->
                   <h3 class="dark-grey-text text-center">
-                    <strong>Inloggen:</strong>
+                    <strong>Log In</strong>
                   </h3>
                   <hr>
 
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control">
+                    <input type="text" name="email" class="form-control">
                     <label for="form2">Email</label>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-key prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control">
+                    <input type="text" name="wachtwoord" class="form-control">
                     <label for="form2">Wachtwoord</label>
                   </div>
 
                   <div class="text-center">
-                    <button class="btn btn-indigo">Inloggen</button>
+                    <input type="submit" class="btn btn-custom-color" value="Inloggen">
                   </div>
 
                 </form>
                 <!-- Form -->
+
+                <hr>
+
+                <div class="text-center">Nog geen account? <br> 
+                  <a href="/register" style="color:#A91010" class="font-weight-bold">Meld je aan</a>
+                </div>
 
               </div>
 
@@ -140,7 +144,7 @@
   </div>
   <!-- Full Page Intro -->
 
-  
+
 
   <!-- SCRIPTS -->
   <!-- JQuery -->

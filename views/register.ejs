@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Registeren</title>
+  <title>Inloggen</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -13,7 +13,7 @@
   <!-- Material Design Bootstrap -->
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
   <style type="text/css">
     html,
     body,
@@ -23,6 +23,7 @@
     }
 
     @media (max-width: 740px) {
+
       html,
       body,
       header,
@@ -32,6 +33,7 @@
     }
 
     @media (min-width: 800px) and (max-width: 850px) {
+
       html,
       body,
       header,
@@ -39,11 +41,12 @@
         height: 650px;
       }
     }
+
     @media (min-width: 800px) and (max-width: 850px) {
-              .navbar:not(.top-nav-collapse) {
-                  background: #1C2331!important;
-              }
-          }
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2331 !important;
+      }
+    }
   </style>
 </head>
 
@@ -51,7 +54,7 @@
 
 
   <!-- Full Page Intro -->
-  <div class="view full-page-intro" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">
+  <div class="view full-page-intro">
 
     <!-- Mask & flexbox options-->
     <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
@@ -65,21 +68,16 @@
           <!--Grid column-->
           <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
-            <h1 class="display-4 font-weight-bold">Registeren</h1>
+            <div class="text-nowrap d-flex justify-content-center">
+              <img src="img/logonotext.png" alt="logo" width="100">
+              <span class="display-4 font-weight-bold ml-3 mb-0 pt-3 align-bottom">Jumaty</span>
+            </div>
 
             <hr class="hr-light">
 
-            <p>
-              <strong>Maak hier uw account aan</strong>
+            <p class="text-center">
+              <strong>In ullamco esse reprehenderit veniam id nisi et enim amet excepteur aliqua irure. Fugiat qui esse ipsum veniam est. Aute ea do laboris exercitation eu.</strong>
             </p>
-
-            <p class="mb-4 d-none d-md-block">
-              <strong>Heeft u al een account? Klik op de knop hieronder</strong>
-            </p>
-
-            <a href="login.html" class="btn btn-indigo btn-lg">Inloggen
-            </a> 
-           <!-- Ga naar login.html -->
 
           </div>
           <!--Grid column-->
@@ -97,46 +95,46 @@
                 <form name="">
                   <!-- Heading -->
                   <h3 class="dark-grey-text text-center">
-                    <strong>Registeren:</strong>
+                    <strong>Meld je aan</strong>
                   </h3>
                   <hr>
 
                   <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="text" name="voornaam" class="form-control">
                     <label for="form2">Voornaam</label>
                   </div>
 
                   <div class="md-form">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control">
+                    <i class="fas fa-key prefix grey-text"></i>
+                    <input type="text" name="achternaam" class="form-control">
                     <label for="form2">Achternaam</label>
                   </div>
 
                   <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control">
-                    <label for="form2">Email</label>
+                    <i class="fas fa-key prefix grey-text"></i>
+                    <input type="text" name="email" class="form-control">
+                    <label for="form2">E-Mail</label>
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-key prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control">
+                    <input type="text" name="wachtwoord" class="form-control">
                     <label for="form2">Wachtwoord</label>
                   </div>
 
-                  <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="text" id="form2" class="form-control">
-                    <label for="form2">Herhaal wachtwoord</label>
-                  </div>
-
                   <div class="text-center">
-                    <button class="btn btn-indigo">Registeren</button>
+                    <input type="submit" class="btn btn-custom-color" value="Meld je aan">
                   </div>
 
                 </form>
                 <!-- Form -->
+
+                <hr>
+
+                <div class="text-center">Heb je al een account? <br> 
+                  <a href="/login" style="color:#A91010" class="font-weight-bold">Log in</a>
+                </div>
 
               </div>
 
@@ -158,7 +156,7 @@
   </div>
   <!-- Full Page Intro -->
 
-  
+
 
   <!-- SCRIPTS -->
   <!-- JQuery -->

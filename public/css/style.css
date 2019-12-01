@@ -5,6 +5,12 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#00fefefe', GradientType=1);
 }
 
+.btn-custom-color {
+    background-color: #4C95D7 !important;
+    color: hsla(0, 0%, 100%, 0.75) !important;
+    font-weight: 500 !important;
+}
+
 .side-nav.wide .collapsible-body a {
     padding-left: 23px !important;
 }

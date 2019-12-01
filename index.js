@@ -7,7 +7,7 @@ const app = express();
 // Calling routes
 //const home = require('./routes/home');
 const login = require('./routes/login');
-//const register = require('./routes/register');
+const register = require('./routes/register');
 //const profile = require('./routes/profile');
 
 const port = process.env.PORT || 3000;
@@ -24,7 +24,7 @@ app.use(express.static('public'));
 //  Setting routes
 //app.use('/', home);                         // sets / path to home.js router
 app.use('/login', login);                   // sets /login path to login.js router
-//app.use('/register', register);             // sets /register path to register.js router
+app.use('/register', register);             // sets /register path to register.js router
 //app.use('/profile', profile);             // sets /profile path to profile.js router
 
 app.set('view engine', 'ejs');
