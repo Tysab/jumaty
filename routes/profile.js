@@ -12,8 +12,18 @@ router.get('/', async (req, res) => {
     res.render('index', page);
 });
 
-router.post('/', async (req, res) => {
+router.get('/settings', async (req, res) => {
+    console.log('Connected to /profile/settings');
 
+    res.send("this is the page for /profile/settings");
+});
+
+router.post('/', async (req, res) => {
+    //  User following function
+});
+
+router.post('/settings', async (req, res) => {
+    //  Users settings updates
 });
 
 module.exports = router;

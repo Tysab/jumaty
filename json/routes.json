@@ -4,9 +4,17 @@
             "navigation": "partials/sidenav",
             "content": "timeline"
         },
+        "settings": {
+            "navigation": "partials/sidenav",
+            "content": "settings"
+        },
         "profile": {
             "navigation": "partials/sidenav",
             "content": "profile"
+        },
+        "profile_settings": {
+            "navigation": "partials/sidenav",
+            "content": "profile_settings"
         }
     }
 }

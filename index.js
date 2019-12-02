@@ -11,6 +11,7 @@ const login = require('./routes/login');
 const register = require('./routes/register');
 const timeline = require('./routes/timeline');
 const profile = require('./routes/profile');
+//const profile_settings = require('./routes/profile-settings');
 
 const port = process.env.PORT || 3000;
 
@@ -23,11 +24,12 @@ app.use(express.urlencoded());
 app.use(express.static('public'));
 
 //  Setting routes
-app.use('/', home);                       // sets / path to home.js router
-app.use('/login', login);                   // sets /login path to login.js router
-app.use('/register', register);             // sets /register path to register.js router
-app.use('/timeline', timeline);             // sets /timeline path to timeline.js router
-app.use('/profile', profile);             // sets /profile path to profile.js router
+app.use('/', home);                                     // sets / path to home.js router
+app.use('/login', login);                               // sets /login path to login.js router
+app.use('/register', register);                         // sets /register path to register.js router
+app.use('/timeline', timeline);                         // sets /timeline path to timeline.js router
+app.use('/profile', profile);                           // sets /profile path to profile.js router
+//app.use('/profile/settings', profile_settings);         // sets /profile/settings path to profile.js router
 
 
 //  Error handling for 404 pages

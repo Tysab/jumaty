@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     console.log('Connected to /');
-    res.send('<a href="/login">Login</a><br><br><br> <a href="/register">Register</a><br><br><br> <a href="/timeline">Timeline</a>');
+    res.render('home');
 });
 
 router.post('/', async (req, res) => {
