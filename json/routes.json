@@ -10,11 +10,11 @@
         },
         "profile": {
             "navigation": "partials/sidenav",
-            "content": "profile"
-        },
-        "profile_settings": {
-            "navigation": "partials/sidenav",
-            "content": "profile_settings"
+            "content": "profile",
+            "settings": {
+                "navigation": "partials/sidenav",
+                "content": "profile_settings"
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
-//  Root path is /timeline
+//  Root path is /profile
 
 const page = require('../json/routes.json').page.profile;
+const settings = page.settings;
 const express = require('express');
 const router = express.Router();
 //const file_name = __filename.slice(__dirname.length + 1, -3);
@@ -12,10 +13,11 @@ router.get('/', async (req, res) => {
     res.render('index', page);
 });
 
+//  User profile settings
 router.get('/settings', async (req, res) => {
     console.log('Connected to /profile/settings');
 
-    res.send("this is the page for /profile/settings");
+    res.render("index", settings);
 });
 
 router.post('/', async (req, res) => {
