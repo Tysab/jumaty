@@ -5,6 +5,20 @@ const app = express();
 //const mongoose = require('mongoose');
 //const { keys } = require('./keys');
 
+/**
+ * TODO: ENVIRONMENT VARIABLES
+ * * MongoDB key (Check vidly > config + JWT) - heroku config:set jumaty_db=(key)
+ * TODO: MIDDLEWARE
+ * * Winston
+ * * Config
+ * TODO: REFACTOR
+ * * Routes
+ * TODO: AUTHENTICATION
+ * * Tokens
+ */
+
+require('./startup/prod')(app);
+
 // Calling routes
 const home = require('./routes/home');
 const login = require('./routes/login');

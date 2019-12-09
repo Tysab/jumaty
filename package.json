@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "heropush": "git push heroku master"
   },
   "repository": {
     "type": "git",
@@ -17,8 +19,10 @@
   },
   "homepage": "https://github.com/Tysab/systeemanalyse-project#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
+    "helmet": "^3.21.2",
     "nodemon": "^2.0.1",
     "path": "^0.12.7"
   },
