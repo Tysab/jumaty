@@ -3,7 +3,7 @@ const config = require('config');
 
 module.exports = function () {
 
-        const db = config.get('db');
+        const db = config.get(config.get('jwtPrivateKey'));
 
         mongoose.connect(db, {
                         useNewUrlParser: true,
