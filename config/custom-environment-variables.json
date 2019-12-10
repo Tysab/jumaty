@@ -1,4 +1,3 @@
 {
-    "PrivateKey": "mongo_PrivateKey",
-    "db": "jumaty_db"
+    "jwtPrivateKey": "db_test"
 }
