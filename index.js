@@ -3,7 +3,7 @@ const app = express();
 
 /**
  * TODO: MIDDLEWARE
- * * Winston
+ * * Winston (logs)
  * ? TODO: REFACTOR
  * TODO: AUTHENTICATION
  * * Tokens
