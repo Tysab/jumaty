@@ -5,8 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# config
-config/
+# default
+config/default.json
 
 atlas.txt
 
