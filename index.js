@@ -14,6 +14,10 @@ const app = express();
  * * Tokens
  */
 
+const testing = app.get('env');
+
+ console.log(testing);
+
  require('./startup/config')();
  require('./startup/routes')(app);
  require('./startup/db')();
