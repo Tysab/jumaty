@@ -1,22 +1,13 @@
-const config = require('config');
 const express = require('express');
 const app = express();
 
 /**
- * TODO: ENVIRONMENT VARIABLES
- * * MongoDB key (Check vidly > config + JWT) - heroku config:set jumaty_db=(key)
  * TODO: MIDDLEWARE
  * * Winston
- * * Config
- * TODO: REFACTOR
- * * Routes
+ * ? TODO: REFACTOR
  * TODO: AUTHENTICATION
  * * Tokens
  */
-
-const testing = app.get('env');
-
- console.log(testing);
 
  require('./startup/config')();
  require('./startup/routes')(app);
