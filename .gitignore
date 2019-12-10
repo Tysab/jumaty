@@ -8,6 +8,8 @@ yarn-error.log*
 # config
 config/
 
+atlas.txt
+
 # Runtime data
 pids
 *.pid
