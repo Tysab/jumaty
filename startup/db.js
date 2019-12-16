@@ -5,9 +5,9 @@ let conf;
 
 if(env == "development")
 {
- conf = config.get('bani_db');
+ conf = config.get('jumaty_db');
 } else if(env == 'production'){
-    conf = process.env.bani_db;
+    conf = process.env.jumaty_db;
 }
 
 module.exports = function () {
