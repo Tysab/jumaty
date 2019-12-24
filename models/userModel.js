@@ -68,8 +68,8 @@ async function createDummyUser(voornaam, achternaam, email, wachtwoord, imgOne, 
 		email,
 		wachtwoord,
 		img: {
-			data: imgOne,
-			contentType: imgTwo
+			data: imgOne,			//	fs.readFile data
+			contentType: imgTwo		//	image/(filetype): image/png - image/jpeg etc..
 		}
 	});
 

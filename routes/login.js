@@ -41,22 +41,30 @@ router.post('/', async (req, res) => {
             //     //console.log(newBuffer);
             // });
 
+            /**
+             *      ? BINARY IMAGE STEPS
+             * !    User{
+             * !        img: readImageBuffer                    (Buffer data),
+             * !        contentType: image/file_extension       (e.g : image/png)
+             * !    }
+             */
+
             //	Generates image buffer
-            //let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');
+            //let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');     //!  Buffer data
 
             //fs.writeFile('binaryImages/imgDB.png', readImageBuffer, () => {
             //console.log(readImageBuffer);
             //});
 
-            //  Convert to base64
+            //  Converts to base64 (for html rendering)
             let newBase = new Buffer(newBuffer.data).toString('base64');
-            let imgSource = `data:${newBuffer.contentType};base64,${newBase}`;
+            let imgSource = `data:${newBuffer.contentType};base64,${newBase}`;                  //! Variable for img src=""
             console.log(newBase);
 
 
             console.log(newBuffer.contentType);
 
-            res.send(`<img src="${imgSource}">`);
+            res.send(`<img src="${imgSource}">`);                                               //! Variable inside img src=""
 
         })
         .catch(err => {
