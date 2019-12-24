@@ -33,15 +33,26 @@ router.post('/', async (req, res) => {
                 contentType: result.img.contentType
             }
 
+            /**
+             * TODO: Convert this block function for binary image generation middleware
+
+             */
             // fs.writeFile('binaryImages/imgDB23232323.png', newBuffer.data, () => {
             //     //console.log(newBuffer);
             // });
+
+            //	Generates image buffer
+            //let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');
+
+            //fs.writeFile('binaryImages/imgDB.png', readImageBuffer, () => {
+            //console.log(readImageBuffer);
+            //});
 
             //  Convert to base64
             let newBase = new Buffer(newBuffer.data).toString('base64');
             let imgSource = `data:${newBuffer.contentType};base64,${newBase}`;
             console.log(newBase);
-            
+
 
             console.log(newBuffer.contentType);
 
@@ -52,12 +63,6 @@ router.post('/', async (req, res) => {
             console.log(err);
         });
 
-    //	Generates image buffer
-    //let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');
-
-    //fs.writeFile('binaryImages/imgDB.png', readImageBuffer, () => {
-    //console.log(readImageBuffer);
-    //});
 
     console.log('GEEN ERROR');
 
