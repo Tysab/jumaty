@@ -26,7 +26,7 @@ const userSchema = new Schema({
 	},
 	img: {
 		data: Buffer,
-        contentType: String,
+		contentType: String,
 	},
 	tijdlijn: {
 		type: Schema.Types.ObjectId,
@@ -51,8 +51,8 @@ function validateUserInput(input) {
 		email: Joi.String().email().required(),
 		wachtwoord: Joi.String().required(),
 	});
-    return schema.validate(input, (error, value) => {});
-	
+	return schema.validate(input, (error, value) => {});
+
 }
 
 
@@ -85,7 +85,35 @@ async function createDummyUser(voornaam, achternaam, email, wachtwoord, imgOne, 
 	});
 };
 
+async function showUser(id) {
 
+	console.log('showing user function');
+
+	userModel.findById({
+			_id: id
+		})
+		.select()
+		.then(res => {
+			let newBuffer = new Uint8Array(res.img.data.buffer);
+			fs.writeFile('binaryImages/imgDB.png', newBuffer, () => {
+				console.log(newBuffer);
+			});
+		})
+		.catch(err => {
+			console.log(err);
+		});
+
+	//	Generates image buffer
+	let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');
+
+	//fs.writeFile('binaryImages/imgDB.png', readImageBuffer, () => {
+	//console.log(readImageBuffer);
+	//});
+
+	console.log('GEEN ERROR');
+	return;
+};
 
 module.exports.User = userModel;
 module.exports.createDummyUser = createDummyUser;
+module.exports.showUser = showUser;
