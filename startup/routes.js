@@ -17,7 +17,7 @@ module.exports = function (app) {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(express.static('public'));
-    app.use('/profile', express.static(path.join(__dirname, 'public')))
+    app.use('/profile', express.static(path.join(__dirname, '../public')));
 
     //  Setting routes
     app.use('/', home); // sets / path to home.js router

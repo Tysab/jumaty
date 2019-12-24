@@ -22,12 +22,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-    let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');
-
-    //createDummyUser('Tyler', 'Broere', 'tyler@mail.com', '123456', readImageBuffer, 'image/png');
-    showUser('5e02310d8b617356a02b6df2');
-
-    console.log('showing user function');
+    //showUser('5e02310d8b617356a02b6df2');
 
 
 });
