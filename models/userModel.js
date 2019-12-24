@@ -1,6 +1,10 @@
+const fs = require('fs');
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 const Schema = mongoose.Schema;
+
+// NEW REFERENCE/ID
+//	_id: new mongoose.Types.ObjectId(),
 
 const userSchema = new Schema({
 	voornaam: {
@@ -54,7 +58,7 @@ function validateUserInput(input) {
 
 // createDummyUser('Tyler', 'Broere', 'tyler@mail.com', '123456');
 
-async function createDummyUser(voornaam, achternaam, email, wachtwoord) {
+async function createDummyUser(voornaam, achternaam, email, wachtwoord, imgOne, imgTwo) {
 
 	console.log('starting dummy function');
 
@@ -62,7 +66,11 @@ async function createDummyUser(voornaam, achternaam, email, wachtwoord) {
 		voornaam,
 		achternaam,
 		email,
-		wachtwoord
+		wachtwoord,
+		img: {
+			data: imgOne,
+			contentType: imgTwo
+		}
 	});
 
 	await user.save((err, user) => {
@@ -77,28 +85,7 @@ async function createDummyUser(voornaam, achternaam, email, wachtwoord) {
 	});
 };
 
-async function showUser(id) {
 
-	console.log('showing user function');
-
-	userModel.findOne({
-		_id: id
-	}, function (err, user) {
-		if (err) {
-			console.log('DIKKE ERROR');
-			return 0;
-		}
-		if (!user) {
-			return res.status(404).json({
-				message: 'No such user'
-			});
-		}
-		console.log(user);
-		console.log('GEEN ERROR');
-		return 0;
-	});
-};
 
 module.exports.User = userModel;
 module.exports.createDummyUser = createDummyUser;
-module.exports.showUser = showUser;

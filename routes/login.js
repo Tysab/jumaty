@@ -1,58 +1,76 @@
 //  Root path is /login
 
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const router = express.Router();
 const {
     User,
-    createDummyUser,
-    showUser
+    createDummyUser
 } = require('../models/userModel');
-const dbx_api = (require('config').get("dbx") !== undefined) ? require('config').get("dbx") : process.env.dbx ;
 
-//  Dropbox API
-const fetch = require('isomorphic-fetch');
-const Dropbox = require('dropbox').Dropbox;
+//  img path ../public/img/logo.png
 
-async function doBoxing() {
-    const dbx = new Dropbox({
-        accessToken: dbx_api,
-        fetch: fetch
-    });
-    /*  Create folders:
-        ? uploads/
-        * avatars/
-        * posts/
 
-    *  dbx.filesUpload()
-    *  show images (download? or link) to insert in html
-    *  ^ file search?
-    */
-    dbx.filesListFolder({
-            path: ''
-        })
-        .then(function (response) {
-            console.log("IS response//////////////////");
-            for(let x = 0; x < response.entries.length; x++) {
-                console.log(response.entries[x].name);
-            }
-        })
-        .catch(function (error) {
-            console.log("IS error//////////////////");
-            console.log(error);
-        });
-}
 
 router.get('/', async (req, res) => {
     console.log('Connected to /login');
 
-    await doBoxing();
+    let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');
+
+    let userBuffer = new Uint8Array(readImageBuffer);
+    let binary = '';
+
+    console.log(userBuffer);
+
+    fs.writeFile('binaryImages/imgBuffer2.png', readImageBuffer, () => {
+        console.log(readImageBuffer);
+    });
+
+
 
     res.render('login');
 });
 
 router.post('/', async (req, res) => {
-    //createDummyUser('Tyler', 'Broere', 'tyler@mail.com', '123456');
-    showUser('5e01d78f8acef012a417c2a5');
+
+    let readImageBuffer = fs.readFileSync(__dirname + '/../public/img/logo.png');
+
+    //createDummyUser('Tyler', 'Broere', 'tyler@mail.com', '123456', readImageBuffer, 'image/png');
+    //showUser('5e02205415fe6f6304209ad5');
+
+    console.log('showing user function');
+
+	User.findOne({
+		_id: '5e02205415fe6f6304209ad5'
+	}, function (err, user) {
+		if (err) {
+			console.log('DIKKE ERROR');
+			return 0;
+		}
+		if (!user) {
+			return res.status(404).json({
+				message: 'No such user'
+			});
+		}
+
+		let userBuffer = new Uint8Array(user.img.data.buffer);
+		let binary = '';
+
+		for(let i = 0; i < userBuffer.byteLength; i++){
+			binary += String.fromCharCode(userBuffer[i]);
+		}
+		
+		console.log(binary);
+
+		fs.writeFile('imgBuffer.txt', binary, () => {
+			console.log(userBuffer);
+		});
+
+        console.log('GEEN ERROR');
+        res.send(userBuffer);
+		return 0;
+	});
 });
 
 module.exports = router;
