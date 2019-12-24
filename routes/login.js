@@ -33,19 +33,19 @@ router.post('/', async (req, res) => {
                 contentType: result.img.contentType
             }
 
-            fs.writeFile('binaryImages/imgDB23232323.png', newBuffer.data, () => {
-                //console.log(newBuffer);
-            });
+            // fs.writeFile('binaryImages/imgDB23232323.png', newBuffer.data, () => {
+            //     //console.log(newBuffer);
+            // });
 
             //  Convert to base64
             let newBase = new Buffer(newBuffer.data).toString('base64');
-            let imgSource = `data:${newBuffer.contentType};base64`;
+            let imgSource = `data:${newBuffer.contentType};base64,${newBase}`;
             console.log(newBase);
             
 
             console.log(newBuffer.contentType);
 
-            res.send(`<img src="${imgSource},${newBase}">`);
+            res.send(`<img src="${imgSource}">`);
 
         })
         .catch(err => {
