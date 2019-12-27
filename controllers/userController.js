@@ -85,8 +85,8 @@ module.exports = {
                     contentType: user_avatar.contentType
                 }
             }
-        }, result => {
-            console.log(result);
+        }, () => {
+            console.log("Upload successful");
         });
     },
 
