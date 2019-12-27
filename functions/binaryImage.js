@@ -1,15 +1,28 @@
-//  ADD PARAMETERS
-//  user_avatar
-//  all_user_uploads
-//  user_upload_single
+/** 
+ * ? ADD PARAMETERS
+ *  user_avatar
+ *  all_user_uploads
+ *  user_upload_single
+ */
 
+//  controllers
+const User_Controller = require('../controllers/userController');
+
+//  models
 const {
     User
 } = require('../models/userModel');
 
-module.exports.get_user_avatar = async function (user_avatar) {
+let imgSource;
 
-    let imgSource;
+
+module.exports.get_user_avatar = async function (user_avatar) {
+    let binary_avatar = await User_Controller.show_avatar(user_avatar);
+    return binary_avatar;
+};
+
+
+module.exports.get2_user_avatar = async function () {
 
     //  img path ../public/img/logo.png
 
@@ -60,9 +73,8 @@ module.exports.get_user_avatar = async function (user_avatar) {
             console.log(err);
         });
 
-    return imgSource;
-
-
     console.log('GEEN ERROR');
+
+    return imgSource;
 
 };
