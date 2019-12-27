@@ -13,7 +13,8 @@
             "content": "profile",
             "settings": {
                 "navigation": "partials/sidenav",
-                "content": "profile_settings"
+                "content": "profile_settings",
+                "data": ""
             }
         }
     }
