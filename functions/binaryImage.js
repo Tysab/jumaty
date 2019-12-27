@@ -35,7 +35,7 @@ module.exports.get_user_avatar = async function (result) {
     return imgSource;
 };
 
-module.exports.get_uploaded_user_avatar = async function (user_id, file_data) {
+module.exports.get_uploaded_user_avatar = function (user_id, file_data) {
     // let newBuffer = {
     //     data: new Uint8Array(result.img.data.buffer),
     //     contentType: result.img.contentType

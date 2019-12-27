@@ -53,26 +53,20 @@ router.post('/settings', upload.single('user_avatar'), async (req, res, next) =>
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
 
-    let custom_file = {
-        contentType: req.file.mimetype,
-        file_name: req.file.filename
-    };
-
     if (!req.file) {
         res.send("no file found");
     } else {
 
-
+        let custom_file = {
+            contentType: req.file.mimetype,
+            file_name: req.file.filename
+        };
 
         //  Insert validation before passing parameter to function
 
         await set_avatar("5e02310d8b617356a02b6df2", custom_file);
 
-        //await get_uploaded_user_avatar("5e02310d8b617356a02b6df2", custom_file);
-
-        //console.log(req.file);
-
-        res.send('file uploaded');
+        res.render("index", settings);
 
     }
 

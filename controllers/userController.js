@@ -74,6 +74,9 @@ module.exports = {
 
         let new_data = binaryImage.get_uploaded_user_avatar(user_id, file_data);
 
+        console.log('BINARY DATA');
+        console.log(new_data);
+
         await User.findByIdAndUpdate(user_id, {
             $set: {
                 img: {
