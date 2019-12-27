@@ -1,10 +1,6 @@
 //  Root path is /profile
 
 const {
-    get_user_avatar,
-    get_uploaded_user_avatar
-} = require('../functions/binaryImage');
-const {
     show_avatar,
     set_avatar
 } = require('../controllers/userController');
