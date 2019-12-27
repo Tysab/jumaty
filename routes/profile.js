@@ -1,11 +1,14 @@
 //  Root path is /profile
 
 const {
-    get_user_avatar
+    get_user_avatar,
+    get_uploaded_user_avatar
 } = require('../functions/binaryImage');
 const page = require('../json/routes.json').page.profile;
 const settings = page.settings; //  Add settings.data for data implementation in .ejs files
 const express = require('express');
+const multer = require('multer');
+const upload = multer({ dest: "binaryImages/"});
 const router = express.Router();
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
@@ -40,11 +43,25 @@ router.get('/settings', async (req, res) => {
 });
 
 
-router.post('/settings', async (req, res) => {
+router.post('/settings', upload.single('user_avatar'), async (req, res, next) => {
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
 
-    res.render("index", settings);
+    let custom_file = {
+        type: req.file.mimetype,
+        path: req.file.path,
+        file_name: req.file.filename
+    };
+
+
+    get_uploaded_user_avatar(req.file.filename);
+
+    //console.log(req.file);
+    console.log("CUSTOM OBJECT///");
+    console.log(custom_file);
+
+
+
 
 });
 

@@ -5,10 +5,14 @@
  *  user_upload_single
  */
 
-//  controllers
+//  Modules
+const util = require('util');
+const fs = require('fs');
+
+//  Controllers
 const User_Controller = require('../controllers/userController');
 
-//  models
+//  Models
 const {
     User
 } = require('../models/userModel');
@@ -21,6 +25,45 @@ module.exports.get_user_avatar = async function (user_avatar) {
     return binary_avatar;
 };
 
+
+module.exports.get_uploaded_user_avatar = async function (file_name) {
+    // let newBuffer = {
+    //     data: new Uint8Array(result.img.data.buffer),
+    //     contentType: result.img.contentType
+    // }
+
+    //  Creates image-file from binary data
+    //fs.writeFile('binaryImages/IMGTEST.png', newBuffer.data, () => {
+    //    //console.log(newBuffer);
+    //});
+
+    /**
+     *      ? BINARY IMAGE STEPS
+     * !    User{
+     * !        img: readImageBuffer                    (Buffer data),
+     * !        contentType: image/file_extension       (e.g : image/png)
+     * !    }
+     */
+
+    //	Generates image buffer
+    let readImageBuffer = fs.readFileSync(`${__dirname}/../binaryImages/${file_name}`);      //!  Generated buffer data
+
+    return;
+
+    //  Writes image file from generated buffer data
+    fs.writeFile('binaryImages/imgDB.png', readImageBuffer, () => {
+    console.log(readImageBuffer);
+    });
+
+
+    //  Converts to base64 (for html rendering)
+    let newBase = new Buffer(newBuffer.data).toString('base64');
+    imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
+
+
+    //res.send(`<img src="${imgSource}">`); //! Variable inside img src=""
+
+}
 
 module.exports.get2_user_avatar = async function () {
 

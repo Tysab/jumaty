@@ -15,7 +15,7 @@
           <hr>
 
           <!-- form -->
-          <form action="/profile/settings" method="POST">
+          <form action="/profile/settings" method="POST" enctype="multipart/form-data">
 
             <!--Grid row-->
             <div class="row mt-5">
@@ -32,7 +32,7 @@
                     <div class="d-flex justify-content-center">
                       <div class="btn btn-mdb-color btn-rounded float-left">
                         <span>Add photo</span>
-                        <input type="file" name="user_avatar">
+                        <input type="file" name="user_avatar" accept="image/*">
                       </div>
                     </div>
                   </div>
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="text-center">
-                  <button class="btn btn-indigo btn-rounded mt-5">Wijzigen</button>
+                  <button class="btn btn-indigo btn-rounded mt-5" type="submit">Wijzigen</button>
                 </div>
 
               </div>
