@@ -1,8 +1,8 @@
 //  Root path is /profile
 
-const binary_image = require('../middleware/binaryImage');
+const binary_image = require('../functions/binaryImage');
 const page = require('../json/routes.json').page.profile;
-const settings = page.settings;         //  Add settings.data for data implementation in .ejs files
+const settings = page.settings; //  Add settings.data for data implementation in .ejs files
 const express = require('express');
 const router = express.Router();
 //const file_name = __filename.slice(__dirname.length + 1, -3);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/settings', async (req, res) => {
     console.log('Connected to /profile/settings');
     console.log(settings);
-    settings.data = "sample text";
+
 
     res.render("index", settings);
 });
@@ -29,8 +29,17 @@ router.post('/', async (req, res) => {
 router.post('/settings', async (req, res) => {
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
+    let gen_image = await binary_image();
+
+
+    settings.data = gen_image;
+
+    //console.log(settings);
 
     res.render("index", settings);
+
+    //  Clears image-data cache
+    settings.data = "";
 });
 
 module.exports = router;

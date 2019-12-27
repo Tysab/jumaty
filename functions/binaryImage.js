@@ -2,14 +2,21 @@
 //  user_avatar
 //  all_user_uploads
 //  user_upload_single
-module.exports = function (req, res, next) {
+
+const {
+    User
+} = require('../models/userModel');
+
+module.exports = async function (user_avatar) {
+
+    let imgSource;
 
     //  img path ../public/img/logo.png
 
     console.log('showing user function');
 
     //  Selects user-avatar
-    User.findById({
+    await User.findById({
             _id: '5e02310d8b617356a02b6df2' //  Grabs one dummy-created user from database
         })
         .select()
@@ -42,15 +49,18 @@ module.exports = function (req, res, next) {
 
             //  Converts to base64 (for html rendering)
             let newBase = new Buffer(newBuffer.data).toString('base64');
-            let imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
+            imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
 
+            return;
 
-            res.send(`<img src="${imgSource}">`); //! Variable inside img src=""
+            //res.send(`<img src="${imgSource}">`); //! Variable inside img src=""
 
         })
         .catch(err => {
             console.log(err);
         });
+
+    return imgSource;
 
 
     console.log('GEEN ERROR');

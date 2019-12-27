@@ -2,15 +2,18 @@
     "page": {
         "timeline": {
             "navigation": "partials/sidenav",
-            "content": "timeline"
+            "content": "timeline",
+            "data": ""
         },
         "settings": {
             "navigation": "partials/sidenav",
-            "content": "settings"
+            "content": "settings",
+            "data": ""
         },
         "profile": {
             "navigation": "partials/sidenav",
             "content": "profile",
+            "data": "",
             "settings": {
                 "navigation": "partials/sidenav",
                 "content": "profile_settings",
