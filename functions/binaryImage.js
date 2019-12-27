@@ -7,7 +7,7 @@ const {
     User
 } = require('../models/userModel');
 
-module.exports = async function (user_avatar) {
+module.exports.get_user_avatar = async function (user_avatar) {
 
     let imgSource;
 
