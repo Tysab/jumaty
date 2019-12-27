@@ -8,7 +8,9 @@ const page = require('../json/routes.json').page.profile;
 const settings = page.settings; //  Add settings.data for data implementation in .ejs files
 const express = require('express');
 const multer = require('multer');
-const upload = multer({ dest: "binaryImages/"});
+const upload = multer({
+    dest: "binaryImages/"
+});
 const router = express.Router();
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
@@ -48,19 +50,25 @@ router.post('/settings', upload.single('user_avatar'), async (req, res, next) =>
     console.log('Connected to [POST] /profile/settings');
 
     let custom_file = {
-        type: req.file.mimetype,
-        path: req.file.path,
+        contentType: req.file.mimetype,
         file_name: req.file.filename
     };
 
-
-    get_uploaded_user_avatar(req.file.filename);
-
-    //console.log(req.file);
-    console.log("CUSTOM OBJECT///");
-    console.log(custom_file);
+    if (!req.file) {
+        res.send("no file found");
+    } else {
 
 
+
+        //  Insert validation before passing parameter to function
+
+        await get_uploaded_user_avatar("5e02310d8b617356a02b6df2", custom_file);
+
+        //console.log(req.file);
+
+        res.send('file uploaded');
+
+    }
 
 
 });

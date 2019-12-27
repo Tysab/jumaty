@@ -54,30 +54,43 @@ module.exports = {
     //  Shows user avatar from binary data
     show_avatar: async function (user_id) {
         await User.findById({
-            _id: user_id
-        })
-        .then(result => {
+                _id: user_id
+            })
+            .then(result => {
 
-            let newBuffer = {
-                data: new Uint8Array(result.img.data.buffer),
-                contentType: result.img.contentType
-            }
-            //  Converts to base64 (for html rendering)
-            let newBase = new Buffer(newBuffer.data).toString('base64');
-            imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
+                let newBuffer = {
+                    data: new Uint8Array(result.img.data.buffer),
+                    contentType: result.img.contentType
+                }
+                //  Converts to base64 (for html rendering)
+                let newBase = new Buffer(newBuffer.data).toString('base64');
+                imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
 
-            //console.log(imgSource);
-            return;
-        })
-        .catch(error => {
-            console.log(error);
-            return;
-        });
+                //console.log(imgSource);
+                return;
+            })
+            .catch(error => {
+                console.log(error);
+                return;
+            });
 
         return imgSource;
     },
 
-    set_avatar: async function(user_id, user_avatar) {
+    set_avatar: async function (user_id, user_avatar) {
+        await User.findByIdAndUpdate(user_id, {
+            $set: {
+                img: {
+                    data: user_avatar.data,
+                    contentType: user_avatar.contentType
+                }
+            }
+        }, result => {
+            console.log(result);
+        });
+    },
+
+    set2_avatar: async function (user_id, user_avatar) {
         User.findById({
             _id: user_id
         }, function (err, user) {

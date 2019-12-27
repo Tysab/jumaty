@@ -26,7 +26,7 @@ module.exports.get_user_avatar = async function (user_avatar) {
 };
 
 
-module.exports.get_uploaded_user_avatar = async function (file_name) {
+module.exports.get_uploaded_user_avatar = async function (user_id, file_data) {
     // let newBuffer = {
     //     data: new Uint8Array(result.img.data.buffer),
     //     contentType: result.img.contentType
@@ -46,9 +46,21 @@ module.exports.get_uploaded_user_avatar = async function (file_name) {
      */
 
     //	Generates image buffer
-    let readImageBuffer = fs.readFileSync(`${__dirname}/../binaryImages/${file_name}`);      //!  Generated buffer data
+    let readImageBuffer = fs.readFileSync(`${__dirname}/../binaryImages/${file_data.file_name}`);      //!  Generated buffer data
 
-    return;
+    let new_image = {
+        data: readImageBuffer,
+        contentType: file_data.contentType
+    };
+
+    
+    let set_new = await User_Controller.set_avatar(user_id, new_image);
+
+    console.log(set_new);
+
+    return set_new;
+
+    //  Store in database
 
     //  Writes image file from generated buffer data
     fs.writeFile('binaryImages/imgDB.png', readImageBuffer, () => {
@@ -65,6 +77,8 @@ module.exports.get_uploaded_user_avatar = async function (file_name) {
 
 }
 
+
+//  TEST CODE
 module.exports.get2_user_avatar = async function () {
 
     //  img path ../public/img/logo.png
