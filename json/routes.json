@@ -3,24 +3,24 @@
         "timeline": {
             "navigation": "partials/sidenav",
             "content": "timeline",
-            "page_name": "Tijdlijn",
+            "title": "Tijdlijn",
             "data": ""
         },
         "settings": {
             "navigation": "partials/sidenav",
             "content": "settings",
-            "page_name": "Instellingen",
+            "title": "Instellingen",
             "data": ""
         },
         "profile": {
             "navigation": "partials/sidenav",
             "content": "profile",
-            "page_name": "Profile",
+            "title": "Profile",
             "data": "",
             "settings": {
                 "navigation": "partials/sidenav",
                 "content": "profile_settings",
-                "page_name": "Profielinstellingen",
+                "title": "Profielinstellingen",
                 "data": ""
             }
         }

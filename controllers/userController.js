@@ -51,9 +51,10 @@ module.exports = {
     },
 
     //  Shows user avatar from binary data
-    show_avatar: async function (id) {
+    //  Shows user avatar from binary data
+    show_avatar: async function (user_id) {
         await User.findById({
-            _id: id
+            _id: user_id
         })
         .then(result => {
 
@@ -74,6 +75,37 @@ module.exports = {
         });
 
         return imgSource;
+    },
+
+    set_avatar: async function(user_id, user_avatar) {
+        User.findById({
+            _id: user_id
+        }, function (err, user) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting user',
+                    error: err
+                });
+            }
+            if (!user) {
+                return res.status(404).json({
+                    message: 'No such user'
+                });
+            }
+
+            user.img = req.body.img ? user_avatar : user.img;
+
+            user.save(function (err, user) {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Error when updating user.',
+                        error: err
+                    });
+                }
+
+                return res.json(user);
+            });
+        });
     },
 
     /**
