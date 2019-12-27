@@ -1,6 +1,7 @@
 const {
     User
 } = require('../models/userModel.js');
+const binaryImage = require('../functions/binaryImage');
 
 /**
  * userController.js
@@ -8,7 +9,7 @@ const {
  * @description :: Server-side logic for managing users.
  */
 
-let imgSource;
+let passed_query;
 
 module.exports = {
 
@@ -58,15 +59,7 @@ module.exports = {
             })
             .then(result => {
 
-                let newBuffer = {
-                    data: new Uint8Array(result.img.data.buffer),
-                    contentType: result.img.contentType
-                }
-                //  Converts to base64 (for html rendering)
-                let newBase = new Buffer(newBuffer.data).toString('base64');
-                imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
-
-                //console.log(imgSource);
+                passed_query = binaryImage.get_user_avatar(result);
                 return;
             })
             .catch(error => {
@@ -74,50 +67,22 @@ module.exports = {
                 return;
             });
 
-        return imgSource;
+        return passed_query;
     },
 
-    set_avatar: async function (user_id, user_avatar) {
+    set_avatar: async function (user_id, file_data) {
+
+        let new_data = binaryImage.get_uploaded_user_avatar(user_id, file_data);
+
         await User.findByIdAndUpdate(user_id, {
             $set: {
                 img: {
-                    data: user_avatar.data,
-                    contentType: user_avatar.contentType
+                    data: new_data.data,
+                    contentType: new_data.contentType
                 }
             }
         }, () => {
             console.log("Upload successful");
-        });
-    },
-
-    set2_avatar: async function (user_id, user_avatar) {
-        User.findById({
-            _id: user_id
-        }, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting user',
-                    error: err
-                });
-            }
-            if (!user) {
-                return res.status(404).json({
-                    message: 'No such user'
-                });
-            }
-
-            user.img = req.body.img ? user_avatar : user.img;
-
-            user.save(function (err, user) {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Error when updating user.',
-                        error: err
-                    });
-                }
-
-                return res.json(user);
-            });
         });
     },
 

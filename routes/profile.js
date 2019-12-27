@@ -4,6 +4,10 @@ const {
     get_user_avatar,
     get_uploaded_user_avatar
 } = require('../functions/binaryImage');
+const {
+    show_avatar,
+    set_avatar
+} = require('../controllers/userController');
 const page = require('../json/routes.json').page.profile;
 const settings = page.settings; //  Add settings.data for data implementation in .ejs files
 const express = require('express');
@@ -17,7 +21,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     console.log('Connected to /profile');
 
-    let gen_image = await get_user_avatar();
+    let gen_image = await show_avatar('5e02310d8b617356a02b6df2');
     page.data = gen_image;
 
     res.render('index', page);
@@ -35,7 +39,7 @@ router.get('/settings', async (req, res) => {
     console.log('Connected to /profile/settings');
     console.log(settings);
 
-    let gen_image = await get_user_avatar('5e02310d8b617356a02b6df2');
+    let gen_image = await show_avatar('5e02310d8b617356a02b6df2');
     settings.data = gen_image;
 
     res.render("index", settings);
@@ -62,7 +66,9 @@ router.post('/settings', upload.single('user_avatar'), async (req, res, next) =>
 
         //  Insert validation before passing parameter to function
 
-        await get_uploaded_user_avatar("5e02310d8b617356a02b6df2", custom_file);
+        await set_avatar("5e02310d8b617356a02b6df2", custom_file);
+
+        //await get_uploaded_user_avatar("5e02310d8b617356a02b6df2", custom_file);
 
         //console.log(req.file);
 

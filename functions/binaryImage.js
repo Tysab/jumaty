@@ -1,3 +1,5 @@
+//  PROCESSES BINARY DATA FOR IMAGES
+
 /** 
  * ? ADD PARAMETERS
  *  user_avatar
@@ -6,7 +8,6 @@
  */
 
 //  Modules
-const util = require('util');
 const fs = require('fs');
 
 //  Controllers
@@ -20,11 +21,19 @@ const {
 let imgSource;
 
 
-module.exports.get_user_avatar = async function (user_avatar) {
-    let binary_avatar = await User_Controller.show_avatar(user_avatar);
-    return binary_avatar;
-};
+module.exports.get_user_avatar = async function (result) {
 
+    let newBuffer = {
+        data: new Uint8Array(result.img.data.buffer),
+        contentType: result.img.contentType
+    }
+    //  Converts to base64 (for html rendering)
+    let newBase = new Buffer(newBuffer.data).toString('base64');
+    imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
+
+    //console.log(imgSource);
+    return imgSource;
+};
 
 module.exports.get_uploaded_user_avatar = async function (user_id, file_data) {
     // let newBuffer = {
@@ -46,25 +55,20 @@ module.exports.get_uploaded_user_avatar = async function (user_id, file_data) {
      */
 
     //	Generates image buffer
-    let readImageBuffer = fs.readFileSync(`${__dirname}/../binaryImages/${file_data.file_name}`);      //!  Generated buffer data
+    let readImageBuffer = fs.readFileSync(`${__dirname}/../binaryImages/${file_data.file_name}`); //!  Generated buffer data
 
     let new_image = {
         data: readImageBuffer,
         contentType: file_data.contentType
     };
 
-    
-    let set_new = await User_Controller.set_avatar(user_id, new_image);
-
-    console.log(set_new);
-
-    return set_new;
+    return new_image;
 
     //  Store in database
 
     //  Writes image file from generated buffer data
     fs.writeFile('binaryImages/imgDB.png', readImageBuffer, () => {
-    console.log(readImageBuffer);
+        console.log(readImageBuffer);
     });
 
 
