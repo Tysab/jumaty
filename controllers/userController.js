@@ -2,6 +2,7 @@ const {
     User
 } = require('../models/userModel.js');
 const binaryImage = require('../functions/binaryImage');
+const bcrypt = require('bcrypt');
 
 /**
  * userController.js
@@ -93,12 +94,14 @@ module.exports = {
     create: async function (req, res) {
 
         let new_data = binaryImage.set_default_avatar();
+        const salt = await bcrypt.genSalt(10);
+        let user_password = await bcrypt.hash(req.body.wachtwoord, salt);
 
         const user = new User({
             voornaam: req.body.voornaam,
             achternaam: req.body.achternaam,
             email: req.body.email,
-            wachtwoord: req.body.wachtwoord,
+            wachtwoord: user_password,
             img: {
                 data: new_data.data,
                 contentType: new_data.contentType
@@ -112,7 +115,7 @@ module.exports = {
                     error: err
                 });
             }
-            return res.status(201).json(user);
+            return res.render('login');
         });
     },
 
