@@ -54,11 +54,11 @@ router.post('/', async (req, res, next) => {
                     // res.header('x-auth-token', token);
                     // res.send(token);
                     // return;
-                    return res.cookie('x-auth-token', token, {
+                    return res.cookie('authToken', token, {
                         expires: new Date(Date.now() + 3600000),
                         secure: false,      //  True if using HTTPS,
                         httpOnly: true
-                    });
+                    }).redirect('/timeline');
                 };
 
                 // if (result) return res.status(200).header('x-auth-token', token).json({
