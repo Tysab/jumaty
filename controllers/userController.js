@@ -40,29 +40,12 @@ module.exports = {
                 console.error(err);
             });
 
-            //  Generates user avatar from binary
-            user.data = await binaryImage.get_user_avatar(user);
+            //  Generates user avatar from binary data
+            user.img_data = await binaryImage.get_user_avatar(user);
 
             //  Reassign objects with _Lodash
             user.img = "";
         return user;
-    },
-
-    //  Shows user avatar from binary data
-    //  Shows user avatar from binary data
-    show_avatar: async function (user_id) {
-        await User.findById({
-                _id: user_id
-            })
-            .then(result => {
-
-                passed_query = binaryImage.get_user_avatar(result);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-        return passed_query;
     },
 
     set_avatar: async function (user_id, file_data) {

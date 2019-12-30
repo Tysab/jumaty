@@ -1,7 +1,6 @@
 //  Root path is /profile
 
 const {
-    show_avatar,
     set_avatar,
     show_auth_user
 } = require('../controllers/userController');
@@ -20,15 +19,8 @@ router.get('/', auth, async (req, res) => {
     console.log('Connected to /profile');
 
     let user = await show_auth_user(req.userData.userId);
-
-    console.log(user);
-
-    let gen_image = await show_avatar(user._id);
-    page.data = gen_image;
-
+    page.data.user = user;
     res.render('index', page);
-    //  Clears image-data cache
-    page.data = "";
 });
 
 router.post('/', async (req, res) => {
@@ -41,21 +33,12 @@ router.get('/settings', auth, async (req, res, next) => {
     console.log('Connected to /profile/settings');
 
     let user = await show_auth_user(req.userData.userId);
-
-    console.log(user);
-
-    let gen_image = await show_avatar(user._id);
-    settings.data = gen_image;
-
+    settings.data.user = user;
     res.render('index', settings);
-    //  Clears image-data cache
-    settings.data = "";
-
-
 });
 
 
-router.post('/settings', upload.single('user_avatar'), async (req, res, next) => {
+router.post('/settings', auth, upload.single('user_avatar'), async (req, res, next) => {
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
 
@@ -70,10 +53,9 @@ router.post('/settings', upload.single('user_avatar'), async (req, res, next) =>
 
         //  Insert validation before passing parameter to function
 
-        await set_avatar("5e09ce953e67d75bac39c2ae", custom_file);
+        await set_avatar(req.userData.userId, custom_file);
 
-        res.render("index", settings);
-
+        res.redirect('/profile/settings');
     }
 
 

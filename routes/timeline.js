@@ -5,7 +5,6 @@ const express = require('express');
 const auth = require('../middleware/auth');
 const router = express.Router();
 const {
-    show_avatar,
     show_auth_user
 } = require('../controllers/userController');
 //const file_name = __filename.slice(__dirname.length + 1, -3);
