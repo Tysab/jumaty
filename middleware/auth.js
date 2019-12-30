@@ -4,21 +4,22 @@ const {
 } = require('../startup/config');
 
 module.exports = async (req, res, next) => {
-    //const token = req.header('x-auth-token');
-    // console.log(req.headers['x-auth-token']);
-    // const token = req.header('x-auth-token');
 
     const token = req.cookies.authToken || '';
-    console.log(token);
 
     try {
 
-        if (!token) return res.status(401).send("Access denied. No token provided.");
+        //  If no token is provided (if user is not logged in)
+        if (!token) return res.status(401).redirect("/login");
 
+        //  Verifies JSONWebToken
         const decoded = jwt.verify(token, jwtPrivateKey);
+        //  Passes User data
         req.userData = decoded;
+        console.log(req.userData);
         next();
     } catch (ex) {
-        return res.status(400).send('Invalid token.');
+        //  Redirects to /login if token is not verified
+        return res.status(400).redirect("/login");
     }
 };

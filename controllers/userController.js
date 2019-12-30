@@ -32,24 +32,15 @@ module.exports = {
     /**
      * userController.show()
      */
-    show: function (req, res) {
-        const id = req.params.id;
-        User.findById({
-            _id: id
-        }, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting user.',
-                    error: err
-                });
-            }
-            if (!user) {
-                return res.status(404).json({
-                    message: 'No such user'
-                });
-            }
-            return res.json(user);
-        });
+    show_auth_user: async function (userId) {
+        const user = await User
+            .findById(userId)
+            .select('-password')
+            .catch(err => {
+                console.error(err);
+            });
+
+        return user;
     },
 
     //  Shows user avatar from binary data

@@ -2,11 +2,13 @@
 
 const {
     show_avatar,
-    set_avatar
+    set_avatar,
+    show_auth_user
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.profile;
 const settings = page.settings; //  Add settings.data for data implementation in .ejs files
 const express = require('express');
+const auth = require('../middleware/auth');
 const multer = require('multer');
 const upload = multer({
     dest: "binaryImages/"
@@ -14,10 +16,14 @@ const upload = multer({
 const router = express.Router();
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     console.log('Connected to /profile');
 
-    let gen_image = await show_avatar('5e02310d8b617356a02b6df2');
+    let user = await show_auth_user(req.userData.userId);
+
+    console.log(user);
+
+    let gen_image = await show_avatar(user._id);
     page.data = gen_image;
 
     res.render('index', page);
@@ -31,14 +37,18 @@ router.post('/', async (req, res) => {
 
 
 //  User profile settings
-router.get('/settings', async (req, res) => {
+router.get('/settings', auth, async (req, res, next) => {
     console.log('Connected to /profile/settings');
-    console.log(settings);
 
-    let gen_image = await show_avatar('5e09ce953e67d75bac39c2ae');
+    let user = await show_auth_user(req.userData.userId);
+
+    console.log(user);
+
+    let gen_image = await show_avatar(user._id);
     settings.data = gen_image;
 
-    res.render("index", settings);
+    res.render('index', settings);
+    //  Clears image-data cache
     settings.data = "";
 
 
