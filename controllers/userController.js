@@ -60,11 +60,9 @@ module.exports = {
             .then(result => {
 
                 passed_query = binaryImage.get_user_avatar(result);
-                return;
             })
             .catch(error => {
                 console.log(error);
-                return;
             });
 
         return passed_query;
@@ -92,20 +90,22 @@ module.exports = {
     /**
      * userController.create()
      */
-    create: function (req, res) {
+    create: async function (req, res) {
+
+        let new_data = binaryImage.set_default_avatar();
+
         const user = new User({
             voornaam: req.body.voornaam,
             achternaam: req.body.achternaam,
             email: req.body.email,
             wachtwoord: req.body.wachtwoord,
-            img: req.body.img,
-            tijdlijn: req.body.tijdlijn,
-            uploads: req.body.uploads,
-            followed_user: req.body.followed_user
-
+            img: {
+                data: new_data.data,
+                contentType: new_data.contentType
+            }
         });
 
-        user.save(function (err, user) {
+        await user.save(function (err, user) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when creating user',

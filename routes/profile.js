@@ -35,7 +35,7 @@ router.get('/settings', async (req, res) => {
     console.log('Connected to /profile/settings');
     console.log(settings);
 
-    let gen_image = await show_avatar('5e02310d8b617356a02b6df2');
+    let gen_image = await show_avatar('5e09ce953e67d75bac39c2ae');
     settings.data = gen_image;
 
     res.render("index", settings);
@@ -60,7 +60,7 @@ router.post('/settings', upload.single('user_avatar'), async (req, res, next) =>
 
         //  Insert validation before passing parameter to function
 
-        await set_avatar("5e02310d8b617356a02b6df2", custom_file);
+        await set_avatar("5e09ce953e67d75bac39c2ae", custom_file);
 
         res.render("index", settings);
 

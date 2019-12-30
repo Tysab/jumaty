@@ -2,6 +2,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 const Schema = mongoose.Schema;
+const { img } = require('../json/defaultBinary.json');
 
 // NEW REFERENCE/ID
 //	_id: new mongoose.Types.ObjectId(),

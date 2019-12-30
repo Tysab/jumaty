@@ -35,6 +35,36 @@ module.exports.get_user_avatar = async function (result) {
     return imgSource;
 };
 
+module.exports.set_default_avatar = function () {
+    // let newBuffer = {
+    //     data: new Uint8Array(result.img.data.buffer),
+    //     contentType: result.img.contentType
+    // }
+
+    //  Creates image-file from binary data
+    //fs.writeFile('binaryImages/IMGTEST.png', newBuffer.data, () => {
+    //    //console.log(newBuffer);
+    //});
+
+    /**
+     *      ? BINARY IMAGE STEPS
+     * !    User{
+     * !        img: readImageBuffer                    (Buffer data),
+     * !        contentType: image/file_extension       (e.g : image/png)
+     * !    }
+     */
+
+    //	Generates image buffer
+    let readImageBuffer = fs.readFileSync(`${__dirname}/../binaryImages/default-avatar.png`); //!  Generated buffer data
+
+    let new_image = {
+        data: readImageBuffer,
+        contentType: "image/png",
+    };
+
+    return new_image;
+}
+
 module.exports.get_uploaded_user_avatar = function (user_id, file_data) {
     // let newBuffer = {
     //     data: new Uint8Array(result.img.data.buffer),
