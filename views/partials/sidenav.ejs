@@ -6,10 +6,10 @@
       <li>
         <div class="container-fluid p-0">
 
-          <div id="hey_user" class="d-flex justify-content-center align-items-center p-2">Hey &lt;User&gt;</div>
+          <div id="hey_user" class="d-flex justify-content-center align-items-center p-2">Hey <%= data.user.firstName %></div>
 
           <div class="d-flex justify-content-center align-items-center p-a-0">
-            <img src="<%= data %>"
+            <img src="<%= data.user.avatar %>"
               class="img-fluid rounded-circle" style="padding-right: 1px; padding-left: 1px;">
           </div>
 

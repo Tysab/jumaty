@@ -18,7 +18,8 @@ router.get('/', auth, async (req, res, next) => {
     console.log(user);
 
     let gen_image = await show_avatar(user._id);
-    page.data = gen_image;
+    page.data.user.avatar = gen_image;
+    page.data.user.firstName = user.voornaam;
 
     res.render('index', page);
     //  Clears image-data cache

@@ -43,6 +43,7 @@ router.post('/', async (req, res, next) => {
                 const token = jwt.sign({
                     email: user[0].email,
                     userId: user[0]._id,
+                    voornaam: user[0].voornaam
                     //isAdmin: true,
                 }, jwtPrivateKey, {
                     expiresIn: "1h"

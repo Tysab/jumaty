@@ -4,24 +4,44 @@
             "navigation": "partials/sidenav",
             "content": "timeline",
             "title": "Tijdlijn",
-            "data": ""
+            "data": {
+                "user": {
+                    "avatar": "",
+                    "firstName": ""
+                }
+            }
         },
         "settings": {
             "navigation": "partials/sidenav",
             "content": "settings",
             "title": "Instellingen",
-            "data": ""
+            "data": {
+                "user": {
+                    "avatar": "",
+                    "firstName": ""
+                }
+            }
         },
         "profile": {
             "navigation": "partials/sidenav",
             "content": "profile",
             "title": "Profile",
-            "data": "",
+            "data": {
+                "user": {
+                    "avatar": "",
+                    "firstName": ""
+                }
+            },
             "settings": {
                 "navigation": "partials/sidenav",
                 "content": "profile_settings",
                 "title": "Profielinstellingen",
-                "data": ""
+                "data": {
+                    "user": {
+                        "avatar": "",
+                        "firstName": ""
+                    }
+                }
             }
         }
     }
