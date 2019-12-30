@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 // Calling routes
 const home = require('../routes/home');
@@ -16,6 +18,8 @@ module.exports = function (app) {
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    app.use(cors());
+    app.use(cookieParser());
     app.use(express.static('public'));
     app.use('/profile', express.static(path.join(__dirname, '../public')));
 

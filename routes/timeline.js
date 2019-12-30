@@ -13,23 +13,24 @@ const {
 } = require('../models/userModel');
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, async (req, res, next) => {
     console.log('Connected to /timeline');
 
-    await User
+    const user = await User
         .findById(req.userData._id)
         .select('-password')
-        .then(async result => {
-            let gen_image = await show_avatar(result._id);
-            page.data = gen_image;
-
-            res.render('index', page);
-            //  Clears image-data cache
-            page.data = "";
-        })
         .catch(err => {
             console.error(err);
         });
+
+    console.log(user);
+
+    let gen_image = await show_avatar(User._id);
+    page.data = gen_image;
+
+    res.render('index', page);
+    //  Clears image-data cache
+    page.data = "";
 });
 
 router.post('/', async (req, res) => {

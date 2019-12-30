@@ -1,4 +1,8 @@
 //  Root path is /login
+const {
+    jwtPrivateKey
+} = require('../startup/config');
+const jwt = require('jsonwebtoken');
 
 const express = require('express');
 const bcrypt = require('bcrypt');
@@ -34,10 +38,28 @@ router.post('/', async (req, res, next) => {
                     message: "E-mail or password incorrect"
                 });
 
-                const token = result.generateAuthToken();
+                //const token = user.generateAuthToken(); // Doesn't work as a schema method
+
+                const token = jwt.sign({
+                    email: user[0].email,
+                    userId: user[0]._id,
+                    //isAdmin: true,
+                }, jwtPrivateKey, {
+                    expiresIn: "1h"
+                });
+                console.log(token);
 
                 //  Redirects successfully logged in user to /timeline
-                if (result) return res.status(200).header('x-auth-token', token).redirect('/timeline');
+                if (result) {
+                    // res.header('x-auth-token', token);
+                    // res.send(token);
+                    // return;
+                    return res.cookie('x-auth-token', token, {
+                        expires: new Date(Date.now() + 3600000),
+                        secure: false,      //  True if using HTTPS,
+                        httpOnly: true
+                    });
+                };
 
                 // if (result) return res.status(200).header('x-auth-token', token).json({
                 //     message: "Login success",
