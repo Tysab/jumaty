@@ -40,6 +40,11 @@ module.exports = {
                 console.error(err);
             });
 
+            //  Generates user avatar from binary
+            user.data = await binaryImage.get_user_avatar(user);
+
+            //  Reassign objects with _Lodash
+            user.img = "";
         return user;
     },
 

@@ -5,10 +5,7 @@
             "content": "timeline",
             "title": "Tijdlijn",
             "data": {
-                "user": {
-                    "avatar": "",
-                    "firstName": ""
-                }
+                "user": ""
             }
         },
         "settings": {
@@ -16,10 +13,7 @@
             "content": "settings",
             "title": "Instellingen",
             "data": {
-                "user": {
-                    "avatar": "",
-                    "firstName": ""
-                }
+                "user": ""
             }
         },
         "profile": {
@@ -27,20 +21,14 @@
             "content": "profile",
             "title": "Profile",
             "data": {
-                "user": {
-                    "avatar": "",
-                    "firstName": ""
-                }
+                "user": ""
             },
             "settings": {
                 "navigation": "partials/sidenav",
                 "content": "profile_settings",
                 "title": "Profielinstellingen",
                 "data": {
-                    "user": {
-                        "avatar": "",
-                        "firstName": ""
-                    }
+                    "user": ""
                 }
             }
         }

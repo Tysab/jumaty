@@ -14,16 +14,8 @@ router.get('/', auth, async (req, res, next) => {
     console.log('Connected to /timeline');
 
     let user = await show_auth_user(req.userData.userId);
-
-    console.log(user);
-
-    let gen_image = await show_avatar(user._id);
-    page.data.user.avatar = gen_image;
-    page.data.user.firstName = user.voornaam;
-
+    page.data.user = user;
     res.render('index', page);
-    //  Clears image-data cache
-    page.data = "";
 });
 
 router.post('/', async (req, res) => {
