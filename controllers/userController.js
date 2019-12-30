@@ -1,5 +1,6 @@
 const {
-    User
+    User,
+    validateInput
 } = require('../models/userModel.js');
 const binaryImage = require('../functions/binaryImage');
 const bcrypt = require('bcrypt');
@@ -40,11 +41,11 @@ module.exports = {
                 console.error(err);
             });
 
-            //  Generates user avatar from binary data
-            user.img_data = await binaryImage.get_user_avatar(user);
+        //  Generates user avatar from binary data
+        user.img_data = await binaryImage.get_user_avatar(user);
 
-            //  Reassign objects with _Lodash
-            user.img = "";
+        //  Reassign objects with _Lodash
+        user.img = "";
         return user;
     },
 
@@ -71,6 +72,21 @@ module.exports = {
      * userController.create()
      */
     create: async function (req, res) {
+
+        const {
+            error
+        } = validateInput(req.body);
+
+        if (!error) {
+            console.log('Author input-validation pass');
+        } else if (error) {
+            console.log(error);
+            return res.status(400).render("register", {
+                message: error.details[0].message
+            });
+        }
+
+        if (!validateInput) return res.render('register', )
 
         let new_data = binaryImage.set_default_avatar();
         const salt = await bcrypt.genSalt(10);
@@ -123,6 +139,7 @@ module.exports = {
             user.email = req.body.email ? req.body.email : user.email;
             user.wachtwoord = req.body.wachtwoord ? req.body.wachtwoord : user.wachtwoord;
             user.img = req.body.img ? req.body.img : user.img;
+            user.biografie = req.body.biografie ? req.body.biografie : user.biografie;
             user.tijdlijn = req.body.tijdlijn ? req.body.tijdlijn : user.tijdlijn;
             user.uploads = req.body.uploads ? req.body.uploads : user.uploads;
             user.followed_user = req.body.followed_user ? req.body.followed_user : user.followed_user;

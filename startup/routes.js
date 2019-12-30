@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 // Calling routes
 const home = require('../routes/home');
 const login = require('../routes/login');
+const logout = require('../routes/logout');
 const register = require('../routes/register');
 const timeline = require('../routes/timeline');
 const profile = require('../routes/profile');
@@ -26,6 +27,7 @@ module.exports = function (app) {
     //  Setting routes
     app.use('/', home); // sets / path to home.js router
     app.use('/login', login); // sets /login path to login.js router
+    app.use('/logout', logout); // sets /logout path to logout.js router
     app.use('/register', register); // sets /register path to register.js router
     app.use('/timeline', timeline); // sets /timeline path to timeline.js router
     app.use('/profile', profile); // sets /profile path to profile.js router

@@ -30,6 +30,10 @@ const userSchema = new Schema({
 		data: Buffer,
 		contentType: String,
 	},
+	biografie: {
+		type: String,
+		default: ""
+	},
 	tijdlijn: {
 		type: Schema.Types.ObjectId,
 		ref: 'tijdlijn'
@@ -44,6 +48,7 @@ const userSchema = new Schema({
 	}]
 });
 
+//	Doesn't work for some reason
 userSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({
 		email: user[0].email,
@@ -57,46 +62,16 @@ userSchema.methods.generateAuthToken = function () {
 
 const userModel = mongoose.model('user', userSchema);
 
-function validateUserInput(input) {
+function validateInput(input) {
 	const schema = Joi.object({
-		voornaam: Joi.String().required(),
-		achternaam: Joi.String().required(),
-		email: Joi.String().email().required(),
-		wachtwoord: Joi.String().required(),
+		voornaam: Joi.string().required(),
+		achternaam: Joi.string().required(),
+		email: Joi.string().email().required(),
+		wachtwoord: Joi.string().required(),
 	});
 	return schema.validate(input, (error, value) => {});
 
 }
 
-
-// createDummyUser('Tyler', 'Broere', 'tyler@mail.com', '123456');
-
-async function createDummyUser(voornaam, achternaam, email, wachtwoord, imgOne, imgTwo) {
-
-	console.log('starting dummy function');
-
-	const user = new userModel({
-		voornaam,
-		achternaam,
-		email,
-		wachtwoord,
-		img: {
-			data: imgOne, //	fs.readFile data
-			contentType: imgTwo //	image/(filetype): image/png - image/jpeg etc..
-		}
-	});
-
-	await user.save((err, user) => {
-		if (err) {
-			console.log('DIKKE ERROR');
-			return 0;
-		}
-
-		console.log(user);
-		console.log('GEEN ERROR');
-		return 0;
-	});
-};
-
 module.exports.User = userModel;
-module.exports.createDummyUser = createDummyUser;
+module.exports.validateInput = validateInput;

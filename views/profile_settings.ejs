@@ -50,7 +50,7 @@
                       <strong>Biografie</strong>
                     </h4>
                     <div class="md-form">
-                      <textarea id="form10" class="md-textarea form-control" rows="3"
+                      <textarea id="form10" class="md-textarea form-control" rows="3"  value="<%= data.user.biografie %>"
                         placeholder="Je hebt nog geen bio..."></textarea>
                     </div>
                   </div>
@@ -70,20 +70,17 @@
                 </h4>
 
                 <div class="md-form">
-                  <i class="fas fa-user prefix"></i>
-                  <input type="text" name="" class="form-control">
-                  <label for="orangeForm-name">Voornaam</label>
+                  <i class="fas fa-user prefix" style="color:#212529;"></i>
+                  <input type="text" name="voornaam" class="form-control" placeholder="Voornaam" value="<%= data.user.voornaam %>">
                 </div>
                 <div class="md-form">
-                  <i class="fas fa-user-tie prefix"></i>
-                  <input type="text" name="" class="form-control">
-                  <label for="orangeForm-email">Achternaam</label>
+                  <i class="fas fa-user-tie prefix" style="color:#212529;"></i>
+                  <input type="text" name="achternaam" class="form-control" placeholder="Achternaam" value="<%= data.user.achternaam %>">
                 </div>
 
                 <div class="md-form">
-                  <i class="fas fa-envelope prefix"></i>
-                  <input type="password" name="" class="form-control">
-                  <label for="orangeForm-pass">E-mail</label>
+                  <i class="fas fa-envelope prefix" style="color:#212529;"></i>
+                  <input type="email" name="email" class="form-control" placeholder="E-Mail" value="<%= data.user.email %>">
                 </div>
 
                 <hr>
@@ -93,15 +90,13 @@
                 </h4>
 
                 <div class="md-form">
-                  <i class="fas fa-key prefix"></i>
-                  <input type="password" name="" class="form-control">
-                  <label for="orangeForm-pass">Wachtwoord</label>
+                  <i class="fas fa-key prefix" style="color:#212529;"></i>
+                  <input type="password" name="wachtwoord"  placeholder="Wachtwoord"class="form-control">
                 </div>
 
                 <div class="md-form">
-                  <i class="fas fa-lock prefix"></i>
-                  <input type="password" name="" class="form-control">
-                  <label for="orangeForm-pass">Wachtwoord herhalen</label>
+                  <i class="fas fa-lock prefix" style="color:#212529;"></i>
+                  <input type="password" name="wachtwoord_herhalen" placeholder="Wachtwoord herhalen" class="form-control">
                 </div>
 
                 <div class="text-center">

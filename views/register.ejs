@@ -76,7 +76,8 @@
             <hr class="hr-light">
 
             <p class="text-center">
-              <strong>In ullamco esse reprehenderit veniam id nisi et enim amet excepteur aliqua irure. Fugiat qui esse ipsum veniam est. Aute ea do laboris exercitation eu.</strong>
+              <strong>In ullamco esse reprehenderit veniam id nisi et enim amet excepteur aliqua irure. Fugiat qui esse
+                ipsum veniam est. Aute ea do laboris exercitation eu.</strong>
             </p>
 
           </div>
@@ -102,25 +103,25 @@
                   <div class="md-form">
                     <i class="fas fa-envelope prefix grey-text"></i>
                     <input type="text" name="voornaam" placeholder="Voornaam" class="form-control">
-                    
+
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-key prefix grey-text"></i>
                     <input type="text" name="achternaam" placeholder="Achternaam" class="form-control">
-                    
+
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-key prefix grey-text"></i>
                     <input type="text" name="email" placeholder="E-Mail" class="form-control">
-                    
+
                   </div>
 
                   <div class="md-form">
                     <i class="fas fa-key prefix grey-text"></i>
                     <input type="text" name="wachtwoord" placeholder="Wachtwoord" class="form-control">
-                    
+
                   </div>
 
                   <div class="text-center">
@@ -132,7 +133,13 @@
 
                 <hr>
 
-                <div class="text-center">Heb je al een account? <br> 
+                <% if(typeof message !== 'undefined' && message !== null) {%>
+                <div id="error_message" class="text-center danger-color-dark text-warning font-weight-bold p-1">
+                  <%= message %>
+                </div>
+                <% } %>
+
+                <div class="text-center">Heb je al een account? <br>
                   <a href="/login" style="color:#A91010" class="font-weight-bold">Log in</a>
                 </div>
 

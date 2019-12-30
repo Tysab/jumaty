@@ -1,7 +1,5 @@
 //  Root path is /register
 const {
-    show_avatar,
-    set_avatar,
     create
 } = require('../controllers/userController');
 const express = require('express');
@@ -12,6 +10,7 @@ router.get('/', async (req, res) => {
     res.render('register');
 });
 
+//  Uses controller to create a new user
 router.post('/', create);
 
 module.exports = router;
