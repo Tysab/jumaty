@@ -1,11 +1,7 @@
 //  Root path is /login
 
-const fs = require('fs');
-const path = require('path');
 const express = require('express');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('config');
 const router = express.Router();
 const {
     User,
@@ -20,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res, next) => {
-    User.find({
+    await User.find({
             email: req.body.email
         })
         .exec()
@@ -38,17 +34,16 @@ router.post('/', async (req, res, next) => {
                     message: "E-mail or password incorrect"
                 });
 
-                const token = jwt.sign({
-                    email: user[0].email,
-                    userId: user[0]._id
-                }, config.get('jwtPrivateKey'), {
-                    expiresIn: "1h"
-                });
+                const token = result.generateAuthToken();
 
-                if (result) return res.status(200).json({
-                    message: "Login success",
-                    token: token
-                });
+                //  Redirects successfully logged in user to /timeline
+                if (result) return res.status(200).header('x-auth-token', token).redirect('/timeline');
+
+                // if (result) return res.status(200).header('x-auth-token', token).json({
+                //     message: "Login success",
+                //     token: token
+                // });
+
 
                 res.status(401).json({
                     message: "E-mail or password incorrect"

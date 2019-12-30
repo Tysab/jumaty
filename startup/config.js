@@ -16,3 +16,5 @@ module.exports = function () {
         throw new Error('FATAL ERROR: jwtPrivateKey is not defined.');
     }
 };
+
+module.exports.jwtPrivateKey = conf;

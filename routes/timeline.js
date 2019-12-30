@@ -5,19 +5,31 @@ const {
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.timeline;
 const express = require('express');
+const auth = require('../middleware/auth');
 const router = express.Router();
+const {
+    User,
+    createDummyUser
+} = require('../models/userModel');
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
-
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     console.log('Connected to /timeline');
 
-    let gen_image = await show_avatar('5e02310d8b617356a02b6df2');
-    page.data = gen_image;
+    await User
+        .findById(req.userData._id)
+        .select('-password')
+        .then(async result => {
+            let gen_image = await show_avatar(result._id);
+            page.data = gen_image;
 
-    res.render('index', page);
-    //  Clears image-data cache
-    page.data = "";
+            res.render('index', page);
+            //  Clears image-data cache
+            page.data = "";
+        })
+        .catch(err => {
+            console.error(err);
+        });
 });
 
 router.post('/', async (req, res) => {

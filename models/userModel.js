@@ -1,4 +1,6 @@
-const fs = require('fs');
+const {
+	jwtPrivateKey
+} = require('../startup/config');
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 const Schema = mongoose.Schema;
@@ -42,6 +44,17 @@ const userSchema = new Schema({
 	}]
 });
 
+userSchema.methods.generateAuthToken = function () {
+	const token = jwt.sign({
+		email: user[0].email,
+		userId: user[0]._id,
+		//isAdmin: true,
+	}, jwtPrivateKey, {
+		expiresIn: "1h"
+	});
+	return token;
+};
+
 const userModel = mongoose.model('user', userSchema);
 
 function validateUserInput(input) {
@@ -68,8 +81,8 @@ async function createDummyUser(voornaam, achternaam, email, wachtwoord, imgOne, 
 		email,
 		wachtwoord,
 		img: {
-			data: imgOne,			//	fs.readFile data
-			contentType: imgTwo		//	image/(filetype): image/png - image/jpeg etc..
+			data: imgOne, //	fs.readFile data
+			contentType: imgTwo //	image/(filetype): image/png - image/jpeg etc..
 		}
 	});
 
