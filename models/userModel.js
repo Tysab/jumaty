@@ -64,26 +64,55 @@ const userModel = mongoose.model('user', userSchema);
 
 
 //	For refactoring, add a second parameter to choose the process type
-function validateInputRegister(input) {
-	const schema = Joi.object({
-		voornaam: Joi.string().required(),
-		achternaam: Joi.string().required(),
-		email: Joi.string().email().required(),
-		wachtwoord: Joi.string().required(),
-	});
-	return schema.validate(input, (error, value) => {});
+function validateInput(validation_type, input) {
 
-}
+	switch (validation_type) {
 
-function validateInputLogin(input) {
-	const schema = Joi.object({
-		email: Joi.string().email().required(),
-		wachtwoord: Joi.string().required(),
-	});
-	return schema.validate(input, (error, value) => {});
+		case 'login':
+			console.log(`Validation type: ${validation_type}`);
+			const schema = Joi.object({
+				email: Joi.string().email().required(),
+				wachtwoord: Joi.string().required(),
+			});
+			return schema.validate(input, (error, value) => {});
+			break;
+
+		case 'register':
+			console.log(`Validation type: ${validation_type}`);
+			const schema = Joi.object({
+				voornaam: Joi.string().required(),
+				achternaam: Joi.string().required(),
+				email: Joi.string().email().required(),
+				wachtwoord: Joi.string().required(),
+			});
+			return schema.validate(input, (error, value) => {});
+			break;
+
+		case 'set_avatar':
+			console.log(`Validation type: ${validation_type}`);
+			break;
+
+		case 'set_bio':
+			console.log(`Validation type: ${validation_type}`);
+			break;
+
+		case 'set_password':
+			console.log(`Validation type: ${validation_type}`);
+			break;
+
+		case 'upload_image':
+			console.log(`Validation type: ${validation_type}`);
+			break;
+
+		default:
+			console.log('ERROR: validation request type not valid');
+			return "ERROR: validation request type not valid";
+			break;
+
+	}
+
 
 }
 
 module.exports.User = userModel;
-module.exports.validateInputRegister = validateInputRegister;
-module.exports.validateInputLogin = validateInputLogin;
+module.exports.validateInput = validateInput;
