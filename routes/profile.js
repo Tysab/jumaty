@@ -57,7 +57,7 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
 
     if (!req.file) {
         console.log('No file found');
-        local_message = "No file found";
+        local_message = "File not found";
         res.redirect('/profile/settings');
     } else {
 
@@ -67,7 +67,6 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
         };
 
         //  Insert validation before passing parameter to function
-
         local_message = await set_avatar(req.userData.userId, custom_file);
 
         res.redirect('/profile/settings');
