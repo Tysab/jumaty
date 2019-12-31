@@ -51,26 +51,46 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
 
-    if (req.params.form == "avatar") {
-        console.log('AVATAR LOGGED');
+    switch (req.params.form) {
+
+        case 'avatar':
+            console.log('AVATAR POST FORM REQUEST');
+
+            if (!req.file) {
+                console.log('No file found');
+                local_message = "File not found";
+                res.redirect('/profile/settings');
+            } else {
+
+                let custom_file = {
+                    contentType: req.file.mimetype,
+                    file_name: req.file.filename
+                };
+
+                //  Insert validation before passing parameter to function
+                local_message = await set_avatar(req.userData.userId, custom_file);
+            }
+            break;
+
+        case 'bio':
+            console.log('AVATAR POST FORM REQUEST');
+            break;
+
+        case 'userinfo':
+            console.log('AVATAR POST FORM REQUEST');
+            break;
+
+        case 'password':
+            console.log('AVATAR POST FORM REQUEST');
+            break;
+
+        default:
+            console.log('ERROR POST FORM REQUEST');
+            break;
+            
     }
 
-    if (!req.file) {
-        console.log('No file found');
-        local_message = "File not found";
-        res.redirect('/profile/settings');
-    } else {
-
-        let custom_file = {
-            contentType: req.file.mimetype,
-            file_name: req.file.filename
-        };
-
-        //  Insert validation before passing parameter to function
-        local_message = await set_avatar(req.userData.userId, custom_file);
-
-        res.redirect('/profile/settings');
-    }
+    res.redirect('/profile/settings');
 
 });
 
