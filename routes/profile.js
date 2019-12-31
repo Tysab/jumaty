@@ -15,6 +15,12 @@ const upload = multer({
 const router = express.Router();
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
+let local_message;
+
+router.use(function (req, res, next) {
+    res.locals.message = local_message;
+    next();
+});
 router.get('/', auth, async (req, res) => {
     console.log('Connected to /profile');
 
@@ -32,18 +38,28 @@ router.post('/', async (req, res) => {
 router.get('/settings', auth, async (req, res, next) => {
     console.log('Connected to /profile/settings');
 
+    
     let user = await show_auth_user(req.userData.userId);
     settings.data.user = user;
+    console.log("LCOALS/////////////");
+    console.log(local_message);
+    console.log(res.locals.testing);
     res.render('index', settings);
 });
 
 
-router.post('/settings/avatar', auth, upload.single('user_avatar'), async (req, res, next) => {
+router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, res, next) => {
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
 
+    if (req.params.form == "avatar") {
+        console.log('AVATAR LOGGED');
+    }
+
     if (!req.file) {
-        res.send("no file found");
+        console.log('No file found');
+        local_message = "No file found";
+        res.redirect('/profile/settings');
     } else {
 
         let custom_file = {
@@ -58,7 +74,14 @@ router.post('/settings/avatar', auth, upload.single('user_avatar'), async (req, 
         res.redirect('/profile/settings');
     }
 
+});
+
+router.post('/settings/bio', auth, async (req, res, next) => {
 
 });
+
+//bio
+//userinfo
+//password
 
 module.exports = router;

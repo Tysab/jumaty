@@ -50,135 +50,136 @@
   </style>
 </head>
 
-<body>
+<% if(typeof message !== 'undefined' && message !== null) {%>
+
+<body onload="toastr.warning('<%= message %>');">
+  <% } else { %>
+
+  <body>
+    <% } %>
 
 
-  <!-- Full Page Intro -->
-  <div class="view full-page-intro">
+    <!-- Full Page Intro -->
+    <div class="view full-page-intro">
 
-    <!-- Mask & flexbox options-->
-    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+      <!-- Mask & flexbox options-->
+      <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
 
-      <!-- Content -->
-      <div class="container">
+        <!-- Content -->
+        <div class="container">
 
-        <!--Grid row-->
-        <div class="row wow fadeIn">
+          <!--Grid row-->
+          <div class="row wow fadeIn">
 
-          <!--Grid column-->
-          <div class="col-md-6 mb-4 white-text text-center text-md-left">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
-            <div class="text-nowrap d-flex justify-content-center">
-              <img src="img/logonotext.png" alt="logo" width="100">
-              <span class="display-4 font-weight-bold ml-3 mb-0 pt-3 align-bottom">Jumaty</span>
+              <div class="text-nowrap d-flex justify-content-center">
+                <img src="img/logonotext.png" alt="logo" width="100">
+                <span class="display-4 font-weight-bold ml-3 mb-0 pt-3 align-bottom">Jumaty</span>
+              </div>
+
+              <hr class="hr-light">
+
+              <p class="text-center">
+                <strong>In ullamco esse reprehenderit veniam id nisi et enim amet excepteur aliqua irure. Fugiat qui
+                  esse
+                  ipsum veniam est. Aute ea do laboris exercitation eu.</strong>
+              </p>
+
             </div>
+            <!--Grid column-->
 
-            <hr class="hr-light">
+            <!--Grid column-->
+            <div class="col-md-6 col-xl-5 mb-4">
 
-            <p class="text-center">
-              <strong>In ullamco esse reprehenderit veniam id nisi et enim amet excepteur aliqua irure. Fugiat qui esse
-                ipsum veniam est. Aute ea do laboris exercitation eu.</strong>
-            </p>
+              <!--Card-->
+              <div class="card">
 
-          </div>
-          <!--Grid column-->
+                <!--Card content-->
+                <div class="card-body">
 
-          <!--Grid column-->
-          <div class="col-md-6 col-xl-5 mb-4">
+                  <!-- Form -->
+                  <form action="/register" method="POST">
+                    <!-- Heading -->
+                    <h3 class="dark-grey-text text-center">
+                      <strong>Meld je aan</strong>
+                    </h3>
+                    <hr>
 
-            <!--Card-->
-            <div class="card">
+                    <div class="md-form">
+                      <i class="fas fa-envelope prefix grey-text"></i>
+                      <input type="text" name="voornaam" placeholder="Voornaam" class="form-control">
 
-              <!--Card content-->
-              <div class="card-body">
+                    </div>
 
-                <!-- Form -->
-                <form action="/register" method="POST">
-                  <!-- Heading -->
-                  <h3 class="dark-grey-text text-center">
-                    <strong>Meld je aan</strong>
-                  </h3>
+                    <div class="md-form">
+                      <i class="fas fa-key prefix grey-text"></i>
+                      <input type="text" name="achternaam" placeholder="Achternaam" class="form-control">
+
+                    </div>
+
+                    <div class="md-form">
+                      <i class="fas fa-key prefix grey-text"></i>
+                      <input type="text" name="email" placeholder="E-Mail" class="form-control">
+
+                    </div>
+
+                    <div class="md-form">
+                      <i class="fas fa-key prefix grey-text"></i>
+                      <input type="text" name="wachtwoord" placeholder="Wachtwoord" class="form-control">
+
+                    </div>
+
+                    <div class="text-center">
+                      <input type="submit" class="btn btn-custom-color" value="Meld je aan">
+                    </div>
+
+                  </form>
+                  <!-- Form -->
+
                   <hr>
 
-                  <div class="md-form">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="text" name="voornaam" placeholder="Voornaam" class="form-control">
-
+                  <div class="text-center">Heb je al een account? <br>
+                    <a href="/login" style="color:#A91010" class="font-weight-bold">Log in</a>
                   </div>
 
-                  <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="text" name="achternaam" placeholder="Achternaam" class="form-control">
-
-                  </div>
-
-                  <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="text" name="email" placeholder="E-Mail" class="form-control">
-
-                  </div>
-
-                  <div class="md-form">
-                    <i class="fas fa-key prefix grey-text"></i>
-                    <input type="text" name="wachtwoord" placeholder="Wachtwoord" class="form-control">
-
-                  </div>
-
-                  <div class="text-center">
-                    <input type="submit" class="btn btn-custom-color" value="Meld je aan">
-                  </div>
-
-                </form>
-                <!-- Form -->
-
-                <hr>
-
-                <% if(typeof message !== 'undefined' && message !== null) {%>
-                  <div class="alert alert-warning text-center" role="alert"> 
-                  <%= message %>
-                  </div>
-                <% } %>
-
-                <div class="text-center">Heb je al een account? <br>
-                  <a href="/login" style="color:#A91010" class="font-weight-bold">Log in</a>
                 </div>
 
               </div>
+              <!--/.Card-->
 
             </div>
-            <!--/.Card-->
+            <!--Grid column-->
 
           </div>
-          <!--Grid column-->
+          <!--Grid row-->
 
         </div>
-        <!--Grid row-->
+        <!-- Content -->
 
       </div>
-      <!-- Content -->
+      <!-- Mask & flexbox options-->
 
     </div>
-    <!-- Mask & flexbox options-->
-
-  </div>
-  <!-- Full Page Intro -->
+    <!-- Full Page Intro -->
 
 
 
-  <!-- SCRIPTS -->
-  <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
-  <!-- Initializations -->
-  <script type="text/javascript">
-    // Animations initialization
-    new WOW().init();
-  </script>
-</body>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+  </body>
 
 </html>

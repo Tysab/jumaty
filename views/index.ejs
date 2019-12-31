@@ -17,7 +17,13 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<% if(typeof message != undefined && message !== null) {%>
+
+  <body onload="toastr.warning('<%= message %>');">
+    <% } else { %>
+      <%= console.log(typeof message) %>
+    <body>
+      <% } %>
 
   <!-- Sidenav -->
   <!-- Sidenav -->

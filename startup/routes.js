@@ -24,6 +24,12 @@ module.exports = function (app) {
     app.use(express.static('public'));
     app.use('/profile', express.static(path.join(__dirname, '../public')));
 
+    //  Save for global variables
+    // app.use(function (req, res, next) {
+    //     res.locals.testing = "TEST MESSAGEEEEEEEEEEEE";
+    //     next();
+    // });
+
     //  Setting routes
     app.use('/', home); // sets / path to home.js router
     app.use('/login', login); // sets /login path to login.js router
