@@ -65,7 +65,9 @@ module.exports = {
             }
         }, () => {
             console.log("Upload successful");
+            passed_query = "Upload succesful";
         });
+        return passed_query;
     },
 
     /**

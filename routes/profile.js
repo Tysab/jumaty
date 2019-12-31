@@ -21,6 +21,7 @@ router.use(function (req, res, next) {
     res.locals.message = local_message;
     next();
 });
+
 router.get('/', auth, async (req, res) => {
     console.log('Connected to /profile');
 
@@ -38,13 +39,11 @@ router.post('/', async (req, res) => {
 router.get('/settings', auth, async (req, res, next) => {
     console.log('Connected to /profile/settings');
 
-    
+
     let user = await show_auth_user(req.userData.userId);
     settings.data.user = user;
-    console.log("LCOALS/////////////");
-    console.log(local_message);
-    console.log(res.locals.testing);
     res.render('index', settings);
+    local_message = undefined;
 });
 
 
@@ -69,7 +68,7 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
 
         //  Insert validation before passing parameter to function
 
-        await set_avatar(req.userData.userId, custom_file);
+        local_message = await set_avatar(req.userData.userId, custom_file);
 
         res.redirect('/profile/settings');
     }

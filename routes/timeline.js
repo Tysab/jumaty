@@ -9,6 +9,13 @@ const {
 } = require('../controllers/userController');
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
+let local_message;
+
+router.use(function (req, res, next) {
+    res.locals.message = local_message;
+    next();
+});
+
 router.get('/', auth, async (req, res, next) => {
     console.log('Connected to /timeline');
 

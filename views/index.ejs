@@ -17,11 +17,9 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 
-<% if(typeof message != undefined && message !== null) {%>
-
+<% if(message != undefined) {%>
   <body onload="toastr.warning('<%= message %>');">
     <% } else { %>
-      <%= console.log(typeof message) %>
     <body>
       <% } %>
 
