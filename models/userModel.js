@@ -62,7 +62,9 @@ userSchema.methods.generateAuthToken = function () {
 
 const userModel = mongoose.model('user', userSchema);
 
-function validateInput(input) {
+
+//	For refactoring, add a second parameter to choose the process type
+function validateInputRegister(input) {
 	const schema = Joi.object({
 		voornaam: Joi.string().required(),
 		achternaam: Joi.string().required(),
@@ -73,5 +75,15 @@ function validateInput(input) {
 
 }
 
+function validateInputLogin(input) {
+	const schema = Joi.object({
+		email: Joi.string().email().required(),
+		wachtwoord: Joi.string().required(),
+	});
+	return schema.validate(input, (error, value) => {});
+
+}
+
 module.exports.User = userModel;
-module.exports.validateInput = validateInput;
+module.exports.validateInputRegister = validateInputRegister;
+module.exports.validateInputLogin = validateInputLogin;

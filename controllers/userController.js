@@ -1,6 +1,6 @@
 const {
     User,
-    validateInput
+    validateInputRegister
 } = require('../models/userModel.js');
 const binaryImage = require('../functions/binaryImage');
 const bcrypt = require('bcrypt');
@@ -75,18 +75,16 @@ module.exports = {
 
         const {
             error
-        } = validateInput(req.body);
+        } = validateInputRegister(req.body);
 
         if (!error) {
-            console.log('Author input-validation pass');
+            console.log('User input-validation pass');
         } else if (error) {
-            console.log(error);
+            //console.log(error);
             return res.status(400).render("register", {
                 message: error.details[0].message
             });
         }
-
-        if (!validateInput) return res.render('register', )
 
         let new_data = binaryImage.set_default_avatar();
         const salt = await bcrypt.genSalt(10);

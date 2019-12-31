@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const {
     User,
-    createDummyUser
+    validateInputLogin
 } = require('../models/userModel');
 
 
@@ -20,13 +20,27 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res, next) => {
+//  Move to userController
+    const {
+        error
+    } = validateInputLogin(req.body);
+
+    if (!error) {
+        console.log('User input-validation pass');
+    } else if (error) {
+        //console.log(error);
+        return res.status(400).render("login", {
+            message: error.details[0].message
+        });
+    }
+
     await User.find({
             email: req.body.email
         })
         .exec()
         .then(user => {
             if (user.length < 1) {
-                return res.status(401).json({
+                return res.status(400).render("login", {
                     message: "E-mail or password incorrect"
                 });
             };
@@ -34,7 +48,7 @@ router.post('/', async (req, res, next) => {
 
             bcrypt.compare(req.body.wachtwoord, user[0].wachtwoord, (err, result) => {
 
-                if (err) return res.status(401).json({
+                if (err) return res.status(400).render("login", {
                     message: "E-mail or password incorrect"
                 });
 
@@ -68,7 +82,7 @@ router.post('/', async (req, res, next) => {
                 // });
 
 
-                res.status(401).json({
+                res.status(400).render("login", {
                     message: "E-mail or password incorrect"
                 });
 
