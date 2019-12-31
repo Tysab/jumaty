@@ -1,6 +1,6 @@
 const {
     User,
-    validateInputRegister
+    validateInput
 } = require('../models/userModel.js');
 const binaryImage = require('../functions/binaryImage');
 const bcrypt = require('bcrypt');
@@ -53,6 +53,19 @@ module.exports = {
 
         let new_data = binaryImage.get_uploaded_user_avatar(user_id, file_data);
 
+        const {
+            error
+        } = validateInput("set_avatar", new_data);
+
+        if (!error) {
+            console.log('User input-validation pass');
+        } else if (error) {
+            //console.log(error);
+            passed_query = error.details[0].message;
+            return passed_query;
+        }
+
+
         console.log('BINARY DATA');
         console.log(new_data);
 
@@ -65,7 +78,7 @@ module.exports = {
             }
         }, () => {
             console.log("Upload successful");
-            passed_query = "Upload succesful";
+            passed_query = "Upload successful";
         });
         return passed_query;
     },
@@ -77,7 +90,7 @@ module.exports = {
 
         const {
             error
-        } = validateInputRegister(req.body);
+        } = validateInput("register", req.body);
 
         if (!error) {
             console.log('User input-validation pass');

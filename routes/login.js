@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 const {
     User,
-    validateInputLogin
+    validateInput
 } = require('../models/userModel');
 
 
@@ -23,7 +23,7 @@ router.post('/', async (req, res, next) => {
 //  Move to userController
     const {
         error
-    } = validateInputLogin(req.body);
+    } = validateInput("login", req.body);
 
     if (!error) {
         console.log('User input-validation pass');

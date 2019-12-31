@@ -66,11 +66,13 @@ const userModel = mongoose.model('user', userSchema);
 //	For refactoring, add a second parameter to choose the process type
 function validateInput(validation_type, input) {
 
+	let schema;
+
 	switch (validation_type) {
 
 		case 'login':
 			console.log(`Validation type: ${validation_type}`);
-			const schema = Joi.object({
+			schema = Joi.object({
 				email: Joi.string().email().required(),
 				wachtwoord: Joi.string().required(),
 			});
@@ -79,7 +81,7 @@ function validateInput(validation_type, input) {
 
 		case 'register':
 			console.log(`Validation type: ${validation_type}`);
-			const schema = Joi.object({
+			schema = Joi.object({
 				voornaam: Joi.string().required(),
 				achternaam: Joi.string().required(),
 				email: Joi.string().email().required(),
@@ -90,6 +92,11 @@ function validateInput(validation_type, input) {
 
 		case 'set_avatar':
 			console.log(`Validation type: ${validation_type}`);
+			schema = Joi.object({
+				data: Joi.binary().encoding('base64').required(),
+				contentType: Joi.required()
+			});
+			return schema.validate(input, (error, value) => {});
 			break;
 
 		case 'set_bio':

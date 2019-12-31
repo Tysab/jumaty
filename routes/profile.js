@@ -62,10 +62,14 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
                 res.redirect('/profile/settings');
             } else {
 
+
+
                 let custom_file = {
                     contentType: req.file.mimetype,
                     file_name: req.file.filename
                 };
+
+                console.log(custom_file.contentType);
 
                 //  Insert validation before passing parameter to function
                 local_message = await set_avatar(req.userData.userId, custom_file);
@@ -87,7 +91,7 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
         default:
             console.log('ERROR POST FORM REQUEST');
             break;
-            
+
     }
 
     res.redirect('/profile/settings');
