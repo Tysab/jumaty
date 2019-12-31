@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var uploadsSchema = new Schema({
 	img: String,
+	//	Set character limit (255?)
 	beschrijving: String,
 	datum: Date,
 	User_id: {

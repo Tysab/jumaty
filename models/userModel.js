@@ -32,7 +32,9 @@ const userSchema = new Schema({
 	},
 	biografie: {
 		type: String,
-		default: ""
+		default: "",
+		minlength: 0,
+		maxlength: 255
 	},
 	tijdlijn: {
 		type: Schema.Types.ObjectId,
@@ -101,14 +103,26 @@ function validateInput(validation_type, input) {
 
 		case 'set_bio':
 			console.log(`Validation type: ${validation_type}`);
+			schema = Joi.object({
+				biografie: Joi.string().min(0).max(255).allow('').required()
+			});
+			return schema.validate(input, (error, value) => {});
 			break;
 
 		case 'set_password':
 			console.log(`Validation type: ${validation_type}`);
+			schema = Joi.object({
+
+			});
+			return schema.validate(input, (error, value) => {});
 			break;
 
 		case 'upload_image':
 			console.log(`Validation type: ${validation_type}`);
+			schema = Joi.object({
+
+			});
+			return schema.validate(input, (error, value) => {});
 			break;
 
 		default:

@@ -86,6 +86,8 @@ module.exports = {
     /**
      * userController.create()
      */
+
+    // Registers new user
     create: async function (req, res) {
 
         const {
@@ -130,8 +132,50 @@ module.exports = {
     /**
      * userController.update()
      */
-    update: function (req, res) {
-        const id = req.params.id;
+
+    // Allows user to update their data
+    update: async function (user_id, data) {    // add [type] in parameters
+
+        const {
+            error
+        } = validateInput("set_bio", data);
+
+        if (!error) {
+            console.log('User input-validation pass');
+        } else if (error) {
+            //console.log(error);
+            passed_query = error.details[0].message;
+            return passed_query;
+        }
+
+        await User.findByIdAndUpdate(user_id, {
+            $set: {
+                biografie: data.biografie
+            }
+        }, () => {
+            console.log("Biografie aangepast");
+            passed_query = "Biografie aangepast";
+        });
+        return passed_query;
+    },
+
+    //  OLD
+    //  OLD
+    // Allows user to update their data
+    OLDupdate: async function (user_id, data) {
+
+        await User.findByIdAndUpdate(user_id, {
+            $set: {
+                img: {
+                    data: new_data.data,
+                    contentType: new_data.contentType
+                }
+            }
+        }, () => {
+            console.log("Upload successful");
+            passed_query = "Upload successful";
+        });
+
         User.findById({
             _id: id
         }, function (err, user) {

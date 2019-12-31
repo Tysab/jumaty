@@ -2,7 +2,8 @@
 
 const {
     set_avatar,
-    show_auth_user
+    show_auth_user,
+    update
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.profile;
 const settings = page.settings; //  Add settings.data for data implementation in .ejs files
@@ -77,15 +78,16 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
             break;
 
         case 'bio':
-            console.log('AVATAR POST FORM REQUEST');
+            console.log('BIO POST FORM REQUEST');
+            local_message = await update(req.userData.userId, req.body);
             break;
 
         case 'userinfo':
-            console.log('AVATAR POST FORM REQUEST');
+            console.log('USERINFO POST FORM REQUEST');
             break;
 
         case 'password':
-            console.log('AVATAR POST FORM REQUEST');
+            console.log('PASSWORD POST FORM REQUEST');
             break;
 
         default:
