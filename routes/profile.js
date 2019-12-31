@@ -38,7 +38,7 @@ router.get('/settings', auth, async (req, res, next) => {
 });
 
 
-router.post('/settings', auth, upload.single('user_avatar'), async (req, res, next) => {
+router.post('/settings/avatar', auth, upload.single('user_avatar'), async (req, res, next) => {
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
 

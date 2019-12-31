@@ -14,31 +14,39 @@
           </h2>
           <hr>
 
-          <!-- form -->
-          <form action="/profile/settings" method="POST" enctype="multipart/form-data">
+          <!-- form
+          <form action="/profile/settings" method="POST" enctype="multipart/form-data"> -->
 
-            <!--Grid row-->
-            <div class="row mt-5">
+          <!--Grid row-->
+          <div class="row mt-5">
 
-              <!--Grid column-->
-              <div class="col-md-6 ml-lg-5 ml-md-3">
+            <!--Grid column-->
+            <div class="col-md-6 ml-lg-5 ml-md-3">
 
-                <div class="md-form">
+              <!-- form -->
+              <form action="/profile/settings/avatar" method="POST" enctype="multipart/form-data">
+                <span class="md-form">
+                  <div class="d-flex mb-4 align-items-center justify-content-center">
+                    <img src="<%= data.user.img_data %>" class="rounded-circle z-depth-1-half avatar-pic"
+                      alt="example placeholder avatar">
+                  </div>
                   <div class="file-field">
-                    <div class="d-flex mb-4 align-items-center justify-content-center">
-                      <img src="<%= data.user.img_data %>"
-                        class="rounded-circle z-depth-1-half avatar-pic" alt="example placeholder avatar">
+                    <div class="btn btn-primary btn-sm float-left">
+                      <span>Foto kiezen</span>
+                      <input type="file" name="user_avatar">
                     </div>
-                    <div class="d-flex justify-content-center">
-                      <div class="btn btn-mdb-color btn-rounded float-left">
-                        <span>Add photo</span>
-                        <input type="file" name="user_avatar" accept="image/*">
-                      </div>
+                    <button type="submit" class="btn btn-primary btn-sm float-right input-group-prepend">Upload</button>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" placeholder="">
                     </div>
                   </div>
-                </div>
+              </form>
+              <!-- /form -->
 
-                <hr>
+              <hr>
+
+              <!-- form -->
+              <form action="/profile/settings/bio" method="POST" enctype="multipart/form-data">
 
                 <!--Grid row-->
                 <div class="row pb-4">
@@ -46,24 +54,33 @@
                     <i class="fas fa-pencil-alt prefix"></i>
                   </div>
                   <div class="col-10">
-                    <h4 class="font-weight-bold mb-4">
+                    <h4 class="font-weight-bold">
                       <strong>Biografie</strong>
                     </h4>
                     <div class="md-form">
-                      <textarea id="form10" class="md-textarea form-control" rows="3"  value="<%= data.user.biografie %>"
+                      <textarea id="form10" class="md-textarea form-control" rows="3" value="<%= data.user.biografie %>"
                         placeholder="Je hebt nog geen bio..."></textarea>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-indigo btn-rounded" type="submit">Wijzigen</button>
                     </div>
                   </div>
                 </div>
                 <!--Grid row-->
 
-              </div>
-              <!--Grid column-->
+              </form>
+              <!-- /form -->
 
-              <!--Grid column-->
-              <div class="col-md-5">
+            </div>
+            <!--Grid column-->
 
-                <!--Body-->
+            <!--Grid column-->
+            <div class="col-md-5">
+
+              <!--Body-->
+
+              <!-- form -->
+              <form action="/profile/settings/userinfo" method="POST" enctype="multipart/form-data">
 
                 <h4 class="font-weight-bold mb-4 text-center">
                   <strong>Persoonlijke gegevens</strong>
@@ -71,46 +88,60 @@
 
                 <div class="md-form">
                   <i class="fas fa-user prefix" style="color:#212529;"></i>
-                  <input type="text" name="voornaam" class="form-control" placeholder="Voornaam" value="<%= data.user.voornaam %>">
+                  <input type="text" name="voornaam" class="form-control" placeholder="Voornaam"
+                    value="<%= data.user.voornaam %>">
                 </div>
                 <div class="md-form">
                   <i class="fas fa-user-tie prefix" style="color:#212529;"></i>
-                  <input type="text" name="achternaam" class="form-control" placeholder="Achternaam" value="<%= data.user.achternaam %>">
+                  <input type="text" name="achternaam" class="form-control" placeholder="Achternaam"
+                    value="<%= data.user.achternaam %>">
                 </div>
 
                 <div class="md-form">
                   <i class="fas fa-envelope prefix" style="color:#212529;"></i>
-                  <input type="email" name="email" class="form-control" placeholder="E-Mail" value="<%= data.user.email %>">
-                </div>
-
-                <hr>
-
-                <h4 class="font-weight-bold mb-4 text-center">
-                  <strong>Wachtwoord</strong>
-                </h4>
-
-                <div class="md-form">
-                  <i class="fas fa-key prefix" style="color:#212529;"></i>
-                  <input type="password" name="wachtwoord"  placeholder="Wachtwoord"class="form-control">
-                </div>
-
-                <div class="md-form">
-                  <i class="fas fa-lock prefix" style="color:#212529;"></i>
-                  <input type="password" name="wachtwoord_herhalen" placeholder="Wachtwoord herhalen" class="form-control">
+                  <input type="email" name="email" class="form-control" placeholder="E-Mail"
+                    value="<%= data.user.email %>">
                 </div>
 
                 <div class="text-center">
-                  <button class="btn btn-indigo btn-rounded mt-5" type="submit">Wijzigen</button>
+                  <button class="btn btn-indigo btn-rounded" type="submit">Wijzigen</button>
                 </div>
 
-              </div>
-              <!--Grid column-->
+              </form>
+              <!-- /form -->
+
+                <hr>
+
+                <!-- form -->
+                <form action="/profile/settings/password" method="POST" enctype="multipart/form-data">
+
+                  <h4 class="font-weight-bold mb-4 text-center">
+                    <strong>Wachtwoord</strong>
+                  </h4>
+
+                  <div class="md-form">
+                    <i class="fas fa-key prefix" style="color:#212529;"></i>
+                    <input type="password" name="wachtwoord" placeholder="Wachtwoord" class="form-control">
+                  </div>
+
+                  <div class="md-form">
+                    <i class="fas fa-lock prefix" style="color:#212529;"></i>
+                    <input type="password" name="wachtwoord_herhalen" placeholder="Wachtwoord herhalen"
+                      class="form-control">
+                  </div>
+
+                  <div class="text-center">
+                    <button class="btn btn-indigo btn-rounded" type="submit">Wijzigen</button>
+                  </div>
+
+                </form>
+                <!-- /form -->
 
             </div>
-            <!--Grid row-->
+            <!--Grid column-->
 
-            <!-- /form -->
-          </form>
+          </div>
+          <!--Grid row-->
 
         </div>
       </div>
