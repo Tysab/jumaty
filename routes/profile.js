@@ -52,6 +52,8 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings');
 
+    let pass_type = `set_${req.params.form}`;
+
     switch (req.params.form) {
 
         case 'avatar':
@@ -79,11 +81,12 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
 
         case 'bio':
             console.log('BIO POST FORM REQUEST');
-            local_message = await update(req.userData.userId, req.body);
+            local_message = await update(req.userData.userId, req.body, pass_type);
             break;
 
         case 'userinfo':
             console.log('USERINFO POST FORM REQUEST');
+            local_message = await update(req.userData.userId, req.body, pass_type);
             break;
 
         case 'password':

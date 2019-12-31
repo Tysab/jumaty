@@ -12,10 +12,14 @@ const userSchema = new Schema({
 	voornaam: {
 		type: String,
 		required: true,
+		minlength: 1,
+		maxlength: 50
 	},
 	achternaam: {
 		type: String,
 		required: true,
+		minlength: 1,
+		maxlength: 70
 	},
 	email: {
 		type: String,
@@ -84,8 +88,8 @@ function validateInput(validation_type, input) {
 		case 'register':
 			console.log(`Validation type: ${validation_type}`);
 			schema = Joi.object({
-				voornaam: Joi.string().required(),
-				achternaam: Joi.string().required(),
+				voornaam: Joi.string().min(1).max(50).required(),
+				achternaam: Joi.string().min(1).max(70).required(),
 				email: Joi.string().email().required(),
 				wachtwoord: Joi.string().required(),
 			});
@@ -105,6 +109,16 @@ function validateInput(validation_type, input) {
 			console.log(`Validation type: ${validation_type}`);
 			schema = Joi.object({
 				biografie: Joi.string().min(0).max(255).allow('').required()
+			});
+			return schema.validate(input, (error, value) => {});
+			break;
+
+		case 'set_userinfo':
+			console.log(`Validation type: ${validation_type}`);
+			schema = Joi.object({
+				voornaam: Joi.string().min(1).max(50).required(),
+				achternaam: Joi.string().min(1).max(70).required(),
+				email: Joi.string().email().required(),
 			});
 			return schema.validate(input, (error, value) => {});
 			break;

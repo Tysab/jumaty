@@ -134,11 +134,86 @@ module.exports = {
      */
 
     // Allows user to update their data
-    update: async function (user_id, data) {    // add [type] in parameters
+    update: async function (user_id, data, type) {
+
+
+        //  Copy this switch from userModel.js
+
+        // switch (validation_type) {
+
+        //     case 'login':
+        //         console.log(`Validation type: ${validation_type}`);
+        //         schema = Joi.object({
+        //             email: Joi.string().email().required(),
+        //             wachtwoord: Joi.string().required(),
+        //         });
+        //         return schema.validate(input, (error, value) => {});
+        //         break;
+    
+        //     case 'register':
+        //         console.log(`Validation type: ${validation_type}`);
+        //         schema = Joi.object({
+        //             voornaam: Joi.string().min(1).max(50).required(),
+        //             achternaam: Joi.string().min(1).max(70).required(),
+        //             email: Joi.string().email().required(),
+        //             wachtwoord: Joi.string().required(),
+        //         });
+        //         return schema.validate(input, (error, value) => {});
+        //         break;
+    
+        //     case 'set_avatar':
+        //         console.log(`Validation type: ${validation_type}`);
+        //         schema = Joi.object({
+        //             data: Joi.binary().encoding('base64').required(),
+        //             contentType: Joi.required()
+        //         });
+        //         return schema.validate(input, (error, value) => {});
+        //         break;
+    
+        //     case 'set_bio':
+        //         console.log(`Validation type: ${validation_type}`);
+        //         schema = Joi.object({
+        //             biografie: Joi.string().min(0).max(255).allow('').required()
+        //         });
+        //         return schema.validate(input, (error, value) => {});
+        //         break;
+    
+        //     case 'set_userinfo':
+        //         console.log(`Validation type: ${validation_type}`);
+        //         schema = Joi.object({
+        //             voornaam: Joi.string().min(1).max(50).required(),
+        //             achternaam: Joi.string().min(1).max(70).required(),
+        //             email: Joi.string().email().required(),
+        //         });
+        //         return schema.validate(input, (error, value) => {});
+        //         break;
+    
+        //     case 'set_password':
+        //         console.log(`Validation type: ${validation_type}`);
+        //         schema = Joi.object({
+    
+        //         });
+        //         return schema.validate(input, (error, value) => {});
+        //         break;
+    
+        //     case 'upload_image':
+        //         console.log(`Validation type: ${validation_type}`);
+        //         schema = Joi.object({
+    
+        //         });
+        //         return schema.validate(input, (error, value) => {});
+        //         break;
+    
+        //     default:
+        //         console.log('ERROR: validation request type not valid');
+        //         return "ERROR: validation request type not valid";
+        //         break;
+    
+        // }
 
         const {
             error
-        } = validateInput("set_bio", data);
+        } = validateInput(type, data);
 
         if (!error) {
             console.log('User input-validation pass');
