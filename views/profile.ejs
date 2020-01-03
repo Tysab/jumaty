@@ -7,7 +7,7 @@
       <!--Grid column-->
       <div class="col-md-6 mb-4 white-text text-center text-md-left" style="background-color: royalblue;">
 
-        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(21).jpg" alt="" class="rounded-circle mr-3"
+        <img src="<%= data.user.img_data %>" alt="" class="rounded-circle mr-3"
           alt="profile-image" height="110px" width="110px">
         <br>
         <p>
@@ -17,7 +17,7 @@
         <hr class="hr-light" ;>
 
         <p>
-          <strong>Voornaam + achternaam</strong>
+          <strong><%= data.user.voornaam + " " + data.user.achternaam %></strong>
         </p>
 
       </div>
@@ -40,9 +40,7 @@
               </h3>
               <hr class="hr-light" ;>
 
-              <p>Welkom op mijn profiel</p>
-              <p>Biografie tekst</p>
-              <p>Nog meer tekst hier...</p>
+              <p><%= data.user.biografie %></p>
 
             </form>
             <!-- Form -->
