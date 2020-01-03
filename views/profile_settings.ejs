@@ -58,8 +58,9 @@
                       <strong>Biografie</strong>
                     </h4>
                     <div class="md-form">
-                      <textarea id="form10" class="md-textarea form-control" rows="3" name="biografie"
+                      <textarea id="biografie_textarea" onkeypress="characterCount(this)" maxlength="250" class="md-textarea form-control" rows="3" name="biografie"
                         placeholder="Je hebt nog geen bio..."><%= data.user.biografie %></textarea>
+                        <p id="character_count" class="text-right font-weight-light"></p>
                     </div>
                     <div class="text-center">
                       <button class="btn btn-indigo btn-rounded" type="submit">Wijzig Bio</button>
