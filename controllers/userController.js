@@ -2,6 +2,7 @@ const {
     User,
     validateInput
 } = require('../models/userModel.js');
+const { show_user_uploads } = require('../controllers/uploadsController');
 const binaryImage = require('../functions/binaryImage');
 const bcrypt = require('bcrypt');
 
@@ -43,6 +44,8 @@ module.exports = {
 
         //  Generates user avatar from binary data
         user.img_data = await binaryImage.get_user_avatar(user);
+
+        user.uploads = await show_user_uploads(userId);
 
         //  Reassign objects with _Lodash
         user.img = "";

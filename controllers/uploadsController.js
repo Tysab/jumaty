@@ -16,23 +16,30 @@ const page = require('../json/routes.json').page.upload;
  * @description :: Server-side logic for managing uploads.
  */
 
-let passed_query;
 
 module.exports = {
 
     /**
      * uploadsController.list()
      */
-    list: function (req, res) {
-        uploadsModel.find(function (err, uploads) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting uploads.',
-                    error: err
-                });
-            }
-            return res.json(uploads);
-        });
+
+    //  Show uploads by user
+    show_user_uploads: async function (user_id) {
+        const uploads = await Uploads.find({
+                User_id: user_id
+            })
+            .select('img beschrijving datum')
+            .catch(err => {
+                console.log(err);
+            });
+
+
+        let converted_image = await binaryImage.get_user_uploads(uploads);
+
+
+        uploads.img = converted_image;
+
+        return uploads;
     },
 
     /**

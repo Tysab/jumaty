@@ -104,12 +104,4 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
 
 });
 
-router.post('/settings/bio', auth, async (req, res, next) => {
-
-});
-
-//bio
-//userinfo
-//password
-
 module.exports = router;

@@ -21,6 +21,26 @@ const {
 let imgSource;
 
 
+module.exports.get_user_uploads = async function (result) {
+
+    let imgSource = [];
+
+    for (let x = 0; x < result.length; x++) {
+
+        let newBuffer = {
+            data: new Uint8Array(result[x].img.data.buffer),
+            contentType: result[x].img.contentType
+        }
+        //  Converts to base64 (for html rendering)
+        let newBase = new Buffer(newBuffer.data).toString('base64');
+        imgSource.push(`data:${newBuffer.contentType};base64,${newBase}`); //! Variable for img src=""
+
+    }
+
+    //console.log(imgSource);
+    return imgSource;
+};
+
 module.exports.get_user_avatar = async function (result) {
 
     let newBuffer = {

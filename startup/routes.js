@@ -28,6 +28,7 @@ module.exports = function (app) {
     app.use(express.static('public'));
     app.use('/profile', express.static(path.join(__dirname, '../public')));
 
+    //  Using global variables for routes
     app.use(function (req, res, next) {
         res.locals.message = undefined;
         next();
