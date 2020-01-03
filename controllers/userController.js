@@ -125,7 +125,9 @@ module.exports = {
                     error: err
                 });
             }
-            return res.render('login');
+            return res.render('login', {
+                message: "Account aangemaakt!"
+            });
         });
     },
 
@@ -181,17 +183,17 @@ module.exports = {
                 break;
 
             case 'set_password':
-            const salt = await bcrypt.genSalt(10);
-            let user_password = await bcrypt.hash(data.wachtwoord, salt);
-            await User.findByIdAndUpdate(user_id, {
-                $set: {
-                    wachtwoord: user_password,
-                }
-            }, () => {
-                console.log("Wachtwoord aangepast");
-                passed_query = "Wachtwoord aangepast";
-            });
-            return passed_query;
+                const salt = await bcrypt.genSalt(10);
+                let user_password = await bcrypt.hash(data.wachtwoord, salt);
+                await User.findByIdAndUpdate(user_id, {
+                    $set: {
+                        wachtwoord: user_password,
+                    }
+                }, () => {
+                    console.log("Wachtwoord aangepast");
+                    passed_query = "Wachtwoord aangepast";
+                });
+                return passed_query;
                 break;
 
             default:

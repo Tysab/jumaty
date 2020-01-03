@@ -6,10 +6,24 @@
         <!--Grid column-->
         <div class="col-md-12">
 
-            <div class="file-upload-wrapper">
-                <input type="file" id="input-file-now" name="user_upload" class="file-upload" />
-            </div>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+
+                <div class="file-upload-wrapper">
+                    <input type="file" name="user_upload" accept="image/*">
+                </div>
+
+                <textarea id="biografie_textarea" onkeypress="characterCount(this)" maxlength="250"
+                    class="md-textarea form-control" rows="3" name="beschrijving"
+                    placeholder="Voeg hier een beschrijving toe"></textarea>
+                <p id="character_count" class="text-right font-weight-light"></p>
+                <div class="text-center">
+                    <button class="btn btn-indigo btn-rounded" type="submit">Foto uploaden</button>
+                </div>
+
+            </form>
 
         </div>
+
     </div>
+</div>
 </div>

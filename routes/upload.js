@@ -36,26 +36,28 @@ router.post('/', auth, upload.single('user_upload'), async (req, res, next) => {
     //  Users settings updates
     console.log('Connected to [POST] /upload');
 
-    console.log(req.body);
-
-    throw new Error('TEST END');
-
-
     if (!req.file) {
         console.log('No file found');
         local_message = "File not found";
         res.redirect('/upload');
     } else {
-        let custom_file = {
-            contentType: req.file.mimetype,
-            file_name: req.file.filename
+
+
+
+        let content = {
+            beschrijving: req.body.beschrijving,
+            img: {
+                contentType: req.file.mimetype,
+                file_name: req.file.filename
+            }
         };
-        console.log(custom_file.contentType);
+        
         //  Insert validation before passing parameter to function
-        local_message = await create(req.userData.userId, custom_file);
+        local_message = await create(req.userData.userId, content);
+        console.log(await local_message + " msgffffffffffffffgggg");
+        res.redirect('/upload');
     }
 
-    res.redirect('/profile');
 
 });
 

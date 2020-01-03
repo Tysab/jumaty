@@ -9,6 +9,9 @@ const binaryImage = require('../functions/binaryImage');
  *
  * @description :: Server-side logic for managing uploads.
  */
+
+let passed_query;
+
 module.exports = {
 
     /**
@@ -52,40 +55,46 @@ module.exports = {
     /**
      * uploadsController.create()
      */
-    create: async function (data) {
+    create: async function (user_id, data) {
+
+        let new_data = {
+            beschrijving: data.beschrijving,
+            img: binaryImage.get_uploaded_user_avatar(user_id, data.img)
+        };
 
         const {
             error
-        } = validate(data);
+        } = validate(new_data);
 
         if (!error) {
             console.log('User input-validation pass');
         } else if (error) {
             //console.log(error);
-            return res.status(400).send(error.details[0].message);
-        }
+            passed_query = error.details[0].message;
+            return passed_query;
 
-        let new_data = binaryImage.get_uploaded_user_avatar(user_id, data.img);
+        }
 
         const uploads = new Uploads({
             img: {
                 data: new_data.data,
                 contentType: new_data.contentType
             },
-            beschrijving: req.body.beschrijving,
-            User_id: req.body.User_id
+            beschrijving: data.beschrijving,
+            User_id: user_id
 
         });
 
-        uploads.save(function (err, uploads) {
+        const save_await = uploads.save(function (err, uploads) {
             if (err) {
-                return res.status(500).json({
-                    message: 'Error when creating uploads',
-                    error: err
-                });
-            }
-            return res.status(201).json(uploads);
+                return err;
+            } return "Upload successful";
         });
+
+        passed_query = await save_await;
+
+        return passed_query;
+
     },
 
     /**
