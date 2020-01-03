@@ -12,6 +12,7 @@ const timeline = require('../routes/timeline');
 const profile = require('../routes/profile');
 const upload = require('../routes/upload');
 
+
 module.exports = function (app) {
 
     //  Connects Express to EJS for templating engines
@@ -19,11 +20,18 @@ module.exports = function (app) {
     app.set('views', path.join(__dirname, '../views'));
 
     app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
+    app.use(express.urlencoded({
+        extended: true
+    }));
     app.use(cors());
     app.use(cookieParser());
     app.use(express.static('public'));
     app.use('/profile', express.static(path.join(__dirname, '../public')));
+
+    app.use(function (req, res, next) {
+        res.locals.message = undefined;
+        next();
+    });
 
     //  Save for global variables
     // app.use(function (req, res, next) {

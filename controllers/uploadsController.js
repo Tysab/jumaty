@@ -3,6 +3,12 @@ const {
     validate
 } = require('../models/uploadsModel.js');
 const binaryImage = require('../functions/binaryImage');
+const auth = require('../middleware/auth');
+const multer = require('multer');
+const upload = multer({
+    dest: "binaryImages/"
+});
+const page = require('../json/routes.json').page.upload;
 
 /**
  * uploadsController.js
@@ -55,11 +61,31 @@ module.exports = {
     /**
      * uploadsController.create()
      */
-    create: async function (user_id, data) {
+    //create: async function (user_id, data) {
+    create: async function (req, res, next) {
+
+
+        if (!req.file) {
+            console.log('No file found');
+            res.locals.message = "File not found";
+            res.redirect('/upload');
+        }
+
+
+
+        let content = {
+            beschrijving: req.body.beschrijving,
+            img: {
+                contentType: req.file.mimetype,
+                file_name: req.file.filename
+            }
+        };
+
+        //  from router
 
         let new_data = {
-            beschrijving: data.beschrijving,
-            img: binaryImage.get_uploaded_user_avatar(user_id, data.img)
+            beschrijving: content.beschrijving,
+            img: binaryImage.get_uploaded_user_avatar(req.userData.userId, content.img)
         };
 
         const {
@@ -70,30 +96,29 @@ module.exports = {
             console.log('User input-validation pass');
         } else if (error) {
             //console.log(error);
-            passed_query = error.details[0].message;
-            return passed_query;
+            res.locals.message = error.details[0].message;
+            return res.render('index', page);
 
         }
 
         const uploads = new Uploads({
             img: {
-                data: new_data.data,
-                contentType: new_data.contentType
+                data: new_data.img.data,
+                contentType: new_data.img.contentType
             },
-            beschrijving: data.beschrijving,
-            User_id: user_id
+            beschrijving: new_data.beschrijving,
+            User_id: req.userData.userId
 
         });
 
-        const save_await = uploads.save(function (err, uploads) {
+        await uploads.save(function (err, uploads) {
             if (err) {
-                return err;
-            } return "Upload successful";
+                res.locals.message = err;
+                return res.render('index', page);
+            }
+            res.locals.message = "Foto is geupload!";
+            return res.render('index', page);
         });
-
-        passed_query = await save_await;
-
-        return passed_query;
 
     },
 
