@@ -8,6 +8,14 @@
                 "user": ""
             }
         },
+        "upload": {
+            "navigation": "partials/sidenav",
+            "content": "upload",
+            "title": "Upload",
+            "data": {
+                "user": ""
+            }
+        },
         "settings": {
             "navigation": "partials/sidenav",
             "content": "settings",

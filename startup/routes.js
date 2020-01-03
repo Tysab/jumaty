@@ -10,6 +10,7 @@ const logout = require('../routes/logout');
 const register = require('../routes/register');
 const timeline = require('../routes/timeline');
 const profile = require('../routes/profile');
+const upload = require('../routes/upload');
 
 module.exports = function (app) {
 
@@ -39,6 +40,7 @@ module.exports = function (app) {
     app.use('/register', register); // sets /register path to register.js router
     app.use('/timeline', timeline); // sets /timeline path to timeline.js router
     app.use('/profile', profile); // sets /profile path to profile.js router
+    app.use('/upload', upload); // sets /upload path to upload.js router
 
     //  Error handling middleware for 404 pages
     app.get('*', (res, req, next) => {

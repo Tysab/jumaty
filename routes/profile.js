@@ -50,7 +50,7 @@ router.get('/settings', auth, async (req, res, next) => {
 
 router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, res, next) => {
     //  Users settings updates
-    console.log('Connected to [POST] /profile/settings');
+    console.log('Connected to [POST] /profile/settings/' + req.params.form);
 
     let pass_type = `set_${req.params.form}`;
 

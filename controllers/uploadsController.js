@@ -1,4 +1,8 @@
-const uploadsModel = require('../models/uploadsModel.js');
+const {
+    Uploads,
+    validate
+} = require('../models/uploadsModel.js');
+const binaryImage = require('../functions/binaryImage');
 
 /**
  * uploadsController.js
@@ -27,7 +31,9 @@ module.exports = {
      */
     show: function (req, res) {
         const id = req.params.id;
-        uploadsModel.findOne({_id: id}, function (err, uploads) {
+        uploadsModel.findOne({
+            _id: id
+        }, function (err, uploads) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting uploads.',
@@ -46,12 +52,28 @@ module.exports = {
     /**
      * uploadsController.create()
      */
-    create: function (req, res) {
-        const uploads = new uploadsModel({
-			img : req.body.img,
-			beschrijving : req.body.beschrijving,
-			datum : req.body.datum,
-			User_id : req.body.User_id
+    create: async function (data) {
+
+        const {
+            error
+        } = validate(data);
+
+        if (!error) {
+            console.log('User input-validation pass');
+        } else if (error) {
+            //console.log(error);
+            return res.status(400).send(error.details[0].message);
+        }
+
+        let new_data = binaryImage.get_uploaded_user_avatar(user_id, data.img);
+
+        const uploads = new Uploads({
+            img: {
+                data: new_data.data,
+                contentType: new_data.contentType
+            },
+            beschrijving: req.body.beschrijving,
+            User_id: req.body.User_id
 
         });
 
@@ -71,7 +93,9 @@ module.exports = {
      */
     update: function (req, res) {
         const id = req.params.id;
-        uploadsModel.findOne({_id: id}, function (err, uploads) {
+        uploadsModel.findOne({
+            _id: id
+        }, function (err, uploads) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting uploads',
@@ -85,10 +109,10 @@ module.exports = {
             }
 
             uploads.img = req.body.img ? req.body.img : uploads.img;
-			uploads.beschrijving = req.body.beschrijving ? req.body.beschrijving : uploads.beschrijving;
-			uploads.datum = req.body.datum ? req.body.datum : uploads.datum;
-			uploads.User_id = req.body.User_id ? req.body.User_id : uploads.User_id;
-			
+            uploads.beschrijving = req.body.beschrijving ? req.body.beschrijving : uploads.beschrijving;
+            uploads.datum = req.body.datum ? req.body.datum : uploads.datum;
+            uploads.User_id = req.body.User_id ? req.body.User_id : uploads.User_id;
+
             uploads.save(function (err, uploads) {
                 if (err) {
                     return res.status(500).json({

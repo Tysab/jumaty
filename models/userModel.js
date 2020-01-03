@@ -46,11 +46,11 @@ const userSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'tijdlijn'
 	},
-	uploads: [{
-		type: Schema.Types.ObjectId,
-		ref: 'uploads'
-	}],
 	followed_user: [{
+		type: Schema.Types.ObjectId,
+		ref: 'user'
+	}],
+	followers: [{
 		type: Schema.Types.ObjectId,
 		ref: 'user'
 	}]
@@ -71,7 +71,6 @@ userSchema.methods.generateAuthToken = function () {
 const userModel = mongoose.model('user', userSchema);
 
 
-//	For refactoring, add a second parameter to choose the process type
 function validateInput(validation_type, input) {
 
 	let schema;
