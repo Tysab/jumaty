@@ -110,7 +110,7 @@ module.exports = {
         const user = new User({
             voornaam: req.body.voornaam,
             achternaam: req.body.achternaam,
-            email: req.body.email,
+            email: req.body.email.toLowerCase(),
             wachtwoord: user_password,
             img: {
                 data: new_data.data,
@@ -137,80 +137,6 @@ module.exports = {
     update: async function (user_id, data, type) {
 
 
-        //  Copy this switch from userModel.js
-
-        // switch (validation_type) {
-
-        //     case 'login':
-        //         console.log(`Validation type: ${validation_type}`);
-        //         schema = Joi.object({
-        //             email: Joi.string().email().required(),
-        //             wachtwoord: Joi.string().required(),
-        //         });
-        //         return schema.validate(input, (error, value) => {});
-        //         break;
-    
-        //     case 'register':
-        //         console.log(`Validation type: ${validation_type}`);
-        //         schema = Joi.object({
-        //             voornaam: Joi.string().min(1).max(50).required(),
-        //             achternaam: Joi.string().min(1).max(70).required(),
-        //             email: Joi.string().email().required(),
-        //             wachtwoord: Joi.string().required(),
-        //         });
-        //         return schema.validate(input, (error, value) => {});
-        //         break;
-    
-        //     case 'set_avatar':
-        //         console.log(`Validation type: ${validation_type}`);
-        //         schema = Joi.object({
-        //             data: Joi.binary().encoding('base64').required(),
-        //             contentType: Joi.required()
-        //         });
-        //         return schema.validate(input, (error, value) => {});
-        //         break;
-    
-        //     case 'set_bio':
-        //         console.log(`Validation type: ${validation_type}`);
-        //         schema = Joi.object({
-        //             biografie: Joi.string().min(0).max(255).allow('').required()
-        //         });
-        //         return schema.validate(input, (error, value) => {});
-        //         break;
-    
-        //     case 'set_userinfo':
-        //         console.log(`Validation type: ${validation_type}`);
-        //         schema = Joi.object({
-        //             voornaam: Joi.string().min(1).max(50).required(),
-        //             achternaam: Joi.string().min(1).max(70).required(),
-        //             email: Joi.string().email().required(),
-        //         });
-        //         return schema.validate(input, (error, value) => {});
-        //         break;
-    
-        //     case 'set_password':
-        //         console.log(`Validation type: ${validation_type}`);
-        //         schema = Joi.object({
-    
-        //         });
-        //         return schema.validate(input, (error, value) => {});
-        //         break;
-    
-        //     case 'upload_image':
-        //         console.log(`Validation type: ${validation_type}`);
-        //         schema = Joi.object({
-    
-        //         });
-        //         return schema.validate(input, (error, value) => {});
-        //         break;
-    
-        //     default:
-        //         console.log('ERROR: validation request type not valid');
-        //         return "ERROR: validation request type not valid";
-        //         break;
-    
-        // }
-
         const {
             error
         } = validateInput(type, data);
@@ -223,15 +149,60 @@ module.exports = {
             return passed_query;
         }
 
-        await User.findByIdAndUpdate(user_id, {
-            $set: {
-                biografie: data.biografie
-            }
-        }, () => {
-            console.log("Biografie aangepast");
-            passed_query = "Biografie aangepast";
-        });
-        return passed_query;
+
+        //  Copy this switch from userModel.js
+
+        switch (type) {
+
+            case 'set_bio':
+                await User.findByIdAndUpdate(user_id, {
+                    $set: {
+                        biografie: data.biografie
+                    }
+                }, () => {
+                    console.log("Biografie aangepast");
+                    passed_query = "Biografie aangepast";
+                });
+                return passed_query;
+                break;
+
+            case 'set_userinfo':
+                await User.findByIdAndUpdate(user_id, {
+                    $set: {
+                        voornaam: data.voornaam,
+                        achternaam: data.achternaam,
+                        email: data.email
+                    }
+                }, () => {
+                    console.log("Persoonlijke gegevens aangepast");
+                    passed_query = "Persoonlijke gegevens aangepast";
+                });
+                return passed_query;
+                break;
+
+            case 'set_password':
+            const salt = await bcrypt.genSalt(10);
+            let user_password = await bcrypt.hash(data.wachtwoord, salt);
+            await User.findByIdAndUpdate(user_id, {
+                $set: {
+                    wachtwoord: user_password,
+                }
+            }, () => {
+                console.log("Wachtwoord aangepast");
+                passed_query = "Wachtwoord aangepast";
+            });
+            return passed_query;
+                break;
+
+            default:
+                console.log('ERROR: update request not valid');
+                return "ERROR: update request not valid";
+                break;
+
+        }
+
+
+
     },
 
     //  OLD

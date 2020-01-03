@@ -29,6 +29,8 @@ const userSchema = new Schema({
 	wachtwoord: {
 		type: String,
 		required: true,
+		minlength: 6,
+		maxlength: 255
 	},
 	img: {
 		data: Buffer,
@@ -91,7 +93,7 @@ function validateInput(validation_type, input) {
 				voornaam: Joi.string().min(1).max(50).required(),
 				achternaam: Joi.string().min(1).max(70).required(),
 				email: Joi.string().email().required(),
-				wachtwoord: Joi.string().required(),
+				wachtwoord: Joi.string().min(6).max(255).required(),
 			});
 			return schema.validate(input, (error, value) => {});
 			break;
@@ -126,7 +128,8 @@ function validateInput(validation_type, input) {
 		case 'set_password':
 			console.log(`Validation type: ${validation_type}`);
 			schema = Joi.object({
-
+				wachtwoord: Joi.string().min(6).max(255).required(),
+				wachtwoord_herhalen: Joi.string().min(6).max(255).valid(Joi.ref('wachtwoord')).required(),
 			});
 			return schema.validate(input, (error, value) => {});
 			break;

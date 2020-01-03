@@ -91,6 +91,7 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
 
         case 'password':
             console.log('PASSWORD POST FORM REQUEST');
+            local_message = await update(req.userData.userId, req.body, pass_type);
             break;
 
         default:

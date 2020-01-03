@@ -35,7 +35,7 @@ router.post('/', async (req, res, next) => {
     }
 
     await User.find({
-            email: req.body.email
+            email: req.body.email.toLowerCase()
         })
         .exec()
         .then(user => {
@@ -69,6 +69,8 @@ router.post('/', async (req, res, next) => {
                     // res.header('x-auth-token', token);
                     // res.send(token);
                     // return;
+                    
+                    //  Show Login Success toast
                     return res.cookie('authToken', token, {
                         expires: new Date(Date.now() + 3600000),
                         secure: false,      //  True if using HTTPS,

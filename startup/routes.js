@@ -30,6 +30,8 @@ module.exports = function (app) {
     //     next();
     // });
 
+    //  ! ISSUE
+    //  * Added / doesn't load the static files. For example: "/timeline/" is invalid
     //  Setting routes
     app.use('/', home); // sets / path to home.js router
     app.use('/login', login); // sets /login path to login.js router
