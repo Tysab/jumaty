@@ -7,8 +7,8 @@
       <!--Grid column-->
       <div class="col-md-6 mb-4 white-text text-center text-md-left" style="background-color: royalblue;">
 
-        <img src="<%= data.user.img_data %>" alt="" class="rounded-circle mr-3"
-          alt="profile-image" height="110px" width="110px">
+        <img src="<%= data.user.img_data %>" alt="" class="rounded-circle mr-3" alt="profile-image" height="110px"
+          width="110px">
         <br>
         <p>
           <strong>Gebruikersnaam</strong>
@@ -58,15 +58,26 @@
 
       <!--Grid column-->
 
-      <!-- CREATE FOR-LOOP TO SHOW ALL USER IMAGES -->
+
+      <% if(data.user.uploads.length == 0) { %>
+
+      <div class="row border border-dark">
+
+        <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start">
+          <span>Je hebt nog geen foto's geupload</span>
+        </div>
+      </div>
+
+      <% } else { %>
 
       <% for(let x = 0; x < data.user.uploads.length; x++) { %>
 
-        <div class="card-body" style="background-color: greenyellow;">
-          <div class="col-sm-4"><img src="<%= data.user.uploads[x].img %>" height="220" /></div>
-        </div>
-        
-        <% } %>
+      <div class="card-body" style="background-color: greenyellow;">
+        <div class="col-sm-4"><img src="<%= data.user.uploads[x].img %>" height="220" /></div>
+      </div>
+
+      <% } %>
+      <% } %>
 
     </div>
     <!--Grid row-->

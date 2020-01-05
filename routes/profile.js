@@ -31,6 +31,15 @@ router.get('/', auth, async (req, res) => {
     res.render('index', page);
 });
 
+router.get('/show/:user_id', auth, async (req, res) => {
+    console.log('Connected to /profile/:user_id');
+
+    let user = await show_auth_user(req.userData.userId);
+    page.data.user = user;
+
+    res.render('index', page);
+});
+
 router.post('/', async (req, res) => {
     //  User following function
 });
