@@ -39,8 +39,6 @@ module.exports = {
 
         uploads = converted_image;
 
-        console.log(uploads[0]);
-
         return uploads;
     },
 

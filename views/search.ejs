@@ -1,0 +1,48 @@
+<!-- Het begin van het project-->
+<div class="container-fluid h-100 min-w-100 wow fadeInRight animated">
+
+    <!-- Lightbox (ingezoomd) van de geklikte foto -->
+    <div id="mdb-lightbox-ui"></div>
+
+    <div class="row">
+
+        <div class="col-md-3 "></div>
+
+
+
+        <!--De omheining van de card, het witte veld eromheen: -->
+        <div class="col-md-6 justify-content-center grey lighten-5 p-5 vh-100">
+
+            <div class="input-group md-form form-sm form-2 pl-0">
+                <input class="form-control my-0 py-1" type="text" placeholder="Zoek een gebruiker..."
+                    aria-label="Search">
+                <div class="input-group-append">
+                    <span class="input-group-text blue lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                            aria-hidden="true"></i></span>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- User-search content -->
+
+            <div class="row border border-dark">
+
+                <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start"> <img
+                        src="<%= data.user.img_data %>" class="img-fluid rounded-circle" width="75px" height="75px"> <br> 
+                    <p>Naam</p>
+                    </div>
+
+                <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start">Bio</div>
+
+                <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start">Buttons</div>
+
+            </div>
+
+            <!-- /User-search content -->
+
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+</div>

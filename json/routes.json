@@ -1,5 +1,13 @@
 {
     "page": {
+        "search": {
+            "navigation": "partials/sidenav",
+            "content": "search",
+            "title": "Gebruikers Zoeken",
+            "data": {
+                "user": ""
+            }
+        },
         "timeline": {
             "navigation": "partials/sidenav",
             "content": "timeline",
