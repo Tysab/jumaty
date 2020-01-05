@@ -20,9 +20,30 @@ let passed_query;
 module.exports = {
 
     //  Currently not used
-    show_auth_user: async function (userId) {
+    // show_auth_user: async function (userId) {
+    //     const user = await User
+    //         .findById(userId)
+    //         .select('-password')
+    //         .catch(err => {
+    //             console.error(err);
+    //         });
+
+    //     //  Generates user avatar from binary data
+    //     user.img_data = await binaryImage.get_user_avatar(user);
+
+    //     user.uploads = await show_user_uploads(userId);
+
+    //     //  Reassign objects with _Lodash
+    //     user.img = "";
+    //     return user;
+    // },
+
+    show_auth_user: async function (req, res, next) {
+
+        const user_id = req.userData.userId;
+
         const user = await User
-            .findById(userId)
+            .findById(user_id)
             .select('-password')
             .catch(err => {
                 console.error(err);
@@ -31,29 +52,10 @@ module.exports = {
         //  Generates user avatar from binary data
         user.img_data = await binaryImage.get_user_avatar(user);
 
-        user.uploads = await show_user_uploads(userId);
+        user.uploads = await show_user_uploads(user_id);
 
         //  Reassign objects with _Lodash
-        user.img = "";
-        return user;
-    },
-
-    show_auth_user_images: async function (req, res, next) {
-
-        const user = await User
-            .findById(req.userData.userId)
-            .select('-password')
-            .catch(err => {
-                console.error(err);
-            });
-
-        //  Generates user avatar from binary data
-        user.img_data = await binaryImage.get_user_avatar(user);
-
-        user.uploads = await show_user_uploads(req.userData.userId);
-
-        //  Reassign objects with _Lodash
-        res.locals.user = user;
+        res.locals.session_user = user;
         next();
     },
 
@@ -61,8 +63,10 @@ module.exports = {
     //  Make compatible with logged in used AND chosen user from req.params.user_id
     show_selected_user_info: async function (req, res, next) {
 
+        const user_id = req.params.user_id;
+
         const user = await User
-            .findById(req.params.user_id)
+            .findById(user_id)
             .select('-password')
             .catch(err => {
                 console.error(err);
@@ -71,7 +75,7 @@ module.exports = {
         //  Generates user avatar from binary data
         user.img_data = await binaryImage.get_user_avatar(user);
 
-        user.uploads = await show_user_uploads(req.params.user_id);
+        user.uploads = await show_user_uploads(user_id);
 
         //  Reassign objects with _Lodash
         res.locals.selected_user = user;
@@ -103,6 +107,7 @@ module.exports = {
 
     set_avatar: async function (user_id, file_data) {
 
+        //  !Validate before creating new data; move this elsewhere
         let new_data = binaryImage.get_uploaded_user_avatar(user_id, file_data);
 
         const {

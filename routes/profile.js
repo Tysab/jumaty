@@ -3,7 +3,7 @@
 const {
     set_avatar,
     show_auth_user,
-    show_auth_user_images,
+    show_selected_user_info,
     update
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.profile;
@@ -15,6 +15,7 @@ const upload = multer({
     dest: "binaryImages/"
 });
 const router = express.Router();
+const auth_middle = [auth, show_auth_user];
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
 let local_message;
@@ -24,13 +25,13 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get('/', auth, show_auth_user_images, async (req, res) => {
+router.get('/', auth_middle, async (req, res) => {
     console.log('Connected to /profile');
 
     res.render('index', page);
 });
 
-router.get('/show/:user_id', auth, show_auth_user_images, async (req, res) => {
+router.get('/show/:user_id', auth, show_auth_user, show_selected_user_info, async (req, res) => {
     console.log('Connected to /profile/:user_id');
 
     res.render('index', page);
@@ -42,7 +43,7 @@ router.post('/', async (req, res) => {
 
 
 //  User profile settings
-router.get('/settings', auth, show_auth_user_images, async (req, res, next) => {
+router.get('/settings', auth, show_auth_user, async (req, res, next) => {
     console.log('Connected to /profile/settings');
 
     res.render('index', settings);

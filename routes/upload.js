@@ -13,18 +13,16 @@ const upload = multer({
     dest: "binaryImages/"
 });
 const router = express.Router();
-//const file_name = __filename.slice(__dirname.length + 1, -3);
+const auth_middle = [auth, show_auth_user];
 
 
-router.get('/', auth, async (req, res) => {
+router.get('/', auth_middle, async (req, res) => {
     console.log('Connected to /upload');
 
-    let user = await show_auth_user(req.userData.userId);
-    page.data.user = user;
     res.render('index', page);
 });
 
-router.post('/', auth, upload.single('user_upload'), create);
+router.post('/', auth_middle, upload.single('user_upload'), create);
 
 router.post('/settings/bio', auth, async (req, res, next) => {
 
