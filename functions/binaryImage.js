@@ -48,6 +48,33 @@ module.exports.get_user_uploads = async function (result) {
     return imgSource;
 };
 
+module.exports.get_searched_user_avatars = async function (result) {
+
+    let img_array = [];
+
+    for (let x = 0; x < result.length; x++) {
+
+        let newBuffer = {
+            data: new Uint8Array(result[x].img.data.buffer),
+            contentType: result[x].img.contentType
+        }
+        //  Converts to base64 (for html rendering)
+        let newBase = new Buffer(newBuffer.data).toString('base64');
+        imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
+
+        let newImg = {
+            biografie: result[x].biografie,
+            img: imgSource
+        }
+
+        img_array.push(newImg);
+
+        //console.log(imgSource);
+    }
+
+    return img_array;
+};
+
 module.exports.get_user_avatar = async function (result) {
 
     let newBuffer = {

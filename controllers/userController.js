@@ -8,6 +8,7 @@ const {
 const binaryImage = require('../functions/binaryImage');
 const bcrypt = require('bcrypt');
 
+
 /**
  * userController.js
  *
@@ -54,20 +55,20 @@ module.exports = {
         return user;
     },
 
-    search_users: async function (search_input) {
+    search_users: async function (req, res, next) {
 
-        let search_regexp = new RegExp(search_input, "gi");
+        let search_regexp = new RegExp(req.body.search, "gi");
 
         await User
             .find({
                 full_name: search_regexp
             })
-            .select('voornaam achternaam fullname img biografie')
-            .exec((err, user) => {
+            .select('full_name img biografie')
+            .exec(async (err, user) => {
                 let result = (err) ? err : user;
+                user.img = await binaryImage.get_searched_user_avatars(user);
                 res.locals.search_result = result;
-                return result;
-
+                next();
             });
 
         //  Generates user avatar from binary data

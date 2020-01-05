@@ -4,6 +4,7 @@ const {
 } = require('../startup/config');
 
 module.exports = async (req, res, next) => {
+    //  Add show_auth_user from userController
 
     const token = req.cookies.authToken || '';
 

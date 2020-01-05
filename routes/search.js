@@ -10,18 +10,9 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-let local_message;
-let searched_users;
-
-router.use(function (req, res, next) {
-    res.locals.message = local_message;
-    res.locals.searched_users = searched_users;
-    next();
-});
-
 router.get('/', auth, async (req, res) => {
     console.log('Connected to /search');
-    console.log(res.locals.search_result);
+    res.locals.search_result = undefined;
 
 
     let user = await show_auth_user(req.userData.userId);
@@ -29,13 +20,15 @@ router.get('/', auth, async (req, res) => {
     res.render('index', page);
 });
 
-router.post('/', auth, async (req, res) => {
+router.post('/', auth, search_users, async (req, res) => {
     //  User search
     console.log('Connected to /search POST');
 
-    await search_users(req.body.search);
+    let user = await show_auth_user(req.userData.userId);
+    page.data.user = user;
 
-    res.redirect('/search');
+    res.render('index', page);
+
 });
 
 module.exports = router;
