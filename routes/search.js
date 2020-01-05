@@ -21,6 +21,8 @@ router.use(function (req, res, next) {
 
 router.get('/', auth, async (req, res) => {
     console.log('Connected to /search');
+    console.log(res.locals.search_result);
+
 
     let user = await show_auth_user(req.userData.userId);
     page.data.user = user;
@@ -29,12 +31,11 @@ router.get('/', auth, async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
     //  User search
-    console.log('Connected to /search');
+    console.log('Connected to /search POST');
 
-    let search_result = await search_users(req.body.search);
+    await search_users(req.body.search);
 
-    res.send(search_result);
-
+    res.redirect('/search');
 });
 
 module.exports = router;

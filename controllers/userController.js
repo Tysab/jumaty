@@ -56,22 +56,25 @@ module.exports = {
 
     search_users: async function (search_input) {
 
-        let search_regexp = new RegExp(search_input)
+        let search_regexp = new RegExp(search_input, "gi");
 
-        const user = await User
+        await User
             .find({
-                full_name: new RegExp('^'+ search_input +'$', "i"),
+                full_name: search_regexp
             })
-            .select('voornaam achternaam full_name email biografie');
+            .select('voornaam achternaam fullname img biografie')
+            .exec((err, user) => {
+                let result = (err) ? err : user;
+                res.locals.search_result = result;
+                return result;
+
+            });
 
         //  Generates user avatar from binary data
         //user.img_data = await binaryImage.get_user_avatar(user);
 
         //  Reassign objects with _Lodash
         //user.img = "";
-
-        console.log(user);
-        return user;
     },
 
     set_avatar: async function (user_id, file_data) {
