@@ -143,13 +143,19 @@ module.exports = {
     add_follower: async function (req, res, next) {
 
         await User.findByIdAndUpdate(req.userData.userId, {
-            $push: {
+            $addToSet: {
                 following: req.params.user_id
             }
-        }, () => {
-            console.log("Following user..");
-            res.locals.message = "Following user..";
-            next();
+        }, async (err, result) => {
+            if (err) {
+                console.log(err);
+                res.locals.message = "Something went wrong";
+                return next();
+            }
+            //  Show message if already exists
+            res.locals.message = "Following functie..";
+            console.log(result);
+            return next();
         });
     },
 
@@ -184,6 +190,8 @@ module.exports = {
             }
         });
 
+
+        //  ! Catch duplicate errors
         await user.save(function (err, user) {
             if (err) {
                 return res.status(500).json({

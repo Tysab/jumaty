@@ -20,6 +20,11 @@
             "content": "settings",
             "title": "Instellingen"
         },
+        "follow": {
+            "navigation": "partials/sidenav",
+            "content": "follow",
+            "title": "Volglijst"
+        },
         "profile": {
             "navigation": "partials/sidenav",
             "content": "profile",

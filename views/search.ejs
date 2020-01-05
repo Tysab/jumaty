@@ -72,8 +72,9 @@
                 <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start">
                     <div class="my-auto">
                         <% if(!search_result[x]._id.equals(session_user._id)) { %>
-                        <button onclick="location.href='/follow/<%= search_result[x]._id %>'" class="btn btn-primary"><i
-                            class="fas fa-magic mr-1"></i> Volgen</button>
+                        <form action="/follow/<%= search_result[x]._id %>" method="POST">
+                            <button class="btn btn-primary"><i class="fas fa-magic mr-1"></i> Volgen</button>
+                        </form>
                         <% } %>
                         <button onclick="location.href='/profile/show/<%= search_result[x]._id %>'"
                             class="btn btn-primary w-100"><i class="fas fa-magic mr-1"></i> Profiel Bekijken</button>

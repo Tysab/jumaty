@@ -5,16 +5,16 @@ const {
     search_users,
     add_follower
 } = require('../controllers/userController');
-const page = require('../json/routes.json').page.search;
+const page = require('../json/routes.json').page.follow;
 const express = require('express');
 const auth = require('../middleware/auth');
 const auth_middle = [auth, show_auth_user];
 
 const router = express.Router();
 
+// add 'show followers'
 router.get('/', auth_middle, async (req, res) => {
     console.log('Connected to /follow');
-    res.locals.search_result = undefined;
 
     res.render('index', page);
 });
@@ -31,7 +31,7 @@ router.post('/:user_id', auth_middle, add_follower, async (req, res) => {
     //  User search
     console.log('Connected to /follow POST');
 
-    res.render('index', page);
+    res.redirect('/follow');
 
 });
 
