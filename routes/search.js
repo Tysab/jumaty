@@ -20,6 +20,14 @@ router.get('/', auth, async (req, res) => {
     res.render('index', page);
 });
 
+/**
+ * TODO
+ * Input can't be empty
+ * Sanitize Input
+ * Show error if XSS attempt
+ * "No users found" message if result.length <= 0
+ */
+
 router.post('/', auth, search_users, async (req, res) => {
     //  User search
     console.log('Connected to /search POST');
