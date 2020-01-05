@@ -19,24 +19,25 @@ let passed_query;
 
 module.exports = {
 
-    /**
-     * userController.list()
-     */
-    list: function (req, res) {
-        User.find(function (err, users) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting user.',
-                    error: err
-                });
-            }
-            return res.json(users);
-        });
+    //  Currently not used
+    show_auth_user: async function (userId) {
+        const user = await User
+            .findById(userId)
+            .select('-password')
+            .catch(err => {
+                console.error(err);
+            });
+
+        //  Generates user avatar from binary data
+        user.img_data = await binaryImage.get_user_avatar(user);
+
+        user.uploads = await show_user_uploads(userId);
+
+        //  Reassign objects with _Lodash
+        user.img = "";
+        return user;
     },
 
-    /**
-     * userController.show()
-     */
     show_auth_user_images: async function (req, res, next) {
 
         const user = await User
@@ -56,23 +57,6 @@ module.exports = {
         next();
     },
 
-    show_auth_user: async function (userId) {
-        const user = await User
-            .findById(userId)
-            .select('-password')
-            .catch(err => {
-                console.error(err);
-            });
-
-        //  Generates user avatar from binary data
-        user.img_data = await binaryImage.get_user_avatar(user);
-
-        user.uploads = await show_user_uploads(userId);
-
-        //  Reassign objects with _Lodash
-        user.img = "";
-        return user;
-    },
 
     //  Make compatible with logged in used AND chosen user from req.params.user_id
     show_selected_user_info: async function (req, res, next) {
@@ -151,10 +135,6 @@ module.exports = {
         return passed_query;
     },
 
-    /**
-     * userController.create()
-     */
-
     // Registers new user
     create: async function (req, res) {
 
@@ -198,10 +178,6 @@ module.exports = {
             });
         });
     },
-
-    /**
-     * userController.update()
-     */
 
     // Allows user to update their data
     update: async function (user_id, data, type) {
@@ -271,78 +247,6 @@ module.exports = {
 
         }
 
-
-
-    },
-
-    //  OLD
-    //  OLD
-    // Allows user to update their data
-    OLDupdate: async function (user_id, data) {
-
-        await User.findByIdAndUpdate(user_id, {
-            $set: {
-                img: {
-                    data: new_data.data,
-                    contentType: new_data.contentType
-                }
-            }
-        }, () => {
-            console.log("Upload successful");
-            passed_query = "Upload successful";
-        });
-
-        User.findById({
-            _id: id
-        }, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting user',
-                    error: err
-                });
-            }
-            if (!user) {
-                return res.status(404).json({
-                    message: 'No such user'
-                });
-            }
-
-            user.voornaam = req.body.voornaam ? req.body.voornaam : user.voornaam;
-            user.achternaam = req.body.achternaam ? req.body.achternaam : user.achternaam;
-            user.email = req.body.email ? req.body.email : user.email;
-            user.wachtwoord = req.body.wachtwoord ? req.body.wachtwoord : user.wachtwoord;
-            user.img = req.body.img ? req.body.img : user.img;
-            user.biografie = req.body.biografie ? req.body.biografie : user.biografie;
-            user.tijdlijn = req.body.tijdlijn ? req.body.tijdlijn : user.tijdlijn;
-            user.uploads = req.body.uploads ? req.body.uploads : user.uploads;
-            user.followed_user = req.body.followed_user ? req.body.followed_user : user.followed_user;
-
-            user.save(function (err, user) {
-                if (err) {
-                    return res.status(500).json({
-                        message: 'Error when updating user.',
-                        error: err
-                    });
-                }
-
-                return res.json(user);
-            });
-        });
-    },
-
-    /**
-     * userController.remove()
-     */
-    remove: function (req, res) {
-        const id = req.params.id;
-        User.findByIdAndRemove(id, function (err, user) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when deleting the user.',
-                    error: err
-                });
-            }
-            return res.status(204).json();
-        });
     }
+
 };
