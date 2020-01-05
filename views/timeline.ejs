@@ -1,6 +1,10 @@
 <!-- Het begin van het project-->
 <div class="container-fluid h-100 min-w-100 wow fadeInRight animated">
 
+<% for(let x = 0; x < session_user.following.length; x++) { %>
+    <!-- show all following users.upload; order by date -->
+ 
+
     <!-- Lightbox (ingezoomd) van de geklikte foto -->
     <div id="mdb-lightbox-ui"></div>
 
@@ -34,7 +38,7 @@
                                 </div>
 
                                 <div class="col-md-9 d-flex">
-                                    <span class="my-auto h4 font-weight-bold pt-3">Username</span>
+                                    <span class="my-auto h4 font-weight-bold pt-3"><%= session_user.following[x].full_name %></span>
                                 </div>
                             </div>
 
@@ -89,6 +93,9 @@
         <div class="col-md-3"></div>
 
     </div>
+
+    <% } %>
+    <% } %>
 
     <!-- DUMMY DATA SPAM -->
     <!-- DUMMY DATA SPAM -->

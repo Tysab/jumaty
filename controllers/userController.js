@@ -3,10 +3,14 @@ const {
     validateInput
 } = require('../models/userModel.js');
 const {
+    Uploads
+} = require('../models/uploadsModel.js');
+const {
     show_user_uploads
 } = require('../controllers/uploadsController');
 const binaryImage = require('../functions/binaryImage');
 const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
 
 
 /**
@@ -44,6 +48,7 @@ module.exports = {
 
         const user = await User
             .findById(user_id)
+            .populate('following')
             .select('-wachtwoord')
             .catch(err => {
                 console.error(err);
@@ -53,6 +58,22 @@ module.exports = {
         user.img_data = await binaryImage.get_user_avatar(user);
 
         user.uploads = await show_user_uploads(user_id);
+
+        let arr = user.following.map(element => new mongoose.Types.ObjectId(element.id));
+
+        const following = await Uploads
+        .find({
+            User_id: mongoose.Types.ObjectId(_User_id)
+        })
+        .where('User_id')
+        .in(arr)
+        .exec((err, result => {
+            console.log(err);
+            console.log(result);
+        }));
+
+        //  Convert binary images of 'following' users ref
+        //console.log(user.following);
 
         //  Reassign objects with _Lodash
         res.locals.session_user = user;
@@ -67,7 +88,7 @@ module.exports = {
 
         const user = await User
             .findById(user_id)
-            .select('-password')
+            .select('-wachtwoord')
             .catch(err => {
                 console.error(err);
             });

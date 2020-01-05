@@ -1,29 +1,31 @@
 //  Root path is /timeline
 
+const {
+    show_auth_user,
+    search_users,
+    add_follower
+} = require('../controllers/userController');
 const page = require('../json/routes.json').page.timeline;
 const express = require('express');
 const auth = require('../middleware/auth');
+const auth_middle = [auth, show_auth_user];
+
 const router = express.Router();
-const {
-    show_auth_user
-} = require('../controllers/userController');
-//const file_name = __filename.slice(__dirname.length + 1, -3);
 
-let local_message;
-
-router.use(function (req, res, next) {
-    res.locals.message = local_message;
-    next();
-});
-
-router.get('/', auth, show_auth_user, async (req, res, next) => {
+// add 'show followers'
+router.get('/', auth_middle, async (req, res) => {
     console.log('Connected to /timeline');
 
     res.render('index', page);
 });
 
-router.post('/', async (req, res) => {
+/**
+ * TODO
+ * Input can't be empty
+ * Sanitize Input
+ * Show error if XSS attempt
+ * "No users found" message if result.length <= 0
+ */
 
-});
 
 module.exports = router;
