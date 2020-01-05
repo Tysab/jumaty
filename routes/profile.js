@@ -3,6 +3,7 @@
 const {
     set_avatar,
     show_auth_user,
+    show_auth_user_images,
     update
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.profile;
@@ -23,19 +24,14 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, show_auth_user_images, async (req, res) => {
     console.log('Connected to /profile');
 
-    let user = await show_auth_user(req.userData.userId);
-    page.data.user = user;
     res.render('index', page);
 });
 
-router.get('/show/:user_id', auth, async (req, res) => {
+router.get('/show/:user_id', auth, show_auth_user_images, async (req, res) => {
     console.log('Connected to /profile/:user_id');
-
-    let user = await show_auth_user(req.userData.userId);
-    page.data.user = user;
 
     res.render('index', page);
 });
@@ -46,14 +42,10 @@ router.post('/', async (req, res) => {
 
 
 //  User profile settings
-router.get('/settings', auth, async (req, res, next) => {
+router.get('/settings', auth, show_auth_user_images, async (req, res, next) => {
     console.log('Connected to /profile/settings');
 
-
-    let user = await show_auth_user(req.userData.userId);
-    settings.data.user = user;
     res.render('index', settings);
-    local_message = undefined;
 });
 
 

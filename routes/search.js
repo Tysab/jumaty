@@ -2,6 +2,7 @@
 
 const {
     show_auth_user,
+    show_auth_user_images,
     search_users
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.search;
@@ -10,13 +11,10 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, show_auth_user_images, async (req, res) => {
     console.log('Connected to /search');
     res.locals.search_result = undefined;
 
-
-    let user = await show_auth_user(req.userData.userId);
-    page.data.user = user;
     res.render('index', page);
 });
 
@@ -28,12 +26,9 @@ router.get('/', auth, async (req, res) => {
  * "No users found" message if result.length <= 0
  */
 
-router.post('/', auth, search_users, async (req, res) => {
+router.post('/', auth, show_auth_user_images, search_users, async (req, res) => {
     //  User search
     console.log('Connected to /search POST');
-
-    let user = await show_auth_user(req.userData.userId);
-    page.data.user = user;
 
     res.render('index', page);
 

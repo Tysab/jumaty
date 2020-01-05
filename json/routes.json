@@ -3,49 +3,31 @@
         "search": {
             "navigation": "partials/sidenav",
             "content": "search",
-            "title": "Gebruikers Zoeken",
-            "data": {
-                "user": ""
-            }
+            "title": "Gebruikers Zoeken"
         },
         "timeline": {
             "navigation": "partials/sidenav",
             "content": "timeline",
-            "title": "Tijdlijn",
-            "data": {
-                "user": ""
-            }
+            "title": "Tijdlijn"
         },
         "upload": {
             "navigation": "partials/sidenav",
             "content": "upload",
-            "title": "Upload",
-            "data": {
-                "user": ""
-            }
+            "title": "Upload"
         },
         "settings": {
             "navigation": "partials/sidenav",
             "content": "settings",
-            "title": "Instellingen",
-            "data": {
-                "user": ""
-            }
+            "title": "Instellingen"
         },
         "profile": {
             "navigation": "partials/sidenav",
             "content": "profile",
             "title": "Profile",
-            "data": {
-                "user": ""
-            },
             "settings": {
                 "navigation": "partials/sidenav",
                 "content": "profile_settings",
-                "title": "Profielinstellingen",
-                "data": {
-                    "user": ""
-                }
+                "title": "Profielinstellingen"
             }
         }
     }
