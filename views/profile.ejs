@@ -62,38 +62,11 @@
 
       <% for(let x = 0; x < data.user.uploads.length; x++) { %>
 
-        <%= data.user.uploads[x] %>
-
-      <% } %>
-
-      <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="http://placehold.it/400x450" height="220" /></div>
-      </div>
-
-      <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="http://placehold.it/400x450" height="220" /></div>
-      </div>
-
-      <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="http://placehold.it/400x450" height="220" /></div>
-      </div>
-
-      <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="http://placehold.it/400x450" height="220" /></div>
-      </div>
-
-      <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="http://placehold.it/400x450" height="220" /></div>
-      </div>
-
-      <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="http://placehold.it/400x450" height="220" /></div>
-      </div>
-
-      <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="http://placehold.it/400x450" height="220" /></div>
-      </div>
-      <!--Grid column-->
+        <div class="card-body" style="background-color: greenyellow;">
+          <div class="col-sm-4"><img src="<%= data.user.uploads[x].img %>" height="220" /></div>
+        </div>
+        
+        <% } %>
 
     </div>
     <!--Grid row-->

@@ -33,7 +33,14 @@ module.exports.get_user_uploads = async function (result) {
         }
         //  Converts to base64 (for html rendering)
         let newBase = new Buffer(newBuffer.data).toString('base64');
-        imgSource.push(`data:${newBuffer.contentType};base64,${newBase}`); //! Variable for img src=""
+        let newSource = `data:${await newBuffer.contentType};base64,${newBase}`;
+        let newImg = {
+            beschrijving: result[x].beschrijving,
+            datum: result[x].datum,
+            img: newSource
+        }
+
+        imgSource.push(newImg); //! Variable for img src=""
 
     }
 

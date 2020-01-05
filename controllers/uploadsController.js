@@ -25,7 +25,7 @@ module.exports = {
 
     //  Show uploads by user
     show_user_uploads: async function (user_id) {
-        const uploads = await Uploads.find({
+        let uploads = await Uploads.find({
                 User_id: user_id
             })
             .select('img beschrijving datum')
@@ -37,7 +37,9 @@ module.exports = {
         let converted_image = await binaryImage.get_user_uploads(uploads);
 
 
-        uploads.img = converted_image;
+        uploads = converted_image;
+
+        console.log(uploads[0]);
 
         return uploads;
     },
