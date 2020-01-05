@@ -70,6 +70,9 @@ module.exports = {
             .exec(async (err, result) => {
                 console.log(result);
 
+                //  Ga hiermee verder
+                // https://stackoverflow.com/questions/8303900/mongodb-mongoose-findmany-find-all-documents-with-ids-listed-in-array
+
                 let upload_user = await User
                 .findById(result[0].User_id)
                 .select('full_name _id')
