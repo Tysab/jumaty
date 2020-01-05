@@ -27,11 +27,12 @@ router.use(function (req, res, next) {
 
 router.get('/', auth_middle, async (req, res) => {
     console.log('Connected to /profile');
+    res.locals.selected_user = undefined;
 
     res.render('index', page);
 });
 
-router.get('/show/:user_id', auth, show_auth_user, show_selected_user_info, async (req, res) => {
+router.get('/show/:user_id', auth_middle, show_selected_user_info, async (req, res) => {
     console.log('Connected to /profile/:user_id');
 
     res.render('index', page);

@@ -1,3 +1,5 @@
+  <% let current_user = (selected_user != undefined) ? selected_user : session_user; %>
+  
   <!-- Content -->
   <div class="container">
 
@@ -7,7 +9,7 @@
       <!--Grid column-->
       <div class="col-md-6 mb-4 white-text text-center text-md-left" style="background-color: royalblue;">
 
-        <img src="<%= session_user.img_data %>" alt="" class="rounded-circle mr-3" alt="profile-image" height="110px"
+        <img src="<%= current_user.img_data %>" alt="" class="rounded-circle mr-3" alt="profile-image" height="110px"
           width="110px">
         <br>
         <p>
@@ -17,7 +19,7 @@
         <hr class="hr-light" ;>
 
         <p>
-          <strong><%= session_user.voornaam + " " + session_user.achternaam %></strong>
+          <strong><%= current_user.voornaam + " " + current_user.achternaam %></strong>
         </p>
 
       </div>
@@ -40,7 +42,7 @@
               </h3>
               <hr class="hr-light" ;>
 
-              <p><%= session_user.biografie %></p>
+              <p><%= current_user.biografie %></p>
 
             </form>
             <!-- Form -->
@@ -59,21 +61,21 @@
       <!--Grid column-->
 
 
-      <% if(session_user.uploads.length == 0 || session_user.uploads == undefined) { %>
+      <% if(current_user.uploads.length == 0 || current_user.uploads == undefined) { %>
 
       <div class="row border border-dark">
 
         <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start">
-          <span>Je hebt nog geen foto's geupload</span>
+          <span>Er zijn nog geen foto's geupload</span>
         </div>
       </div>
 
       <% } else { %>
 
-      <% for(let x = 0; x < session_user.uploads.length; x++) { %>
+      <% for(let x = 0; x < current_user.uploads.length; x++) { %>
 
       <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="<%= session_user.uploads[x].img %>" height="220" /></div>
+        <div class="col-sm-4"><img src="<%= current_user.uploads[x].img %>" height="220" /></div>
       </div>
 
       <% } %>
