@@ -61,13 +61,23 @@ module.exports = {
 
         let arr = user.following.map(element => new mongoose.Types.ObjectId(element.id));
 
+        //  Find all by array; for multiple uploads per user
         user.following = await Uploads
             .find()
             .where('User_id')
             .in(user.following)
             .select()
-            .exec((err, result) => {
+            .exec(async (err, result) => {
                 console.log(result);
+
+                let upload_user = await User
+                .findById(result[0].User_id)
+                .select('full_name _id')
+                .exec(async (error_upload, user_upload_result) => {
+                    console.log(user_upload_result);
+                    //console.log(error_upload);
+                });
+
             });
 
 
