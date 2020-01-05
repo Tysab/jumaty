@@ -1,24 +1,26 @@
 //  Root path is /profile
 
 const {
-    show_auth_user
+    show_auth_user,
+    search_users
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.search;
 const express = require('express');
 const auth = require('../middleware/auth');
 
 const router = express.Router();
-//const file_name = __filename.slice(__dirname.length + 1, -3);
 
 let local_message;
+let searched_users;
 
 router.use(function (req, res, next) {
     res.locals.message = local_message;
+    res.locals.searched_users = searched_users;
     next();
 });
 
 router.get('/', auth, async (req, res) => {
-    console.log('Connected to /profile');
+    console.log('Connected to /search');
 
     let user = await show_auth_user(req.userData.userId);
     page.data.user = user;
@@ -26,7 +28,13 @@ router.get('/', auth, async (req, res) => {
 });
 
 router.post('/', auth, async (req, res) => {
-    //  User following function
+    //  User search
+    console.log('Connected to /search');
+
+    let search_result = await search_users(req.body.search);
+
+    res.send(search_result);
+
 });
 
 module.exports = router;

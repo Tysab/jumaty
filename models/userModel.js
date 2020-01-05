@@ -21,6 +21,12 @@ const userSchema = new Schema({
 		minlength: 1,
 		maxlength: 70
 	},
+	full_name: {
+		type: String,
+		default: function () {
+			return this.voornaam + " " + this.achternaam;
+		}
+	},
 	email: {
 		type: String,
 		required: true,
@@ -93,6 +99,7 @@ function validateInput(validation_type, input) {
 				achternaam: Joi.string().min(1).max(70).required(),
 				email: Joi.string().email().required(),
 				wachtwoord: Joi.string().min(6).max(255).required(),
+				wachtwoord_herhalen: Joi.string().min(6).max(255).valid(Joi.ref('wachtwoord')).required(),
 			});
 			return schema.validate(input, (error, value) => {});
 			break;

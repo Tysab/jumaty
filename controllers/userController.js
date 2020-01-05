@@ -2,7 +2,9 @@ const {
     User,
     validateInput
 } = require('../models/userModel.js');
-const { show_user_uploads } = require('../controllers/uploadsController');
+const {
+    show_user_uploads
+} = require('../controllers/uploadsController');
 const binaryImage = require('../functions/binaryImage');
 const bcrypt = require('bcrypt');
 
@@ -49,6 +51,26 @@ module.exports = {
 
         //  Reassign objects with _Lodash
         user.img = "";
+        return user;
+    },
+
+    search_users: async function (search_input) {
+
+        let search_regexp = new RegExp(search_input)
+
+        const user = await User
+            .find({
+                full_name: new RegExp('^'+ search_input +'$', "i"),
+            })
+            .select('voornaam achternaam full_name email biografie');
+
+        //  Generates user avatar from binary data
+        //user.img_data = await binaryImage.get_user_avatar(user);
+
+        //  Reassign objects with _Lodash
+        //user.img = "";
+
+        console.log(user);
         return user;
     },
 
