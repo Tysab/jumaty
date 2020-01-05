@@ -12,6 +12,7 @@ const timeline = require('../routes/timeline');
 const profile = require('../routes/profile');
 const upload = require('../routes/upload');
 const search = require('../routes/search');
+const follow = require('../routes/follow');
 
 
 module.exports = function (app) {
@@ -53,6 +54,7 @@ module.exports = function (app) {
     app.use('/profile', profile); // sets /profile path to profile.js router
     app.use('/upload', upload); // sets /upload path to upload.js router
     app.use('/search', search); // sets /search path to search.js router
+    app.use('/follow', follow); // sets /follow path to follow.js router
 
     //  Error handling middleware for 404 pages
     app.get('*', (res, req, next) => {

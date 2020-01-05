@@ -1,8 +1,9 @@
-//  Root path is /search
+//  Root path is /follow
 
 const {
     show_auth_user,
-    search_users
+    search_users,
+    add_follower
 } = require('../controllers/userController');
 const page = require('../json/routes.json').page.search;
 const express = require('express');
@@ -12,7 +13,7 @@ const auth_middle = [auth, show_auth_user];
 const router = express.Router();
 
 router.get('/', auth_middle, async (req, res) => {
-    console.log('Connected to /search');
+    console.log('Connected to /follow');
     res.locals.search_result = undefined;
 
     res.render('index', page);
@@ -26,9 +27,9 @@ router.get('/', auth_middle, async (req, res) => {
  * "No users found" message if result.length <= 0
  */
 
-router.post('/', auth_middle, search_users, async (req, res) => {
+router.post('/:user_id', auth_middle, add_follower, async (req, res) => {
     //  User search
-    console.log('Connected to /search POST');
+    console.log('Connected to /follow POST');
 
     res.render('index', page);
 

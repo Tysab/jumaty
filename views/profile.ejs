@@ -1,5 +1,5 @@
   <% let current_user = (selected_user != undefined) ? selected_user : session_user; %>
-  
+
   <!-- Content -->
   <div class="container">
 
@@ -20,7 +20,14 @@
 
         <p>
           <strong><%= current_user.voornaam + " " + current_user.achternaam %></strong>
+          <% if(!current_user._id.equals(session_user._id)) { %>
+            <button onclick="location.href='/follow/<%= current_user._id %>'" class="btn btn-primary"><i
+                class="fas fa-magic mr-1"></i> Volgen</button>
+            <% } %>
+
         </p>
+
+
 
       </div>
       <!--Grid column-->
@@ -51,6 +58,7 @@
 
         </div>
         <!--/.Card-->
+
 
       </div>
       <!--Grid column-->

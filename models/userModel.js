@@ -52,7 +52,7 @@ const userSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'tijdlijn'
 	},
-	followed_user: [{
+	following: [{
 		type: Schema.Types.ObjectId,
 		ref: 'user'
 	}],

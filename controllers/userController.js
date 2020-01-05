@@ -44,7 +44,7 @@ module.exports = {
 
         const user = await User
             .findById(user_id)
-            .select('-password')
+            .select('-wachtwoord')
             .catch(err => {
                 console.error(err);
             });
@@ -138,6 +138,19 @@ module.exports = {
             passed_query = "Upload successful";
         });
         return passed_query;
+    },
+
+    add_follower: async function (req, res, next) {
+
+        await User.findByIdAndUpdate(req.userData.userId, {
+            $push: {
+                following: req.params.user_id
+            }
+        }, () => {
+            console.log("Following user..");
+            res.locals.message = "Following user..";
+            next();
+        });
     },
 
     // Registers new user
