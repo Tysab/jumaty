@@ -1,7 +1,7 @@
 <!-- Het begin van het project-->
 <div class="container-fluid h-100 min-w-100 wow fadeInRight animated">
 
-<% for(let x = 0; x < session_user.following.length; x++) { %>
+<% for(let x = 0; x < await session_user.following.length; x++) { %>
     <!-- show all following users.upload; order by date -->
  
 
@@ -94,7 +94,6 @@
 
     </div>
 
-    <% } %>
     <% } %>
 
     <!-- DUMMY DATA SPAM -->

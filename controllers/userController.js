@@ -61,16 +61,15 @@ module.exports = {
 
         let arr = user.following.map(element => new mongoose.Types.ObjectId(element.id));
 
-        const following = await Uploads
-        .find({
-            User_id: mongoose.Types.ObjectId(_User_id)
-        })
-        .where('User_id')
-        .in(arr)
-        .exec((err, result => {
-            console.log(err);
-            console.log(result);
-        }));
+        user.following = await Uploads
+            .find()
+            .where('User_id')
+            .in(user.following)
+            .select()
+            .exec((err, result) => {
+                console.log(result);
+            });
+
 
         //  Convert binary images of 'following' users ref
         //console.log(user.following);
