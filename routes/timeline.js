@@ -5,7 +5,8 @@ const express = require('express');
 const auth = require('../middleware/auth');
 const router = express.Router();
 const {
-    show_auth_user
+    show_auth_user,
+    show_auth_user_images
 } = require('../controllers/userController');
 //const file_name = __filename.slice(__dirname.length + 1, -3);
 
@@ -16,11 +17,9 @@ router.use(function (req, res, next) {
     next();
 });
 
-router.get('/', auth, async (req, res, next) => {
+router.get('/', auth, show_auth_user_images, async (req, res, next) => {
     console.log('Connected to /timeline');
 
-    let user = await show_auth_user(req.userData.userId);
-    page.data.user = user;
     res.render('index', page);
 });
 

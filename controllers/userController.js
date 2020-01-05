@@ -74,10 +74,11 @@ module.exports = {
         return user;
     },
 
+    //  Make compatible with logged in used AND chosen user from req.params.user_id
     show_selected_user_info: async function (req, res, next) {
 
         const user = await User
-            .findById(req.userData.userId)
+            .findById(req.params.user_id)
             .select('-password')
             .catch(err => {
                 console.error(err);
@@ -86,7 +87,7 @@ module.exports = {
         //  Generates user avatar from binary data
         user.img_data = await binaryImage.get_user_avatar(user);
 
-        user.uploads = await show_user_uploads(req.userData.userId);
+        user.uploads = await show_user_uploads(req.params.user_id);
 
         //  Reassign objects with _Lodash
         res.locals.selected_user = user;
