@@ -34,26 +34,22 @@
       <!--Grid column-->
 
       <!--Grid column-->
-      <div class="col-md-6 mb-4 white-text text-center text-md-left" style="background-color: royalblue;">
+      <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
         <!--Card-->
-        <div class="card" style="background-color: royalblue;">
+        <div class="card h-100" style="background-color: royalblue;">
 
           <!--Card content-->
           <div class="card-body">
 
-            <!-- Form -->
-            <form name="">
+  
               <!-- Heading -->
               <h3 class="dark-grey-text text-center">
                 <strong>Biografie</strong>
               </h3>
               <hr class="hr-light" ;>
 
-              <p><%= current_user.biografie %></p>
-
-            </form>
-            <!-- Form -->
+              <p class="d-flex"><%= current_user.biografie %></p>
 
           </div>
 

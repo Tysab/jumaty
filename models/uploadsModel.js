@@ -7,6 +7,21 @@ const uploadsSchema = new Schema({
 		data: Buffer,
 		contentType: String,
 	},
+	src: {
+		type: String,
+		default: function () {
+			let newBuffer = {
+				data: new Uint8Array(this.img.data.buffer),
+				contentType: this.img.contentType
+			}
+			//  Converts to base64 (for html rendering)
+			let newBase = new Buffer(newBuffer.data).toString('base64');
+			imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
+
+			//console.log(imgSource);
+			return imgSource;
+		}
+	},
 	beschrijving: {
 		type: String,
 		default: "",
