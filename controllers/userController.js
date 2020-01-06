@@ -55,7 +55,7 @@ module.exports = {
             });
 
         //  Generates user avatar from binary data
-        user.img_data = await binaryImage.get_user_avatar(user);
+        //user.img_data = await binaryImage.get_user_avatar(user);
 
         user.uploads = await show_user_uploads(user_id);
 
@@ -123,10 +123,10 @@ module.exports = {
             .find({
                 full_name: search_regexp
             })
-            .select('full_name img biografie')
+            .select('full_name src biografie')
             .exec(async (err, user) => {
                 let result = (err) ? err : user;
-                user.img = await binaryImage.get_searched_user_avatars(user);
+                //user.img = await binaryImage.get_searched_user_avatars(user);
                 res.locals.search_result = result;
                 next();
             });

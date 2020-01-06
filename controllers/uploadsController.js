@@ -24,16 +24,16 @@ module.exports = {
         let uploads = await Uploads.find({
                 User_id: user_id
             })
-            .select('img beschrijving datum')
+            .select('src beschrijving datum')
             .catch(err => {
                 console.log(err);
             });
 
 
-        let converted_image = await binaryImage.get_user_uploads(uploads);
+        //let converted_image = await binaryImage.get_user_uploads(uploads);
 
 
-        uploads = converted_image;
+        //uploads = converted_image;
 
         return uploads;
     },

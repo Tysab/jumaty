@@ -9,7 +9,7 @@
       <!--Grid column-->
       <div class="col-md-6 mb-4 white-text text-center text-md-left" style="background-color: royalblue;">
 
-        <img src="<%= current_user.img_data %>" alt="" class="rounded-circle mr-3" alt="profile-image" height="110px"
+        <img src="<%= current_user.src %>" alt="" class="rounded-circle mr-3" alt="profile-image" height="110px"
           width="110px">
         <br>
         <p>
@@ -80,7 +80,8 @@
       <% for(let x = 0; x < current_user.uploads.length; x++) { %>
 
       <div class="card-body" style="background-color: greenyellow;">
-        <div class="col-sm-4"><img src="<%= current_user.uploads[x].img %>" height="220" /></div>
+        <div class="col-sm-4"><img src="<%= current_user.uploads[x].src %>" height="220" /></div>
+        <% console.log(current_user.uploads) %>
       </div>
 
       <% } %>
