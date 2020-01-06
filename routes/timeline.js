@@ -17,8 +17,7 @@ router.get('/', auth_middle, async (req, res) => {
     console.log('Connected to /timeline');
 
     //  Doesn't render successfully
-    //res.render('index', page);
-    res.send(await res.locals.session_user.followers);
+    res.render('index', page);
 });
 
 /**
