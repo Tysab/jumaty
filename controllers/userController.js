@@ -62,26 +62,20 @@ module.exports = {
         let arr = user.following.map(element => new mongoose.Types.ObjectId(element.id));
 
         //  Find all by array; for multiple uploads per user
-        user.following = await Uploads
-            .find()
-            .where('User_id')
-            .in(user.following)
+        let following = await Uploads
+            .find({
+                User_id: user.following
+            })
+            .populate('User_id')
             .select()
-            .exec(async (err, result) => {
-                console.log(result);
-
-                //  Ga hiermee verder
-                // https://stackoverflow.com/questions/8303900/mongodb-mongoose-findmany-find-all-documents-with-ids-listed-in-array
-
-                // let upload_user = await User
-                // .findById(result[0].User_id)
-                // .select('full_name _id')
-                // .exec(async (error_upload, user_upload_result) => {
-                //     console.log(user_upload_result);
-                //     //console.log(error_upload);
-                // });
-
+            .exec((err, result) => {
+                let result_tern = (err) ? err : result;
+                console.log(result_tern);
+                return result_tern;
             });
+
+            console.log("end of query");
+            console.log(await following);
 
 
         //  Convert binary images of 'following' users ref
@@ -116,6 +110,12 @@ module.exports = {
     },
 
     search_users: async function (req, res, next) {
+
+        if(req.body.search <= 0){
+            res.locals.message = "Je hebt niks ingevuld";
+            res.locals.search_result = undefined;
+            next();
+        }
 
         let search_regexp = new RegExp(req.body.search, "gi");
 

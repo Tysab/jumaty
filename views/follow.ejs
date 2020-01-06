@@ -56,7 +56,7 @@
 
                         <div class="light-blue darken-4 text-white-50 font-weight-normal d-flex justify-content-center">
                             <div class="px-2 float-left">
-                                <span><%= session_user.following %></span>
+                                <span><%= session_user.following[x].full_name %></span>
                             </div>
                         </div>
 
@@ -66,14 +66,14 @@
 
                 <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start">
                     <div class="text-break m-1 p-2 my-auto">
-                        <p><%= session_user.following %></p>
+                        <p><%= session_user.following[x].biografie %></p>
                     </div>
                 </div>
 
                 <div class="col d-flex col-md-4 mx-auto justify-content-center justify-content-md-start">
                     <div class="my-auto">
                         <button class="btn btn-primary w-100"><i class="fas fa-magic mr-1"></i> Volgen</button>
-                        <button onclick="location.href='/profile/show/<%= session_user.following %>'" class="btn btn-primary w-100"><i class="fas fa-magic mr-1"></i> Profiel Bekijken</button>
+                        <button onclick="location.href='/profile/show/<%= session_user.following[x]._id %>'" class="btn btn-primary w-100"><i class="fas fa-magic mr-1"></i> Profiel Bekijken</button>
                     </div>
                 </div>
 
