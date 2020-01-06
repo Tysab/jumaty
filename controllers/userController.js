@@ -48,8 +48,8 @@ module.exports = {
 
         const user = await User
             .findById(user_id)
-            .populate('following')
             .select('-wachtwoord')
+            .populate('following', '-wachtwoord')
             .catch(err => {
                 console.error(err);
             });
@@ -59,23 +59,19 @@ module.exports = {
 
         user.uploads = await show_user_uploads(user_id);
 
-        let arr = user.following.map(element => new mongoose.Types.ObjectId(element.id));
+        //  Grabs 'User_id' from 'following'
+        let arr = user.following.map(element => element._id);
+
+
 
         //  Find all by array; for multiple uploads per user
         let following = await Uploads
             .find({
-                User_id: user.following
+                User_id: arr
             })
-            .populate('User_id')
-            .select()
-            .exec((err, result) => {
-                let result_tern = (err) ? err : result;
-                console.log(result_tern);
-                return result_tern;
-            });
-
-            console.log("end of query");
-            console.log(await following);
+            .select('datum beschrijving User_id')
+            .sort('-datum');
+            console.log(following);
 
 
         //  Convert binary images of 'following' users ref
