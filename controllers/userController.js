@@ -50,6 +50,8 @@ module.exports = {
             .findById(user_id)
             .select('-wachtwoord')
             .populate('following', '-wachtwoord')
+            .populate('uploads')
+            .populate('following.uploads', 'beschrijving')
             .catch(err => {
                 console.error(err);
             });
@@ -57,7 +59,7 @@ module.exports = {
         //  Generates user avatar from binary data
         //user.img_data = await binaryImage.get_user_avatar(user);
 
-        user.uploads = await show_user_uploads(user_id);
+        //user.uploads = await show_user_uploads(user_id);
 
         user.createSRC();
 
@@ -66,7 +68,7 @@ module.exports = {
         let arr_src = user.following.map(element => element.createSRC());
 
 
-        //console.log(user.following);
+        //console.log(user.following[0].uploads);
 
 
         //  Convert binary images of 'following' users ref
