@@ -2,6 +2,9 @@ const {
     Uploads,
     validate
 } = require('../models/uploadsModel.js');
+const {
+    User
+} = require('../models/userModel.js');
 const binaryImage = require('../functions/binaryImage');
 const auth = require('../middleware/auth');
 const multer = require('multer');
@@ -109,6 +112,20 @@ module.exports = {
             beschrijving: new_data.beschrijving,
             User_id: req.userData.userId
 
+        });
+
+        let upload_id = await uploads._id;
+
+        await User.findByIdAndUpdate(req.userData.userId, {
+            $addToSet: {
+                uploads: upload_id
+            }
+        }, async (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('upload reference successfully added to user');
+            }
         });
 
         await uploads.save(function (err, uploads) {

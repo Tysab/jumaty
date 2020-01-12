@@ -63,22 +63,13 @@ module.exports = {
 
         //  Grabs 'User_id' from 'following'
         let arr = user.following.map(element => element._id);
-        let arr_src = user.following.map(element => element.createSRC);
+        let arr_src = user.following.map(element => element.createSRC());
 
 
-
-        //  Find all by array; for multiple uploads per user
-        let following = await Uploads
-            .find({
-                User_id: arr
-            })
-            .select('datum beschrijving User_id')
-            .sort('-datum');
-        console.log(following);
+        //console.log(user.following);
 
 
         //  Convert binary images of 'following' users ref
-        //console.log(user.following);
 
         //  Reassign objects with _Lodash
         res.locals.session_user = user;

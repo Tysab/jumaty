@@ -62,6 +62,10 @@ const userSchema = new Schema({
 	followers: [{
 		type: Schema.Types.ObjectId,
 		ref: 'user'
+	}],
+	uploads: [{
+		type: Schema.Types.ObjectId,
+		ref: 'uploads'
 	}]
 });
 
