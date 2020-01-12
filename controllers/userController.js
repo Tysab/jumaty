@@ -59,6 +59,8 @@ module.exports = {
 
         user.uploads = await show_user_uploads(user_id);
 
+        user.createSRC();
+
         //  Grabs 'User_id' from 'following'
         let arr = user.following.map(element => element._id);
 

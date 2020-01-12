@@ -44,18 +44,6 @@ const userSchema = new Schema({
 	},
 	src: {
 		type: String,
-		default: function () {
-			let newBuffer = {
-				data: new Uint8Array(this.img.data.buffer),
-				contentType: this.img.contentType
-			}
-			//  Converts to base64 (for html rendering)
-			let newBase = new Buffer(newBuffer.data).toString('base64');
-			imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
-
-			//console.log(imgSource);
-			return imgSource;
-		}
 	},
 	biografie: {
 		type: String,
@@ -76,6 +64,20 @@ const userSchema = new Schema({
 		ref: 'user'
 	}]
 });
+
+userSchema.methods.createSRC = function () {
+	let newBuffer = {
+		data: new Uint8Array(this.img.data.buffer),
+		contentType: this.img.contentType
+	}
+	//  Converts to base64 (for html rendering)
+	let newBase = new Buffer(newBuffer.data).toString('base64');
+	imgSource = `data:${newBuffer.contentType};base64,${newBase}`; //! Variable for img src=""
+
+	//console.log(imgSource);
+	this.src = imgSource;
+	return;
+};
 
 //	Doesn't work for some reason
 userSchema.methods.generateAuthToken = function () {
