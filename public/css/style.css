@@ -10,13 +10,15 @@ body {
 }
 
 .avatar-pic {
-    max-width: 150px;
-    max-height: 150px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    text-align: center;
-    padding: 15px;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: top center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
 .timeline-img {

@@ -16,7 +16,7 @@ const router = express.Router();
 router.get('/', auth_middle, async (req, res) => {
     console.log('Connected to /timeline');
 
-    //  Doesn't render successfully
+    //  Doesn't render uploads successfully yet
     res.render('index', page);
 });
 
