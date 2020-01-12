@@ -49,9 +49,17 @@ module.exports = {
         const user = await User
             .findById(user_id)
             .select('-wachtwoord')
-            .populate('following', '-wachtwoord')
+            //.populate('following', '-wachtwoord')
+            .populate({
+                path: 'following',
+                model: 'user',
+                populate: {
+                    path: 'uploads',
+                    model: 'uploads',
+                    sort: '-datum'
+                }
+            })
             .populate('uploads')
-            .populate('following.uploads', 'beschrijving')
             .catch(err => {
                 console.error(err);
             });
@@ -62,6 +70,8 @@ module.exports = {
         //user.uploads = await show_user_uploads(user_id);
 
         user.createSRC();
+
+        console.log(user.following[0].uploads[0].beschrijving);
 
         //  Grabs 'User_id' from 'following'
         let arr = user.following.map(element => element._id);

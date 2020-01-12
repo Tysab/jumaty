@@ -7,7 +7,7 @@
 
 
     <% for(let x = 0; x < session_user.following.length; x++) { %>
-    <% //for(let y = 0; y < session_user.following[x].uploads.length; y++) { %>
+    <% for(let y = 0; y < session_user.following[x].uploads.length; y++) { %>
 
         <% //console.log(session_user.following[x]) %>
 
@@ -70,7 +70,7 @@
                             <a href="https://i.pinimg.com/originals/bc/c0/86/bcc0860537b4030e6e62fa0a38ef907b.jpg"
                                 data-size="1920x1080">
                                 <img class="d-flex timeline-img"
-                                    src="https://i.pinimg.com/originals/bc/c0/86/bcc0860537b4030e6e62fa0a38ef907b.jpg"
+                                    src="<%= session_user.following[x].uploads[y].src %>"
                                     alt="Card image cap">
 
                             </a>
@@ -88,7 +88,7 @@
                 <!--Card content-->
                 <div class="card-body card-body-cascade">
                     <!--Text content-->
-                    <p class="card-text"><%= session_user.following[x].beschrijving %></p>
+                    <p class="card-text"><%= session_user.following[x].uploads[y].beschrijving %></p>
                 </div>
                 <!--/.Text content-->
 
@@ -103,7 +103,7 @@
     
     <% } %>
     <% } %>
-    <%  %>
+    <% } %>
     
 </div>
 <!-- DUMMY DATA SPAM -->
