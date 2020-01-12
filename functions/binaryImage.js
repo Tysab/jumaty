@@ -119,7 +119,7 @@ module.exports.set_default_avatar = function () {
     return new_image;
 }
 
-module.exports.get_uploaded_user_avatar = function (user_id, file_data) {
+module.exports.get_uploaded_user_avatar = function (file_data) {
     // let newBuffer = {
     //     data: new Uint8Array(result.img.data.buffer),
     //     contentType: result.img.contentType
@@ -145,6 +145,8 @@ module.exports.get_uploaded_user_avatar = function (user_id, file_data) {
         data: readImageBuffer,
         contentType: file_data.contentType
     };
+
+ 
 
     return new_image;
 

@@ -71,7 +71,7 @@ module.exports = {
             })
             .select('datum beschrijving User_id')
             .sort('-datum');
-            console.log(following);
+        //console.log(following);
 
 
         //  Convert binary images of 'following' users ref
@@ -107,7 +107,7 @@ module.exports = {
 
     search_users: async function (req, res, next) {
 
-        if(req.body.search <= 0){
+        if (req.body.search <= 0) {
             res.locals.message = "Je hebt niks ingevuld";
             res.locals.search_result = undefined;
             next();
@@ -137,7 +137,7 @@ module.exports = {
     set_avatar: async function (user_id, file_data) {
 
         //  !Validate before creating new data; move this elsewhere
-        let new_data = binaryImage.get_uploaded_user_avatar(user_id, file_data);
+        let new_data = binaryImage.get_uploaded_user_avatar(file_data);
 
         const {
             error
@@ -155,6 +155,8 @@ module.exports = {
         console.log('BINARY DATA');
         console.log(new_data);
 
+        console.log('awaiting update find');
+
         await User.findByIdAndUpdate(user_id, {
             $set: {
                 img: {
@@ -163,7 +165,6 @@ module.exports = {
                 }
             }
         }, () => {
-            console.log("Upload successful");
             passed_query = "Upload successful";
         });
         return passed_query;

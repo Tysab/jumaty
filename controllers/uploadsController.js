@@ -85,7 +85,7 @@ module.exports = {
 
         let new_data = {
             beschrijving: content.beschrijving,
-            img: binaryImage.get_uploaded_user_avatar(req.userData.userId, content.img)
+            img: binaryImage.get_uploaded_user_avatar(content.img)
         };
 
         const {

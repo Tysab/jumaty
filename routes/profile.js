@@ -48,39 +48,46 @@ router.get('/settings', auth, show_auth_user, async (req, res, next) => {
     console.log('Connected to /profile/settings');
 
     res.render('index', settings);
+    local_message = undefined;
 });
 
 
-router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, res, next) => {
+router.post('/settings/avatar', auth, upload.single('user_avatar'), async (req, res, next) => {
+    //  Users settings updates
+    console.log('Connected to [POST1] /profile/settings/avatar');
+
+
+    console.log('AVATAR POST FORM REQUEST');
+
+    if (!req.file) {
+        console.log('No file found');
+        local_message = "File not found";
+        res.redirect('/profile/settings');
+    } else {
+
+        let custom_file = {
+            contentType: req.file.mimetype,
+            file_name: req.file.filename
+        };
+
+        console.log(req.userData);
+
+        //  Insert validation before passing parameter to function
+        local_message = await set_avatar(req.userData.userId, custom_file);
+    }
+
+    res.redirect('/profile/settings');
+
+});
+
+
+router.post('/settings/:form', auth, async (req, res, next) => {
     //  Users settings updates
     console.log('Connected to [POST] /profile/settings/' + req.params.form);
 
     let pass_type = `set_${req.params.form}`;
 
     switch (req.params.form) {
-
-        case 'avatar':
-            console.log('AVATAR POST FORM REQUEST');
-
-            if (!req.file) {
-                console.log('No file found');
-                local_message = "File not found";
-                res.redirect('/profile/settings');
-            } else {
-
-
-
-                let custom_file = {
-                    contentType: req.file.mimetype,
-                    file_name: req.file.filename
-                };
-
-                console.log(custom_file.contentType);
-
-                //  Insert validation before passing parameter to function
-                local_message = await set_avatar(req.userData.userId, custom_file);
-            }
-            break;
 
         case 'bio':
             console.log('BIO POST FORM REQUEST');
@@ -104,7 +111,6 @@ router.post('/settings/:form', auth, upload.single('user_avatar'), async (req, r
     }
 
     res.redirect('/profile/settings');
-
 });
 
 module.exports = router;

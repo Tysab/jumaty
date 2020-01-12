@@ -14,7 +14,8 @@ module.exports = function () {
 
         mongoose.connect(conf, {
                         useNewUrlParser: true,
-                        useUnifiedTopology: true
+                        useUnifiedTopology: true,
+                        useFindAndModify: false
                 })
                 .then((e) => console.log('Connected to MongoDB...'))
                 .catch(err => console.error('Could not connect to MongoDB...', err));

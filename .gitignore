@@ -10,6 +10,9 @@ config/development.json
 
 atlas.txt
 
+binaryImages/*
+!binaryImages/default-avatar.png
+
 dropbox.txt
 
 # Runtime data
