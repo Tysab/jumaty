@@ -56,7 +56,7 @@ module.exports = {
                 populate: {
                     path: 'uploads',
                     model: 'uploads',
-                    sort: '-datum'
+                    // sort uploads by datum
                 }
             })
             .populate('uploads')
