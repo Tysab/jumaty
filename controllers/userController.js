@@ -63,7 +63,7 @@ module.exports = {
 
         //  Grabs 'User_id' from 'following'
         let arr = user.following.map(element => element._id);
-        let arr_src = user.following.map(element => element.createSRC());
+        let arr_src = user.following.map(element => element.createSRC);
 
 
 
@@ -74,7 +74,7 @@ module.exports = {
             })
             .select('datum beschrijving User_id')
             .sort('-datum');
-        //console.log(following);
+        console.log(following);
 
 
         //  Convert binary images of 'following' users ref
