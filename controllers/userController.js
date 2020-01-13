@@ -71,7 +71,7 @@ module.exports = {
 
         user.createSRC();
 
-        console.log(user.following[0].uploads[0].beschrijving);
+        //console.log(user.following[0].uploads[0].beschrijving);
 
         //  Grabs 'User_id' from 'following'
         let arr = user.following.map(element => element._id);
