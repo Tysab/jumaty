@@ -9,8 +9,7 @@
           <div id="hey_user" class="d-flex justify-content-center align-items-center p-2">Hey <%= session_user.voornaam %></div>
 
           <div class="d-flex justify-content-center align-items-center p-a-0">
-            <img src="<%= session_user.src %>"
-              class="img-fluid rounded-circle" style="padding-right: 1px; padding-left: 1px;">
+            <div class="avatar-pic" style="background-image: url('<%= session_user.src %>');"></div>
           </div>
 
         </div>

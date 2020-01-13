@@ -10,8 +10,8 @@ body {
 }
 
 .avatar-pic {
-    width: 100px;
-    height: 100px;
+    width: 135px;
+    height: 135px;
     background-size: cover;
     background-position: top center;
     border-radius: 50%;
@@ -19,6 +19,7 @@ body {
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+    transition: 0.3s;
 }
 
 .timeline-img {
@@ -46,6 +47,17 @@ body {
     -moz-transform: translateX(0) !important;
     -ms-transform: translateX(0) !important;
     -o-transform: translateX(0) !important;
+}
+
+.side-nav.fixed.slim [class*="avatar-pic"] {
+    width: 60px !important;
+    height: 60px !important;
+    transition: 0.3s;;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    margin-top: 12px;
 }
 
 .hidden {
