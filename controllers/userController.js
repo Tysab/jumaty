@@ -125,13 +125,20 @@ module.exports = {
             .find({
                 full_name: search_regexp
             })
-            .select('full_name src biografie')
+            .select('full_name img src biografie')
             .exec(async (err, user) => {
                 let result = (err) ? err : user;
                 //user.img = await binaryImage.get_searched_user_avatars(user);
+                let arr_src = user.map(element => element.createSRC());
+
+                if(user.length == 0){
+                    res.locals.search_result = "No users found";
+                }
                 res.locals.search_result = result;
                 next();
             });
+
+
 
         //  Generates user avatar from binary data
         //user.img_data = await binaryImage.get_user_avatar(user);
